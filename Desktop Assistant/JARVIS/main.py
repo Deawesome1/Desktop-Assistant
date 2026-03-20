@@ -10,9 +10,13 @@ Listening model:
 import subprocess, sys, os
 
 # Auto-activate venv if not already active
-_venv_python = os.path.join(os.path.dirname(__file__), "..", "venv", "Scripts", "python.exe")
-if os.path.exists(_venv_python) and sys.executable != os.path.abspath(_venv_python):
-    os.execv(_venv_python, [_venv_python] + sys.argv)
+_venv_python = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "venv", "Scripts", "python.exe")
+)
+
+if os.path.exists(_venv_python) and os.path.abspath(sys.executable) != _venv_python:
+    subprocess.run([_venv_python] + sys.argv)
+    sys.exit()
 
 sys.path.insert(0, os.path.dirname(__file__))
 
