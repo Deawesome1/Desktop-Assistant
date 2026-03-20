@@ -1,0 +1,28 @@
+# Generated files — rebuilt on startup
+config/app_cache.json
+config/reminders.json
+
+# Logs — runtime generated
+logs/jarvis.log
+logs/jarvis_stats.json
+logs/logs/
+logs/test_report_*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+venv/
+env/
+.env/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

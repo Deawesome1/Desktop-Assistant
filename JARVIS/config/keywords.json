@@ -1,0 +1,10 @@
+{
+  "wake_words": ["jarvis", "hey jarvis", "ok jarvis", "hello jarvis", "hi jarvis", "jarvis wake up", "wake up jarvis", "jarvis listen", "listen jarvis"],
+  "cancel_words": ["nevermind", "cancel", "stop", "abort"],
+  "confirmation_phrases": ["yes", "confirm", "do it"],
+  "notes": {
+    "wake_words": "Words that activate JARVIS from idle listening mode.",
+    "cancel_words": "Words that return JARVIS to idle from command-waiting mode.",
+    "confirmation_phrases": "Words treated as confirmation when JARVIS asks to verify."
+  }
+}
