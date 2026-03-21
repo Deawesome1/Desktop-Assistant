@@ -1,0 +1,194 @@
+{
+  "app_associations": {
+    "msedge.exe": {
+      "label": "homework",
+      "suggestion": "I see Edge is open \u2014 need help with homework?",
+      "boost_commands": [
+        "wikipedia",
+        "calculator",
+        "dictionary"
+      ]
+    },
+    "chrome.exe": {
+      "label": "browsing",
+      "suggestion": null,
+      "boost_commands": [
+        "open_browser",
+        "youtube",
+        "news"
+      ]
+    },
+    "steam.exe": {
+      "label": "gaming",
+      "suggestion": "Steam is open \u2014 want to launch a game?",
+      "boost_commands": [
+        "open_app"
+      ]
+    },
+    "discord.exe": {
+      "label": "social",
+      "suggestion": null,
+      "boost_commands": []
+    },
+    "spotify.exe": {
+      "label": "music",
+      "suggestion": null,
+      "boost_commands": [
+        "media_control",
+        "volume"
+      ]
+    },
+    "vlc.exe": {
+      "label": "media",
+      "suggestion": null,
+      "boost_commands": [
+        "media_control",
+        "volume"
+      ]
+    },
+    "code.exe": {
+      "label": "coding",
+      "suggestion": "VS Code is open \u2014 need anything looked up?",
+      "boost_commands": [
+        "wikipedia",
+        "open_browser"
+      ]
+    },
+    "pycharm64.exe": {
+      "label": "coding",
+      "suggestion": null,
+      "boost_commands": [
+        "wikipedia",
+        "open_browser"
+      ]
+    },
+    "obs64.exe": {
+      "label": "streaming",
+      "suggestion": "OBS is open \u2014 recording or streaming?",
+      "boost_commands": [
+        "media_control",
+        "volume"
+      ]
+    },
+    "excel.exe": {
+      "label": "work",
+      "suggestion": null,
+      "boost_commands": [
+        "calculator",
+        "note"
+      ]
+    },
+    "winword.exe": {
+      "label": "writing",
+      "suggestion": null,
+      "boost_commands": [
+        "dictionary",
+        "note"
+      ]
+    }
+  },
+  "time_patterns": {
+    "morning": {
+      "hours": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "typical_commands": [
+        "weather",
+        "news",
+        "greet"
+      ],
+      "greeting": "Good morning."
+    },
+    "midday": {
+      "hours": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "typical_commands": [],
+      "greeting": null
+    },
+    "afternoon": {
+      "hours": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "typical_commands": [],
+      "greeting": null
+    },
+    "evening": {
+      "hours": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "typical_commands": [
+        "reminder",
+        "note",
+        "weather"
+      ],
+      "greeting": null
+    },
+    "night": {
+      "hours": [
+        22,
+        23
+      ],
+      "typical_commands": [
+        "reminder",
+        "timer"
+      ],
+      "greeting": null
+    },
+    "late_night": {
+      "hours": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "typical_commands": [
+        "timer"
+      ],
+      "greeting": null
+    }
+  },
+  "command_frequency": {
+    "time": 1,
+    "date": 2,
+    "greet": 3,
+    "calculator": 6,
+    "weather": 3,
+    "timer": 3,
+    "stopwatch": 5,
+    "volume": 6,
+    "brightness": 3,
+    "screenshot": 2,
+    "clipboard": 4,
+    "clipboard_history": 1,
+    "note": 3,
+    "system_info": 6,
+    "top_processes": 3,
+    "wifi_info": 3,
+    "ip_address": 3,
+    "open_browser": 3,
+    "youtube": 3,
+    "media_control": 4,
+    "news": 4,
+    "wikipedia": 3,
+    "dictionary": 4,
+    "converter": 2
+  },
+  "suggestion_cooldown": 300,
+  "disambiguation_threshold": 0.0,
+  "disambiguation_timeout": 6
+}

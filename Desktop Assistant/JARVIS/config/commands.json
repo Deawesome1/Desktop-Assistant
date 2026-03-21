@@ -154,7 +154,25 @@
         "skip song",
         "skip track",
         "next track",
-        "prev track"
+        "prev track",
+        "play music",
+        "play track",
+        "resume",
+        "resume song",
+        "stop the music",
+        "stop music",
+        "stop playing",
+        "press play",
+        "hit play",
+        "press pause",
+        "hit pause",
+        "press next",
+        "hit next",
+        "press skip",
+        "skip",
+        "skip it",
+        "next one",
+        "go next"
       ]
     },
     "note": {
@@ -246,11 +264,13 @@
       "enabled": false,
       "description": "FUTURE: Spotify API control \u2014 play, pause, skip, search.",
       "triggers": [
-        "play",
         "spotify",
         "play song",
-        "queue",
-        "play artist"
+        "queue song",
+        "play artist",
+        "play album",
+        "open spotify",
+        "spotify play"
       ]
     },
     "_placeholder_smart_home": {
@@ -478,6 +498,22 @@
         "switch personality",
         "reload personality",
         "personality"
+      ]
+    },
+    "toggle_voice": {
+      "enabled": true,
+      "description": "Mute or unmute JARVIS speech output.",
+      "triggers": [
+        "mute jarvis",
+        "unmute jarvis",
+        "toggle voice",
+        "silence",
+        "be quiet",
+        "voice off",
+        "voice on",
+        "turn off voice",
+        "turn on voice",
+        "stop talking"
       ]
     }
   },

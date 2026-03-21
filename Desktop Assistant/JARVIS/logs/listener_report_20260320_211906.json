@@ -1,0 +1,126 @@
+{
+  "timestamp": "2026-03-20T21:19:06.891250",
+  "total": 16,
+  "passed": 5,
+  "failed": 11,
+  "results": [
+    {
+      "type": "selection",
+      "name": "Noise vs command \u2014 command wins",
+      "selected": "jarvis presley",
+      "expected": "yarvis press play",
+      "passed": false
+    },
+    {
+      "type": "selection",
+      "name": "Noise vs command \u2014 large gap, noise wins",
+      "selected": "hello world",
+      "expected": "hello world",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Exact trigger match wins outright",
+      "selected": "some random noise",
+      "expected": "what time is it",
+      "passed": false
+    },
+    {
+      "type": "selection",
+      "name": "All noise \u2014 fallback to top stt",
+      "selected": "xkcd blorple wumbo",
+      "expected": "xkcd blorple wumbo",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Wake word fuzzy \u2014 yarvis vs jarvis",
+      "selected": "marble what time is it",
+      "expected": "yarvis what time is it",
+      "passed": false
+    },
+    {
+      "type": "selection",
+      "name": "Wake word fuzzy \u2014 elvis vs jarvis",
+      "selected": "elvis presley",
+      "expected": "jarvis play music",
+      "passed": false
+    },
+    {
+      "type": "selection",
+      "name": "Multiple good candidates \u2014 highest final wins",
+      "selected": "jarvis what time is it",
+      "expected": "jarvis what time is it",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "No confidence field \u2014 first candidate gets default 0.85",
+      "selected": "jarvis what time is it",
+      "expected": "jarvis what time is it",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Press play \u2014 added trigger alias works",
+      "selected": "jarvis presley",
+      "expected": "jarvis press play",
+      "passed": false
+    },
+    {
+      "type": "selection",
+      "name": "Command word in middle of noise",
+      "selected": "completely random noise",
+      "expected": "blorple weather fnorp",
+      "passed": false
+    },
+    {
+      "type": "cmd_match",
+      "name": "Exact trigger \u2014 score 1.0",
+      "score": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "passed": false
+    },
+    {
+      "type": "cmd_match",
+      "name": "All trigger words present",
+      "score": 0.0,
+      "min": 0.75,
+      "max": 1.0,
+      "passed": false
+    },
+    {
+      "type": "cmd_match",
+      "name": "Wake word fuzzy match",
+      "score": 0.0,
+      "min": 0.75,
+      "max": 1.0,
+      "passed": false
+    },
+    {
+      "type": "cmd_match",
+      "name": "Pure noise \u2014 near zero",
+      "score": 0.0,
+      "min": 0.0,
+      "max": 0.2,
+      "passed": true
+    },
+    {
+      "type": "cmd_match",
+      "name": "Partial overlap",
+      "score": 0.0,
+      "min": 0.4,
+      "max": 1.0,
+      "passed": false
+    },
+    {
+      "type": "cmd_match",
+      "name": "Press play trigger",
+      "score": 0.0,
+      "min": 0.8,
+      "max": 1.0,
+      "passed": false
+    }
+  ]
+}

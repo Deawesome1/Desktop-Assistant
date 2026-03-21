@@ -1,0 +1,244 @@
+{
+  "timestamp": "2026-03-20T21:07:12.838887",
+  "total": 22,
+  "passed": 20,
+  "failed": 2,
+  "results": [
+    {
+      "scenario": "Morning (6am)",
+      "type": "confidence",
+      "label": "weather boosted at morning",
+      "query": "what's the weather",
+      "matched": "weather",
+      "expected": "weather",
+      "confidence": 1.0,
+      "min_confidence": 0.75,
+      "passed": true
+    },
+    {
+      "scenario": "Morning (6am)",
+      "type": "confidence",
+      "label": "news boosted at morning",
+      "query": "what's in the news",
+      "matched": "news",
+      "expected": "news",
+      "confidence": 1.0,
+      "min_confidence": 0.75,
+      "passed": true
+    },
+    {
+      "scenario": "Morning (6am)",
+      "type": "confidence",
+      "label": "timer normal at morning",
+      "query": "set a timer for 5 minutes",
+      "matched": "timer",
+      "expected": "timer",
+      "confidence": 0.9,
+      "min_confidence": 0.65,
+      "passed": true
+    },
+    {
+      "scenario": "Evening (8pm)",
+      "type": "confidence",
+      "label": "reminder boosted at evening",
+      "query": "remind me to call mom",
+      "matched": "reminder",
+      "expected": "reminder",
+      "confidence": 1.0,
+      "min_confidence": 0.75,
+      "passed": true
+    },
+    {
+      "scenario": "Evening (8pm)",
+      "type": "confidence",
+      "label": "note boosted at evening",
+      "query": "take a note pick up milk",
+      "matched": "note",
+      "expected": "note",
+      "confidence": 1.0,
+      "min_confidence": 0.75,
+      "passed": true
+    },
+    {
+      "scenario": "Evening (8pm)",
+      "type": "confidence",
+      "label": "weather normal at evening",
+      "query": "what's the weather",
+      "matched": "weather",
+      "expected": "weather",
+      "confidence": 1.0,
+      "min_confidence": 0.5,
+      "passed": true
+    },
+    {
+      "scenario": "Gaming (Steam open)",
+      "type": "confidence",
+      "label": "open_app boosted (Steam open)",
+      "query": "open rocket league",
+      "matched": "open_app",
+      "expected": "open_app",
+      "confidence": 0.7,
+      "min_confidence": 0.7,
+      "passed": true
+    },
+    {
+      "scenario": "Gaming (Steam open)",
+      "type": "confidence",
+      "label": "launch game with Steam open",
+      "query": "launch game",
+      "matched": "open_app",
+      "expected": "open_app",
+      "confidence": 0.7,
+      "min_confidence": 0.5,
+      "passed": true
+    },
+    {
+      "scenario": "Homework (Edge open)",
+      "type": "confidence",
+      "label": "wikipedia boosted (Edge open)",
+      "query": "who is albert einstein",
+      "matched": "wikipedia",
+      "expected": "wikipedia",
+      "confidence": 0.7,
+      "min_confidence": 0.7,
+      "passed": true
+    },
+    {
+      "scenario": "Homework (Edge open)",
+      "type": "confidence",
+      "label": "calculator boosted (Edge open)",
+      "query": "calculate 42 times 7",
+      "matched": "calculator",
+      "expected": "calculator",
+      "confidence": 1.0,
+      "min_confidence": 0.7,
+      "passed": true
+    },
+    {
+      "scenario": "Homework (Edge open)",
+      "type": "confidence",
+      "label": "dictionary normal (Edge open)",
+      "query": "define photosynthesis",
+      "matched": "dictionary",
+      "expected": "dictionary",
+      "confidence": 1.0,
+      "min_confidence": 0.5,
+      "passed": true
+    },
+    {
+      "scenario": "Coding (VS Code open)",
+      "type": "confidence",
+      "label": "open_browser boosted (Code open)",
+      "query": "search for python docs",
+      "matched": "open_browser",
+      "expected": "open_browser",
+      "confidence": 0.85,
+      "min_confidence": 0.7,
+      "passed": true
+    },
+    {
+      "scenario": "Coding (VS Code open)",
+      "type": "confidence",
+      "label": "wikipedia boosted (Code open)",
+      "query": "tell me about decorators",
+      "matched": "wikipedia",
+      "expected": "wikipedia",
+      "confidence": 0.85,
+      "min_confidence": 0.7,
+      "passed": true
+    },
+    {
+      "scenario": "Music (Spotify open)",
+      "type": "confidence",
+      "label": "media_control boosted (Spotify open)",
+      "query": "next song",
+      "matched": "media_control",
+      "expected": "media_control",
+      "confidence": 0.7,
+      "min_confidence": 0.7,
+      "passed": true
+    },
+    {
+      "scenario": "Music (Spotify open)",
+      "type": "confidence",
+      "label": "volume boosted (Spotify open)",
+      "query": "volume up",
+      "matched": "volume",
+      "expected": "volume",
+      "confidence": 1.0,
+      "min_confidence": 0.7,
+      "passed": true
+    },
+    {
+      "scenario": "Ambiguous \u2014 no context",
+      "type": "confidence",
+      "label": "'mute' ambiguous without Spotify open",
+      "query": "mute",
+      "matched": "volume",
+      "expected": "volume",
+      "confidence": 0.5,
+      "min_confidence": 0.0,
+      "passed": true
+    },
+    {
+      "scenario": "Ambiguous \u2014 no context",
+      "type": "confidence",
+      "label": "'play music' ambiguous without context",
+      "query": "play music",
+      "matched": "media_control",
+      "expected": "media_control",
+      "confidence": 0.65,
+      "min_confidence": 0.0,
+      "passed": false
+    },
+    {
+      "scenario": "Ambiguous \u2014 no context",
+      "type": "confidence",
+      "label": "'stop the music' ambiguous without context",
+      "query": "stop the music",
+      "matched": "NONE",
+      "expected": "media_control",
+      "confidence": 0.0,
+      "min_confidence": 0.0,
+      "passed": false
+    },
+    {
+      "scenario": "Ambiguous \u2014 with context",
+      "type": "confidence",
+      "label": "'mute' confident with Spotify + recent volume",
+      "query": "mute",
+      "matched": "volume",
+      "expected": "volume",
+      "confidence": 0.85,
+      "min_confidence": 0.55,
+      "passed": true
+    },
+    {
+      "scenario": "Ambiguous \u2014 with context",
+      "type": "confidence",
+      "label": "'play music' confident with Spotify open",
+      "query": "play music",
+      "matched": "media_control",
+      "expected": "media_control",
+      "confidence": 1.0,
+      "min_confidence": 0.55,
+      "passed": true
+    },
+    {
+      "scenario": "Suggestion \u2014 morning, news not run yet",
+      "type": "suggestion",
+      "label": "morning suggestion fires",
+      "suggestion": "You usually run weather around this time.",
+      "expected_suggestion": true,
+      "passed": true
+    },
+    {
+      "scenario": "Suggestion \u2014 Steam open",
+      "type": "suggestion",
+      "label": "Steam suggestion fires",
+      "suggestion": "Steam is open \u2014 want to launch a game?",
+      "expected_suggestion": true,
+      "passed": true
+    }
+  ]
+}

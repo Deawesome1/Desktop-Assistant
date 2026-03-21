@@ -22,6 +22,14 @@ _JARVIS_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, _JARVIS_ROOT)
 import bot.command_hub as command_hub
 
+# ── Disable disambiguation during tests ──────────────────────────────────────
+# Force threshold to 0.0 so no command triggers a "did you mean" prompt
+try:
+    from bot.context import ctx
+    ctx._patterns["disambiguation_threshold"] = 0.0
+except Exception:
+    pass
+
 # ── Silence JARVIS during tests ───────────────────────────────────────────────
 # Automatically mutes on start, restores original state when done.
 try:
@@ -387,13 +395,44 @@ def run_auto(groups: list[str]):
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
+# ── Scenario presets ─────────────────────────────────────────────────────────
+SCENARIO_PRESETS = {
+    "morning":  {"hour": 6,  "apps": []},
+    "evening":  {"hour": 20, "apps": []},
+    "gaming":   {"hour": None, "apps": ["steam.exe"]},
+    "homework": {"hour": None, "apps": ["msedge.exe"]},
+    "coding":   {"hour": None, "apps": ["code.exe"]},
+    "music":    {"hour": None, "apps": ["spotify.exe"]},
+    "clean":    {"hour": None, "apps": []},
+}
+
+
 def main():
     _enable_ansi()
 
     parser = argparse.ArgumentParser(description="JARVIS command test runner")
-    parser.add_argument("--auto",   action="store_true", help="Run unattended, save report")
-    parser.add_argument("--groups", type=str, default="", help="Comma-separated group names to run")
+    parser.add_argument("--auto",     action="store_true", help="Run unattended, save report")
+    parser.add_argument("--groups",   type=str, default="", help="Comma-separated group names to run")
+    parser.add_argument("--scenario", type=str, default="", help=f"Context preset: {', '.join(SCENARIO_PRESETS)}")
     args = parser.parse_args()
+
+    # Apply scenario context simulation
+    if args.scenario:
+        preset = SCENARIO_PRESETS.get(args.scenario.lower())
+        if preset:
+            try:
+                from bot.context import ctx
+                if preset["hour"] is not None:
+                    ctx.simulate_time(preset["hour"])
+                if preset["apps"]:
+                    ctx.simulate_apps(preset["apps"])
+                print(f"  {DIM}Scenario: {args.scenario}  "
+                      f"hour={preset['hour']}  apps={preset['apps']}{RESET}")
+            except Exception as e:
+                print(f"  [Warning] Could not apply scenario: {e}")
+        else:
+            print(f"  [Warning] Unknown scenario '{args.scenario}'. "
+                  f"Available: {', '.join(SCENARIO_PRESETS)}")
 
     # Determine which groups to run
     if args.groups:

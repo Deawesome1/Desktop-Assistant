@@ -18,8 +18,8 @@ Tuning guide (edit config/voice.json under "listener"):
 import os
 import json
 
-CONFIG_PATH   = os.path.join(os.path.dirname(__file__), "config", "keywords.json")
-VOICE_CONFIG  = os.path.join(os.path.dirname(__file__), "config", "voice.json")
+CONFIG_PATH   = os.path.join(os.path.dirname(__file__), "..", "config", "keywords.json")
+VOICE_CONFIG  = os.path.join(os.path.dirname(__file__), "..", "config", "voice.json")
 
 _recognizer = None
 
@@ -74,7 +74,7 @@ def _build_phrase_hints() -> list[str]:
     except Exception:
         pass
     try:
-        registry_path = os.path.join(os.path.dirname(__file__), "config", "commands.json")
+        registry_path = os.path.join(os.path.dirname(__file__), "..", "config", "commands.json")
         with open(registry_path) as f:
             registry = json.load(f)
         for entry in registry.get("commands", {}).values():
@@ -100,7 +100,7 @@ def _load_triggers() -> list[str]:
     except Exception:
         pass
     try:
-        registry_path = os.path.join(os.path.dirname(__file__), "config", "commands.json")
+        registry_path = os.path.join(os.path.dirname(__file__), "..", "config", "commands.json")
         with open(registry_path) as f:
             registry = json.load(f)
         for entry in registry.get("commands", {}).values():
@@ -110,52 +110,83 @@ def _load_triggers() -> list[str]:
     return [t.lower().strip() for t in triggers if t.strip()]
 
 
+# Wake words to strip before command scoring so "jarvis" alone
+# doesn't give noise transcripts a free cmd=1.0
+_WAKE_WORDS_FOR_SCORING = {"jarvis", "hey jarvis", "jarvis please",
+                            "ok jarvis", "okay jarvis"}
+
+
+def _strip_wake_word(text: str) -> str:
+    """Remove wake word prefix from transcript before command scoring."""
+    t = text.lower().strip()
+    for w in sorted(_WAKE_WORDS_FOR_SCORING, key=len, reverse=True):
+        if t.startswith(w):
+            t = t[len(w):].strip()
+            break
+    return t
+
+
 def _command_match_score(text: str, triggers: list[str]) -> float:
     """
     Score how well a transcript matches known command vocabulary.
     Returns a value between 0.0 and 1.0.
 
-    Scoring:
-      - Exact trigger match anywhere in text:          1.0
-      - All trigger words present in text:             0.8
-      - Partial word overlap with any trigger:         proportional
-      - High fuzzy similarity to any single word:      up to 0.9
-        (catches near-homophones like yarvis/jarvis)
-      - No match:                                      0.0
+    Wake words are stripped first so "jarvis presley" doesn't score
+    1.0 just because "jarvis" is a registered wake-word trigger.
+
+    Scoring (applied to the post-wake-word text):
+      - Exact trigger match anywhere in text:       1.0
+      - All trigger words present in text:          0.8
+      - Partial word overlap with any trigger:      proportional (max 0.7)
+      - Fuzzy per-word similarity:                  up to 0.9
+      - No match:                                   0.0
     """
     from difflib import SequenceMatcher
-    text_lower = text.lower().strip()
-    text_words = text_lower.split()
-    text_words_set = set(text_words)
-    best = 0.0
 
-    for trigger in triggers:
-        t_lower = trigger.lower().strip()
-        t_words = set(t_lower.split())
+    # Score both raw and wake-stripped; take the higher
+    # (preserves cases where wake word IS the command, e.g. "jarvis")
+    raw        = text.lower().strip()
+    stripped   = _strip_wake_word(raw)
 
-        # Exact substring match
-        if t_lower in text_lower:
-            return 1.0
+    def _score(t: str, skip_wake: bool = False) -> float:
+        t_words = t.split()
+        t_set   = set(t_words)
+        best    = 0.0
+        for trigger in triggers:
+            trig_lower = trigger.lower().strip()
+            trig_words = set(trig_lower.split())
+            # Skip bare wake-word triggers unless the text IS just the wake word
+            # This prevents "jarvis presley" scoring 1.0 from "jarvis" alone
+            if skip_wake and trig_lower in _WAKE_WORDS_FOR_SCORING:
+                continue
+            if trig_lower in t:
+                # Only count as 1.0 if it's more than just the wake word prefix
+                # i.e. there must be a non-wake-word match
+                if trig_lower in _WAKE_WORDS_FOR_SCORING and len(t_words) > 1:
+                    # Give credit but not full 1.0 — the wake word is expected
+                    best = max(best, 0.5)
+                    continue
+                return 1.0
+            if trig_words and trig_words.issubset(t_set):
+                best = max(best, 0.8)
+                continue
+            if trig_words:
+                overlap = len(trig_words & t_set) / len(trig_words)
+                best = max(best, overlap * 0.7)
+            for tw in t_words:
+                for trigw in trig_lower.split():
+                    # Require both words to be >= 4 chars and sim > 0.75
+                    # to avoid short words like "for" fuzzy-matching gibberish
+                    if len(tw) < 4 or len(trigw) < 4:
+                        continue
+                    sim = SequenceMatcher(None, tw, trigw).ratio()
+                    if sim > 0.75:
+                        best = max(best, sim * 0.9)
+        return best
 
-        # All trigger words present in text
-        if t_words and t_words.issubset(text_words_set):
-            best = max(best, 0.8)
-            continue
-
-        # Word overlap ratio
-        if t_words:
-            overlap = len(t_words & text_words_set) / len(t_words)
-            best = max(best, overlap * 0.7)
-
-        # Fuzzy similarity of each word in text against each trigger word
-        # This catches near-homophones: "yarvis" vs "jarvis" = 0.857
-        for tw in text_words:
-            for trigw in t_lower.split():
-                sim = SequenceMatcher(None, tw, trigw).ratio()
-                # Weight single-word fuzzy matches highly so wake words score well
-                best = max(best, sim * 0.9)
-
-    return best
+    raw_score      = _score(raw, skip_wake=False)
+    stripped_score = _score(stripped, skip_wake=True) if stripped != raw else raw_score
+    return max(raw_score, stripped_score)
 
 
 def _score_candidates(candidates: list[dict]) -> str:
@@ -196,13 +227,25 @@ def _score_candidates(candidates: list[dict]) -> str:
 
     scored.sort(reverse=True)
 
-    # Print ranked table — always shown so you can tune
+    # If the top candidate has zero command score but a lower-ranked candidate
+    # has a meaningful command match, prefer the command-matching one.
+    # Prevents high-confidence noise ("jarvis presley") beating an actual
+    # command attempt ("jarvis press play") on speech confidence alone.
+    best = scored[0]
+    if best[2] == 0.0:
+        for candidate in scored[1:]:
+            final, stt, cmd, text = candidate
+            if cmd >= 0.3 and (best[0] - final) < 0.25:
+                best = candidate
+                break
+
+    # Print ranked table
     print(f"[Listener] Scored {len(scored)} candidate(s):")
     for i, (final, stt, cmd, text) in enumerate(scored):
-        marker = "  <-- selected" if i == 0 else ""
+        marker = "  <-- selected" if (final, stt, cmd, text) == best else ""
         print(f"           [{i+1}] stt={stt:.2f} cmd={cmd:.2f} final={final:.2f}  '{text}'{marker}")
 
-    return scored[0][3]
+    return best[3]
 
 
 def listen_once(prompt: str = "", timeout: int = None,

@@ -10,12 +10,14 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from logs.logger import log_event, log_error
 from bot.speaker import speak, get_response
+from bot.context import ctx
 from bot.listener import listen_once, is_cancel, _load_keywords
 import bot.command_hub as command_hub
 
 STAY_AWAKE_SENTINEL = "__STAY_AWAKE__"
 
 log_event("JARVIS starting (dev mode).")
+    ctx.start_app_watcher()
 print("\n╔══════════════════════════════╗")
 print("║    J.A.R.V.I.S.  [DEV]       ║")
 print("╚══════════════════════════════╝")

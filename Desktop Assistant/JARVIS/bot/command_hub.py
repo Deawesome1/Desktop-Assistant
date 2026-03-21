@@ -13,6 +13,7 @@ import os
 import json
 import importlib
 import platform_utils  # registers JARVIS.platform_utils alias — must be first
+from bot.context import ctx
 
 from logs.logger import log_query, log_error, log_event
 from bot.speaker import speak, get_response
@@ -63,6 +64,9 @@ INTENT_CONTEXT: dict[str, str] = {
     "conversion":  "converter",
     "joke":        "jokes",
     "calculate":   "calculator",
+    "skip":        "media_control",
+    "next":        "media_control",
+    "resume":      "media_control",
 }
 
 
@@ -71,26 +75,35 @@ def _load_registry() -> dict:
         return json.load(f)
 
 
-def _match_command(query: str, registry: dict) -> tuple[str | None, dict | None]:
+def _match_command(query: str, registry: dict) -> tuple[str | None, dict | None, float]:
     """
     Match query to the best command using intent context + longest trigger.
+    Returns (command_key, command_entry, confidence_score).
+    confidence_score:
+      0.90 = INTENT_CONTEXT hit
+      0.65 = longest trigger, high specificity (trigger len >= 10)
+      0.50 = longest trigger, low specificity
+      0.00 = no match
+    Context boost from bot.context is added on top, capped at 1.0.
     """
     query_lower = query.lower().strip()
     commands = registry.get("commands", {})
 
     # ── Step 1: Intent context check ─────────────────────────────────────────
-    # If a context keyword appears in the query, route directly to its owner.
     for word in query_lower.split():
         if word in INTENT_CONTEXT:
             target_key = INTENT_CONTEXT[word]
             if target_key in commands and commands[target_key].get("enabled", True):
-                return target_key, commands[target_key]
+                base = 0.90
+                boost = ctx.get_confidence_boost(target_key)
+                return target_key, commands[target_key], min(1.0, base + boost)
 
-    # Also check multi-word context phrases
     for phrase, target_key in INTENT_CONTEXT.items():
         if " " in phrase and phrase in query_lower:
             if target_key in commands and commands[target_key].get("enabled", True):
-                return target_key, commands[target_key]
+                base = 0.90
+                boost = ctx.get_confidence_boost(target_key)
+                return target_key, commands[target_key], min(1.0, base + boost)
 
     # ── Step 2: Longest trigger wins ─────────────────────────────────────────
     all_entries = []
@@ -99,11 +112,13 @@ def _match_command(query: str, registry: dict) -> tuple[str | None, dict | None]
             all_entries.append((len(trigger), trigger, key, entry))
     all_entries.sort(reverse=True)
 
-    for _, trigger, key, entry in all_entries:
+    for trigger_len, trigger, key, entry in all_entries:
         if trigger.lower() in query_lower:
-            return key, entry
+            base  = 0.65 if trigger_len >= 10 else 0.50
+            boost = ctx.get_confidence_boost(key)
+            return key, entry, min(1.0, base + boost)
 
-    return None, None
+    return None, None, 0.0
 
 
 def _infer_status(result: str) -> str:
@@ -138,7 +153,7 @@ def handle(query: str) -> str:
         pass
 
     registry = _load_registry()
-    command_key, command_entry = _match_command(query, registry)
+    command_key, command_entry, confidence = _match_command(query, registry)
 
     if command_key is None:
         log_query(query=query, interpretation="No match found",
@@ -152,24 +167,56 @@ def handle(query: str) -> str:
         speak(get_response("command_disabled"))
         return "DISABLED"
 
+    # ── Disambiguation ────────────────────────────────────────────────────────
+    threshold = ctx.disambiguation_threshold
+    if confidence < threshold:
+        label = command_key.replace("_", " ")
+        speak(f"Did you mean {label}?")
+        log_event(f"Disambiguating '{query}' → '{command_key}' (confidence {confidence:.2f})")
+        try:
+            from bot.listener import listen_once, is_cancel
+            response = listen_once(timeout=ctx.disambiguation_timeout)
+            if not response or is_cancel(response):
+                speak("Never mind.")
+                return "CANCELLED"
+            positive = any(w in response.lower() for w in
+                           ["yes", "yeah", "yep", "correct", "sure", "do it",
+                            "that's right", "affirmative", "go ahead", "please"])
+            if not positive:
+                speak("Alright, cancelled.")
+                return "CANCELLED"
+        except Exception:
+            pass  # If listener unavailable, proceed anyway
+
+    # ── Execute ───────────────────────────────────────────────────────────────
     try:
-        # Core bot modules override commands/ folder
         _bot_modules = {"toggle_voice"}
         if command_key in _bot_modules:
             module = importlib.import_module(f"bot.{command_key}")
         else:
             module = importlib.import_module(f"commands.{command_key}")
-        result = module.run(query)
+        result  = module.run(query)
         outcome = result if isinstance(result, str) else f"Command '{command_key}' executed"
         status  = _infer_status(outcome) if isinstance(result, str) else "SUCCESS"
         log_query(query=query, interpretation=command_key, outcome=outcome, status=status)
 
-        # Optional personality quip after command
+        # Record in context engine
+        ctx.record_command(command_key, query)
+
+        # Optional personality quip
         try:
             from bot.personality.engine import after_command
             quip = after_command(status == "SUCCESS")
             if quip:
                 speak(quip)
+        except Exception:
+            pass
+
+        # Proactive suggestion (fires occasionally based on context)
+        try:
+            suggestion = ctx.get_suggestion()
+            if suggestion:
+                speak(suggestion)
         except Exception:
             pass
 

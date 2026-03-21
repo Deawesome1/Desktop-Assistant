@@ -1,0 +1,135 @@
+{
+  "timestamp": "2026-03-20T21:24:46.385768",
+  "total": 17,
+  "passed": 14,
+  "failed": 3,
+  "results": [
+    {
+      "type": "selection",
+      "name": "Core fix \u2014 noise loses to command despite higher stt",
+      "selected": "yarvis press play",
+      "expected": "yarvis press play",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Large gap \u2014 noise wins",
+      "selected": "hello world",
+      "expected": "hello world",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Exact trigger beats noise at any stt gap",
+      "selected": "what time is it",
+      "expected": "what time is it",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "All noise \u2014 fallback to top stt",
+      "selected": "florp snorkel baz",
+      "expected": "xkcd blorple wumbo",
+      "passed": false
+    },
+    {
+      "type": "selection",
+      "name": "Elvis vs jarvis \u2014 jarvis command wins",
+      "selected": "jarvis play music",
+      "expected": "jarvis play music",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "No confidence field \u2014 first gets default 0.85",
+      "selected": "jarvis what time is it",
+      "expected": "jarvis what time is it",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Multiple valid commands \u2014 highest final wins",
+      "selected": "jarvis what time is it",
+      "expected": "jarvis what time is it",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Press play alias \u2014 beats noise",
+      "selected": "jarvis press play",
+      "expected": "jarvis press play",
+      "passed": true
+    },
+    {
+      "type": "selection",
+      "name": "Command word mid-noise beats high-conf noise",
+      "selected": "blorple weather fnorp",
+      "expected": "blorple weather fnorp",
+      "passed": true
+    },
+    {
+      "type": "cmd_score",
+      "name": "Exact trigger \u2192 1.0",
+      "score": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "passed": true
+    },
+    {
+      "type": "cmd_score",
+      "name": "Wake word + noise \u2192 low score",
+      "score": 0.9,
+      "min": 0.0,
+      "max": 0.65,
+      "passed": false
+    },
+    {
+      "type": "cmd_score",
+      "name": "Wake word + command \u2192 high score",
+      "score": 1.0,
+      "min": 0.85,
+      "max": 1.0,
+      "passed": true
+    },
+    {
+      "type": "cmd_score",
+      "name": "Yarvis fuzzy match",
+      "score": 1.0,
+      "min": 0.85,
+      "max": 1.0,
+      "passed": true
+    },
+    {
+      "type": "cmd_score",
+      "name": "Pure gibberish \u2192 near zero",
+      "score": 0.675,
+      "min": 0.0,
+      "max": 0.25,
+      "passed": false
+    },
+    {
+      "type": "cmd_score",
+      "name": "Weather mid-noise \u2192 moderate+",
+      "score": 1.0,
+      "min": 0.85,
+      "max": 1.0,
+      "passed": true
+    },
+    {
+      "type": "cmd_score",
+      "name": "Elvis presley \u2192 low-moderate",
+      "score": 0.6,
+      "min": 0.0,
+      "max": 0.65,
+      "passed": true
+    },
+    {
+      "type": "cmd_score",
+      "name": "Partial overlap \u2192 moderate",
+      "score": 1.0,
+      "min": 0.4,
+      "max": 1.0,
+      "passed": true
+    }
+  ]
+}
