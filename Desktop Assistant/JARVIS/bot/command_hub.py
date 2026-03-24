@@ -67,6 +67,15 @@ INTENT_CONTEXT: dict[str, str] = {
     "skip":        "media_control",
     "next":        "media_control",
     "resume":      "media_control",
+    # DJ
+    "queue":       "dj",
+    "shuffle":     "dj",
+    "dj":          "dj",
+    "hype":        "dj",
+    # Playlists / taste
+    "playlist":    "playlists",
+    "playlists":   "playlists",
+    "taste":       "playlists",
 }
 
 
@@ -205,18 +214,65 @@ def handle(query: str) -> str:
 
         # Optional personality quip
         try:
-            from bot.personality.engine import after_command
-            quip = after_command(status == "SUCCESS")
+            from bot.personality.engine import after_command, get_unprompted
+            quip = after_command(status == "SUCCESS", command_key=command_key)
             if quip:
                 speak(quip)
+            else:
+                # Small chance of unprompted one-liner
+                line = get_unprompted()
+                if line:
+                    speak(line)
         except Exception:
             pass
 
         # Proactive suggestion (fires occasionally based on context)
         try:
-            suggestion = ctx.get_suggestion()
+            music_sug  = ctx.get_music_suggestion()
+            other_sug  = ctx.get_suggestion()
+            suggestion = music_sug or other_sug
+
             if suggestion:
                 speak(suggestion)
+
+                # For music suggestions, listen for yes/no response
+                if music_sug:
+                    try:
+                        from bot.listener import listen_once, is_cancel
+                        response = listen_once(timeout=6)
+                        if response:
+                            accepted = any(w in response.lower() for w in
+                                           ["yes", "yeah", "sure", "do it",
+                                            "go ahead", "please", "put it on",
+                                            "yep", "absolutely"])
+                            rejected = is_cancel(response) or any(
+                                w in response.lower() for w in
+                                ["no", "nope", "not now", "skip", "pass",
+                                 "don't", "stop"])
+                            if accepted:
+                                # Extract the query from the suggestion text
+                                import re as _re
+                                m = _re.search(
+                                    r"You usually listen to (.+?) around",
+                                    music_sug)
+                                if m:
+                                    import importlib as _il
+                                    _dj = _il.import_module("commands.dj")
+                                    _dj.record_suggestion_response(
+                                        m.group(1), ctx.get_time_mode(), True)
+                                    _dj.run(f"play {m.group(1)}")
+                            elif rejected:
+                                import re as _re
+                                m = _re.search(
+                                    r"You usually listen to (.+?) around",
+                                    music_sug)
+                                if m:
+                                    import importlib as _il
+                                    _dj = _il.import_module("commands.dj")
+                                    _dj.record_suggestion_response(
+                                        m.group(1), ctx.get_time_mode(), False)
+                    except Exception:
+                        pass
         except Exception:
             pass
 

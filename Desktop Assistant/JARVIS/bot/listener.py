@@ -318,6 +318,15 @@ def listen_once(prompt: str = "", timeout: int = None,
 
     if result == "UNKNOWN":
         if retry:
+            # Mishear humor
+            try:
+                from bot.personality.engine import get_situational
+                line = get_situational("mishear")
+                if line:
+                    from bot.speaker import speak
+                    speak(line)
+            except Exception:
+                pass
             print("[Listener] Didn't catch that — listening again...")
             result = _attempt()
         if result == "UNKNOWN":

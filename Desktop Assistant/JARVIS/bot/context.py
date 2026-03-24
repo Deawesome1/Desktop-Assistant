@@ -26,6 +26,9 @@ from collections import deque
 _ROOT           = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 PATTERNS_PATH   = os.path.join(_ROOT, "config", "context_patterns.json")
 
+# Make _ROOT accessible within methods via the module-level name
+# (context.py lives in bot/ so .. points to JARVIS root)
+
 # ── Default patterns (written on first run if missing) ────────────────────────
 DEFAULT_PATTERNS = {
     "app_associations": {
@@ -243,6 +246,37 @@ class ContextEngine:
             "boost_commands": boost_commands,
         }
         self._save_patterns()
+
+    def get_music_suggestion(self) -> str | None:
+        """
+        Return a proactive music suggestion based on learned DJ patterns.
+        Fires after proactive_threshold plays at the current time mode.
+        Returns None if not enough data or cooldown not elapsed.
+        """
+        cooldown = self._patterns.get("suggestion_cooldown", 300)
+        if time.time() - self._last_suggestion_ts < cooldown:
+            return None
+        try:
+            dj_cfg_path = os.path.join(_ROOT, "config", "dj_config.json")
+            with open(dj_cfg_path) as f:
+                dj_cfg = json.load(f)
+            threshold = dj_cfg.get("proactive_threshold", 10)
+            ctx_path = os.path.join(_ROOT, "config", "context_patterns.json")
+            with open(ctx_path) as f:
+                patterns = json.load(f)
+            dj_pats  = patterns.get("dj_patterns", {})
+            mode     = self.get_time_mode()
+            mode_pat = dj_pats.get(mode, {})
+            if mode_pat.get("count", 0) >= threshold:
+                from collections import Counter
+                plays = mode_pat.get("plays", [])
+                if plays:
+                    top = Counter(plays).most_common(1)[0][0]
+                    self._last_suggestion_ts = time.time()
+                    return f"You usually listen to {top} around this time. Want me to put it on?"
+        except Exception:
+            pass
+        return None
 
 
     # ── Test / simulation hooks ───────────────────────────────────────────────

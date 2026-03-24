@@ -1,7 +1,7 @@
 {
-  "engine": "pyttsx3",
-  "rate": 185,
-  "volume": 1.0,
+  "engine": "edge-tts",
+  "rate": 172,
+  "volume": 0.95,
   "voice_index": 0,
   "notes": {
     "engine": "TTS engine to use. Options: 'pyttsx3' (offline). Future: 'elevenlabs', 'gtts'.",
@@ -16,7 +16,8 @@
     "command_disabled": "That command is currently disabled.",
     "command_failed": "Something went wrong while running that command.",
     "cancelled": "Understood. Standing by.",
-    "goodbye": "Goodbye."
+    "goodbye": "Goodbye.",
+    "_note": "These are fallback responses. The active personality in personality/profile.json overrides these."
   },
   "listener": {
     "energy_threshold": 250,
@@ -40,5 +41,9 @@
       "language": "BCP-47 code. en-US for American English."
     }
   },
-  "mute": true
+  "mute": true,
+  "notes_mute": "Set to true to disable all speech output. JARVIS will print responses instead.",
+  "edge_tts_voice": "en-US-GuyNeural",
+  "_note_engines": "Options: edge-tts (neural, best), pyttsx3 (offline fallback)",
+  "_note_voices": "edge-tts voices: en-US-GuyNeural, en-US-AriaNeural, en-GB-RyanNeural"
 }

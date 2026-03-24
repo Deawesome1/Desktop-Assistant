@@ -17,7 +17,12 @@ import bot.command_hub as command_hub
 STAY_AWAKE_SENTINEL = "__STAY_AWAKE__"
 
 log_event("JARVIS starting (dev mode).")
-    ctx.start_app_watcher()
+ctx.start_app_watcher()
+try:
+    from commands.playlists import startup_sync
+    startup_sync()
+except Exception:
+    pass
 print("\n╔══════════════════════════════╗")
 print("║    J.A.R.V.I.S.  [DEV]       ║")
 print("╚══════════════════════════════╝")

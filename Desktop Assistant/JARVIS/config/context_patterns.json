@@ -163,32 +163,53 @@
     }
   },
   "command_frequency": {
-    "time": 1,
-    "date": 2,
-    "greet": 3,
-    "calculator": 6,
-    "weather": 3,
-    "timer": 3,
-    "stopwatch": 5,
-    "volume": 6,
-    "brightness": 3,
-    "screenshot": 2,
-    "clipboard": 4,
-    "clipboard_history": 1,
-    "note": 3,
-    "system_info": 6,
-    "top_processes": 3,
-    "wifi_info": 3,
-    "ip_address": 3,
-    "open_browser": 3,
-    "youtube": 3,
-    "media_control": 4,
-    "news": 4,
-    "wikipedia": 3,
-    "dictionary": 4,
-    "converter": 2
+    "time": 2,
+    "date": 4,
+    "greet": 6,
+    "calculator": 12,
+    "weather": 6,
+    "timer": 6,
+    "stopwatch": 10,
+    "volume": 15,
+    "brightness": 6,
+    "screenshot": 4,
+    "clipboard": 8,
+    "clipboard_history": 2,
+    "note": 6,
+    "system_info": 12,
+    "top_processes": 6,
+    "wifi_info": 6,
+    "ip_address": 6,
+    "open_browser": 11,
+    "youtube": 6,
+    "media_control": 8,
+    "news": 8,
+    "wikipedia": 6,
+    "dictionary": 8,
+    "converter": 4,
+    "open_app": 2
   },
   "suggestion_cooldown": 300,
   "disambiguation_threshold": 0.0,
-  "disambiguation_timeout": 6
+  "disambiguation_timeout": 6,
+  "dj_patterns": {
+    "late_night": {
+      "plays": [
+        "ambient chill playlist",
+        "ambient chill playlist",
+        "ambient chill playlist",
+        "ambient chill playlist",
+        "ambient chill playlist",
+        "the beatles abbey road"
+      ],
+      "count": 6
+    },
+    "night": {
+      "plays": [
+        "lofi hip hop beats to study",
+        "lofi hip hop beats to study"
+      ],
+      "count": 2
+    }
+  }
 }

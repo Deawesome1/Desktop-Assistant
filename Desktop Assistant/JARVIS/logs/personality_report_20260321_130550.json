@@ -1,0 +1,198 @@
+{
+  "timestamp": "2026-03-21T13:05:50.400375",
+  "total": 38,
+  "passed": 35,
+  "failed": 3,
+  "results": [
+    {
+      "name": "Profile loads correctly",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Traits in valid range",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Response pools non-empty",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Quip pools have variety",
+      "passed": false,
+      "error": "Quip pool 'greet_morning' has only 2 entries (want \u2265 3)"
+    },
+    {
+      "name": "Small talk pools have variety",
+      "passed": false,
+      "error": "Small talk pool 'you're amazing' has only 1 entries (want \u2265 3)"
+    },
+    {
+      "name": "get_response returns string",
+      "passed": false,
+      "error": "get_response('greeting') returned: None"
+    },
+    {
+      "name": "get_response randomises",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Unknown key doesn't crash",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: how are you",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: what are you",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: compliment",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: thanks",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: shut up",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: AI humor",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: pop culture",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk: no match \u2192 None",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Small talk randomises",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "after_command returns quips",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Failure uses failure pool",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Quip cooldown respected",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Quip fires after cooldown",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Command counts increment",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Repeat humor fires at 3+",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "{n} substituted in repeat quip",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Situational: mishear",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Situational: late night",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Situational: DJ intro",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Situational: DJ transition",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Situational: kwargs substituted",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Situational: unknown \u2192 None",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Unprompted: cooldown respected",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Unprompted: fires after cooldown",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "{count} substituted",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "greet() returns string",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Mute mode prints instead",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Fallback to pyttsx3",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "get_response uses personality",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "voice.json has engine settings",
+      "passed": true,
+      "error": ""
+    }
+  ]
+}

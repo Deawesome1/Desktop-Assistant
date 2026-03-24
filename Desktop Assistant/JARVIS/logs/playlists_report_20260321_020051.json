@@ -1,0 +1,143 @@
+{
+  "timestamp": "2026-03-21T02:00:51.621970",
+  "total": 27,
+  "passed": 27,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Register YouTube Music playlist",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Register multiple playlists",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "URL stored exactly as provided",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Exact name match",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Partial name match",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Fuzzy typo match",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "No match returns None",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Spotify playlist found by name",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Genre scrape caches result",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Network failure returns empty",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Genre \u2192 vibe mapping",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Record play updates artist count",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Record play updates time profile",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Record play without artist",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Skip is negative signal",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Skip doesn't increment artist",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Record playlist play",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Taste summary empty profile",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Taste summary with data",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Taste summary for time mode",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Spotify sync when unconfigured",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Spotify sync saves playlists",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Spotify playlist playable after sync",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Spotify sync is idempotent",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "DJ plays registered playlist by name",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "DJ play records playlist in taste",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Startup sync runs in background",
+      "passed": true,
+      "error": ""
+    }
+  ]
+}
