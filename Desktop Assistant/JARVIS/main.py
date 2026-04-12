@@ -9,16 +9,20 @@ Listening model:
 """
 import subprocess, sys, os
 
-# Auto-activate venv if not already active
-_venv_python = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "..", "venv", "Scripts", "python.exe")
-)
+import platform
+
+def _get_venv_python():
+    base = os.path.join(os.path.dirname(__file__), "..", "venv")
+    if platform.system().lower().startswith("win"):
+        return os.path.join(base, "Scripts", "python.exe")
+    else:
+        return os.path.join(base, "bin", "python")
+
+_venv_python = _get_venv_python()
 
 if os.path.exists(_venv_python) and os.path.abspath(sys.executable) != _venv_python:
     subprocess.run([_venv_python] + sys.argv)
     sys.exit()
-
-sys.path.insert(0, os.path.dirname(__file__))
 
 # ── Step 1: Dependencies ──────────────────────────────────────────────────────
 from dependency_manager import check_and_install
