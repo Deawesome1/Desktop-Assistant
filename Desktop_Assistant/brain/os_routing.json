@@ -1,0 +1,17 @@
+{
+    "mapping": {
+        "windows": "windows",
+        "win32": "windows",
+        "windows-11": "windows",
+        "windows-10": "windows",
+
+        "darwin": "macintosh",
+        "mac": "macintosh",
+        "macos": "macintosh",
+
+        "linux": "linux",
+        "ubuntu": "linux",
+        "debian": "linux",
+        "fedora": "linux"
+    }
+}

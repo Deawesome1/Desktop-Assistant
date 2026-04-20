@@ -21,7 +21,8 @@ def listen(brain=None) -> str:
             print("You: ", end="", flush=True)
             audio = recognizer.listen(source)
 
-        text = recognizer.recognize_sphinx(audio)
+        # ⭐ Use Google STT instead of PocketSphinx
+        text = recognizer.recognize_google(audio)
         logger.info(f"LISTEN(win): {text}")
         return text
 

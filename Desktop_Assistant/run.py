@@ -1,53 +1,27 @@
-# run.py — JARVIS Boot Manager + Launcher
+# run.py — FORCE JARVIS TO USE THE WORKING VENV
 
-from pathlib import Path
+import os
 import subprocess
+from pathlib import Path
 
-from boot.python_checker import verify_python_range
-from boot.python_selector import select_python_interpreter
-from boot.venv_manager import ensure_venv_with_interpreter
-from boot.dependency_installer import install_all_dependencies
-from boot.version_manager import load_version, record_version
-from boot.updater import check_for_updates
+# ⭐ Hard‑lock to your working venv interpreter
+VENV_PYTHON = r"A:\Python311_Test\venv\Scripts\python.exe"
 
-
-def launch_jarvis(venv_python: str):
-    print("\n✓ Boot sequence complete. Launching JARVIS...\n")
-    subprocess.check_call([venv_python, "main.py"])
-
-
-def main():
+def launch_jarvis():
     print("=== JARVIS BOOT MANAGER ===")
+    print(f"Using interpreter: {VENV_PYTHON}")
 
-    # 1. Check current Python (IDE / caller)
-    verify_python_range()
+    env = os.environ.copy()
 
-    # 2. Find a compatible Python interpreter (3.9–3.11)
-    interpreter = select_python_interpreter()
-    if interpreter is None:
-        print("\n❌ No compatible Python (3.9–3.11) found on this system.")
-        print("Please install Python 3.10 (recommended) from:")
-        print("  https://www.python.org/downloads/release/python-31011/")
-        return
+    # Force DLL + package resolution to the venv
+    venv_bin = str(Path(VENV_PYTHON).parent)
+    env["PATH"] = venv_bin + os.pathsep + env["PATH"]
+    env["PYTHONHOME"] = ""
+    env["PYTHONPATH"] = ""
 
-    print(f"✓ Using interpreter: {interpreter}")
+    print("\nLaunching JARVIS...\n")
 
-    # 3. Ensure venv exists using that interpreter
-    venv_python = ensure_venv_with_interpreter(interpreter)
-
-    # 4. Install dependencies into that venv
-    install_all_dependencies(venv_python)
-
-    # 5. Version tracking
-    old_version = load_version()
-    record_version()
-
-    # 6. Update check (non-blocking)
-    check_for_updates(old_version)
-
-    # 7. Launch JARVIS
-    launch_jarvis(venv_python)
-
+    subprocess.check_call([VENV_PYTHON, "main.py"], env=env)
 
 if __name__ == "__main__":
-    main()
+    launch_jarvis()

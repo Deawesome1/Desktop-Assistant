@@ -1,0 +1,40 @@
+2026-04-20 03:17:50 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 03:18:01 | INFO | jarvis.command_hub | No command matched for text: 'hello'
+2026-04-20 03:18:01 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-20 03:18:36 | INFO | jarvis.command_hub | No command matched for text: 'hello'
+2026-04-20 03:18:36 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 03:19:33 | INFO | jarvis.command_hub | No command matched for text: 'hello'
+2026-04-20 03:19:33 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 03:22:41 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 03:23:25 | INFO | jarvis.command_hub | No command matched for text: 'what time is it?'
+2026-04-20 03:23:25 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-20 03:27:32 | INFO | jarvis.command_hub | No command matched for text: 'what time is it?'
+2026-04-20 03:27:32 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 03:34:56 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 04:00:25 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 04:37:46 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 04:41:51 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 04:58:02 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 05:01:26 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 05:01:34 | INFO | jarvis.command_hub | No command matched for text: 'asd'
+2026-04-20 05:01:34 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 05:04:20 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 05:10:08 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 05:10:19 | INFO | jarvis.command_hub | No command matched for text: 'as'
+2026-04-20 05:10:19 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-20 05:15:26 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 05:17:04 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 05:17:08 | INFO | jarvis.command_hub | No command matched for text: 'hello hello'
+2026-04-20 05:17:08 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 05:17:15 | INFO | jarvis.command_hub | No command matched for text: 'hello'
+2026-04-20 05:17:15 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 05:17:19 | INFO | jarvis.command_hub | No command matched for text: "Jarvis what's up"
+2026-04-20 05:17:19 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-20 05:17:24 | INFO | jarvis.command_hub | No command matched for text: 'can you understand me'
+2026-04-20 05:17:24 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-20 05:17:28 | INFO | jarvis.command_hub | No command matched for text: 'testing testing 1 2 3'
+2026-04-20 05:17:28 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-20 05:17:45 | INFO | jarvis.command_hub | No command matched for text: '.'
+2026-04-20 05:17:45 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 05:17:50 | INFO | jarvis.command_hub | No command matched for text: 'testing testing 1 2 3'
+2026-04-20 05:17:50 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)

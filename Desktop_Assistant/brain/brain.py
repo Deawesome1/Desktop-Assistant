@@ -16,6 +16,8 @@ import re
 import time
 import importlib
 from typing import Any, Dict, List, Optional
+from pathlib import Path
+
 from dependency_manager import ensure
 
 
@@ -25,10 +27,14 @@ class BrainConfigError(Exception):
 
 class Brain:
     def __init__(self, config_path: str = "config/brain.json") -> None:
-        self.ensure_dependencies()
+        # OS routing config (from separate file and brain.json overlay)
+        self.os_routing_cfg = self.load_json("os_routing.json")
+
         self.config_path = config_path
         self._config: Dict[str, Any] = {}
         self._loaded = False
+
+        self.ensure_dependencies()
 
         # Cached subtrees
         self.identity: Dict[str, Any] = {}
@@ -40,7 +46,6 @@ class Brain:
         self.context: Dict[str, Any] = {}
         self.intent_cfg: Dict[str, Any] = {}
         self.command_cfg: Dict[str, Any] = {}
-        self.os_routing_cfg: Dict[str, Any] = {}
         self.app_scanner_cfg: Dict[str, Any] = {}
         self.reasoning_cfg: Dict[str, Any] = {}
         self.speaker_cfg: Dict[str, Any] = {}
@@ -64,19 +69,24 @@ class Brain:
         self._last_personality_decay: float = time.time()
 
         # Command registry
-        self.commands: Dict[str, Any] = {}      # command_name -> module
-        self.alias_map: Dict[str, str] = {}     # alias -> command_name
+        # keys are lowercased command names
+        self.commands: Dict[str, Any] = {}      # command_name_lower -> module
+        self.alias_map: Dict[str, str] = {}     # alias_lower -> command_name_lower
 
         self.load()
         self.load_commands()
 
-    def ensure_dependencies(self):
+    # -------------------------------------------------------------------------
+    # Dependencies
+    # -------------------------------------------------------------------------
+
+    def ensure_dependencies(self) -> None:
         ensure("psutil")
         ensure("PIL")
         ensure("pyautogui")
         ensure("requests")
 
-        # Windows-only
+        # Windows-only extras
         if self.get_current_os_key() == "windows":
             ensure("pycaw")
             ensure("comtypes")
@@ -104,7 +114,8 @@ class Brain:
         self.context = self._config.get("context_engine", {})
         self.intent_cfg = self._config.get("intent_engine", {})
         self.command_cfg = self._config.get("command_cognition", {})
-        self.os_routing_cfg = self._config.get("os_routing", {})
+        # brain.json can override os_routing.json
+        self.os_routing_cfg = self._config.get("os_routing", self.os_routing_cfg)
         self.app_scanner_cfg = self._config.get("app_scanner", {})
         self.reasoning_cfg = self._config.get("reasoning", {})
         self.speaker_cfg = self._config.get("speaker", {})
@@ -136,34 +147,77 @@ class Brain:
         self._last_personality_decay = now
 
     # -------------------------------------------------------------------------
-    # Command loading / awareness
+    # Command loading / awareness (unified non_os_specific + os_specific)
     # -------------------------------------------------------------------------
 
     def load_commands(self, commands_package: str = "commands") -> None:
         """
         Scan the commands/ folder, import all command modules, and register
-        OS-appropriate commands + aliases.
-        """
-        # commands/ is sibling to brain/ at project root
-        root_dir = os.path.dirname(os.path.dirname(__file__))
-        commands_dir = os.path.join(root_dir, commands_package)
+        cross-platform + OS-specific commands.
 
-        if not os.path.isdir(commands_dir):
+        Rules:
+            - commands/non_os_specific/ is always loaded
+            - commands/os_specific/<os_key>/ is loaded next and overrides
+              any non-OS-specific command with the same name
+            - command names and aliases are normalized to lowercase
+        """
+        self.commands.clear()
+        self.alias_map.clear()
+
+        # project root: brain/ is sibling to commands/
+        root_dir = Path(__file__).resolve().parent.parent
+        commands_dir = root_dir / commands_package
+
+        if not commands_dir.is_dir():
             return
 
         os_key = self.get_current_os_key()
 
-        for file in os.listdir(commands_dir):
-            if not file.endswith(".py") or file.startswith("__"):
+        # 1) Non-OS-specific commands
+        non_os_dir = commands_dir / "non_os_specific"
+        self._register_commands_from_dir(
+            directory=non_os_dir,
+            base_module=f"{commands_package}.non_os_specific",
+            os_key=os_key,
+        )
+
+        # 2) OS-specific commands (override non-OS-specific)
+        os_dir = commands_dir / "os_specific" / os_key
+        if os_dir.is_dir():
+            self._register_commands_from_dir(
+                directory=os_dir,
+                base_module=f"{commands_package}.os_specific.{os_key}",
+                os_key=os_key,
+            )
+
+    def _register_commands_from_dir(
+        self,
+        directory: Path,
+        base_module: str,
+        os_key: str,
+    ) -> None:
+        """
+        Import all .py files in a directory as command modules and register them.
+        Expects each module to expose:
+            - get_metadata() -> dict with keys:
+                - name (str)
+                - aliases (list[str])
+                - os_support (optional[list[str]])
+            - run(brain, user_text)
+        """
+        if not directory.is_dir():
+            return
+
+        for file in sorted(directory.glob("*.py")):
+            if file.name.startswith("_"):
                 continue
 
-            module_name = file[:-3]
-            module_path = f"{commands_package}.{module_name}"
+            module_name = f"{base_module}.{file.stem}"
 
             try:
-                module = importlib.import_module(module_path)
+                module = importlib.import_module(module_name)
             except Exception as e:
-                print(f"[Brain] Failed to import {module_path}: {e}")
+                print(f"[Brain] Failed to import {module_name}: {e}")
                 continue
 
             if not hasattr(module, "get_metadata") or not hasattr(module, "run"):
@@ -172,35 +226,50 @@ class Brain:
             try:
                 meta = module.get_metadata()
             except Exception as e:
-                print(f"[Brain] Failed to read metadata from {module_path}: {e}")
+                print(f"[Brain] Failed to read metadata from {module_name}: {e}")
                 continue
 
-            # OS filtering
+            # Optional OS filtering inside metadata
             os_support = meta.get("os_support", [])
             if os_support and os_key not in os_support:
                 continue
 
             name = meta.get("name")
-            if not name:
+            if not name or not isinstance(name, str):
                 continue
 
-            self.commands[name] = module
+            key = name.lower().strip()
+            if not key:
+                continue
 
+            # Register / override
+            self.commands[key] = module
+
+            # Aliases
             for alias in meta.get("aliases", []):
                 if not isinstance(alias, str):
                     continue
-                self.alias_map[alias.lower()] = name
+                alias_key = alias.lower().strip()
+                if not alias_key:
+                    continue
+                self.alias_map[alias_key] = key
 
     def find_command(self, user_text: str) -> Optional[Any]:
         """
-        Given raw user text, find the best-matching command module based on aliases.
+        Given raw user text, find the best-matching command module based on:
+            - exact command name match
+            - alias containment match
         """
-        text = user_text.lower()
+        text = user_text.lower().strip()
 
-        # Simple alias containment match
-        for alias, name in self.alias_map.items():
+        # 1) Exact name match
+        if text in self.commands:
+            return self.commands.get(text)
+
+        # 2) Alias containment match
+        for alias, name_key in self.alias_map.items():
             if alias in text:
-                return self.commands.get(name)
+                return self.commands.get(name_key)
 
         return None
 
@@ -298,6 +367,17 @@ class Brain:
             data = json.load(f)
         if isinstance(data, dict):
             self.memory_store = data
+
+    def load_json(self, filename: str):
+        """Load a JSON file from the brain/ directory."""
+        base = Path(__file__).resolve().parent
+        path = base / filename
+
+        if not path.exists():
+            raise FileNotFoundError(f"Missing required config file: {path}")
+
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
 
     # -------------------------------------------------------------------------
     # Personality drift engine
@@ -610,7 +690,7 @@ class Brain:
             if args:
                 self.set_current_project(str(args[0]))
 
-        # You can extend this with more event types as needed.
+        # Extend with more event types as needed.
 
     # -------------------------------------------------------------------------
     # Utility
