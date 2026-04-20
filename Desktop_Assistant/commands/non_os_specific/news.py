@@ -16,7 +16,6 @@ import re
 from typing import Any, Dict, List, Optional
 from brain import Brain
 
-
 # ---------------------------------------------------------------------------
 # Command metadata
 # ---------------------------------------------------------------------------
@@ -34,7 +33,6 @@ COMMAND_REQUIRES_ADMIN: bool = False
 
 MAX_HEADLINES = 5
 
-
 # ---------------------------------------------------------------------------
 # Metadata API
 # ---------------------------------------------------------------------------
@@ -50,10 +48,8 @@ def get_metadata() -> Dict[str, Any]:
         "requires_admin": COMMAND_REQUIRES_ADMIN,
     }
 
-
 def is_supported_on_os(os_key: str) -> bool:
     return os_key in COMMAND_OS_SUPPORT
-
 
 # ---------------------------------------------------------------------------
 # RSS feeds
@@ -82,7 +78,6 @@ CATEGORY_ALIASES = {
     "congress": "politics",
 }
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -97,25 +92,14 @@ def _detect_category(text: str) -> str:
             return cat
     return "general"
 
-
 def _clean_title(title: str) -> str:
     """Strip CDATA, HTML tags, and source suffixes."""
-    title = re.sub(r"<!
-
-\[CDATA
-
-\[(.*?)\]
-
-\]
-
->", r"\1", title, flags=re.DOTALL)
+    title = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", title, flags=re.DOTALL)
     title = re.sub(r"<[^>]+>", "", title)
     title = re.sub(r"\s*[-|]\s*[\w\s]{2,30}$", "", title.strip())
     return title.strip()
 
-
 def _fetch_headlines(url: str) -> List[str]:
-    """Fetch and parse <item><title> entries from RSS feed."""
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "JARVIS/1.0"})
         with urllib.request.urlopen(req, timeout=8) as resp:
@@ -136,14 +120,12 @@ def _fetch_headlines(url: str) -> List[str]:
     except Exception:
         return []
 
-
 def _search_topic(topic: str) -> List[str]:
     url = (
         "https://news.google.com/rss/search"
         f"?q={urllib.parse.quote(topic)}&hl=en-US&gl=US&ceid=US:en"
     )
     return _fetch_headlines(url)
-
 
 # ---------------------------------------------------------------------------
 # Public run() entrypoint
@@ -171,9 +153,6 @@ def run(
 
     q = user_text.lower().strip()
 
-    # ----------------------------------------------------------------------
-    # Topic-based news: "news about bitcoin"
-    # ----------------------------------------------------------------------
     topic_match = re.search(
         r"(?:news about|news on|stories about|headlines about|about)\s+(.+)", q
     )
@@ -187,9 +166,6 @@ def run(
         label = category
         headlines = _fetch_headlines(CATEGORY_FEEDS.get(category, CATEGORY_FEEDS["general"]))
 
-    # ----------------------------------------------------------------------
-    # No headlines
-    # ----------------------------------------------------------------------
     if not headlines:
         brain.event("user_confused")
         return {
@@ -198,9 +174,6 @@ def run(
             "data": {"category_or_topic": label},
         }
 
-    # ----------------------------------------------------------------------
-    # Success
-    # ----------------------------------------------------------------------
     brain.event("task_success")
     brain.remember("news_queries", f"{label}: {len(headlines)} headlines")
 

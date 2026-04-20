@@ -9,8 +9,8 @@ import json
 import threading
 import time
 from datetime import datetime, timedelta
-from bot.speaker import speak
-from bot.listener import listen_once
+from bot.speaker.speaker import speak
+from bot.listener.listener import listen_once
 
 REMINDERS_FILE = os.path.join(os.path.dirname(__file__), "..", "config", "reminders.json")
 

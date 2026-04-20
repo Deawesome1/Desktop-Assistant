@@ -38,3 +38,108 @@
 2026-04-20 05:17:45 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
 2026-04-20 05:17:50 | INFO | jarvis.command_hub | No command matched for text: 'testing testing 1 2 3'
 2026-04-20 05:17:50 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-20 08:29:48 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 08:35:00 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 08:36:20 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 08:36:20 | WARNING | jarvis.command_hub | Command 'calculator' reported failure.
+2026-04-20 08:36:20 | WARNING | jarvis.command_hub | Command 'calculator' failed in 0.001s (intent=test_intent, category=utility, error_type=None)
+2026-04-20 08:36:20 | INFO | jarvis.command_hub | Command 'clipboard_history' succeeded.
+2026-04-20 08:36:20 | INFO | jarvis.command_hub | Command 'clipboard_history' completed in 0.093s (intent=test_intent, category=system)
+2026-04-20 08:36:20 | WARNING | jarvis.command_hub | Command 'converter' reported failure.
+2026-04-20 08:36:20 | WARNING | jarvis.command_hub | Command 'converter' failed in 0.001s (intent=test_intent, category=utility, error_type=None)
+2026-04-20 08:36:20 | INFO | jarvis.command_hub | Command 'date' succeeded.
+2026-04-20 08:36:20 | INFO | jarvis.command_hub | Command 'date' completed in 0.000s (intent=test_intent, category=information)
+2026-04-20 08:36:20 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 08:36:20 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.325s (intent=test_intent, category=information)
+2026-04-20 09:06:44 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.002s (intent=test_intent, category=utility)
+2026-04-20 09:06:44 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:06:44 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.000s (intent=test_intent, category=utility)
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'clipboard_history' succeeded.
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'clipboard_history' completed in 0.093s (intent=test_intent, category=system)
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'converter' succeeded.
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'converter' completed in 0.001s (intent=test_intent, category=utility)
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | No command matched for text: 'how many feet in 2 meters'
+2026-04-20 09:06:44 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:06:44 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:06:44 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'date' succeeded.
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'date' completed in 0.000s (intent=test_intent, category=information)
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | No command matched for text: 'tell me the date'
+2026-04-20 09:06:44 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:06:44 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.331s (intent=test_intent, category=information)
+2026-04-20 09:06:45 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:06:45 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.088s (intent=test_intent, category=information)
+2026-04-20 09:08:50 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 09:08:50 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:08:50 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.001s (intent=test_intent, category=utility)
+2026-04-20 09:08:50 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:08:50 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:08:50 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:08:50 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.000s (intent=test_intent, category=utility)
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'clipboard_history' succeeded.
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'clipboard_history' completed in 0.091s (intent=test_intent, category=system)
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'converter' succeeded.
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'converter' completed in 0.000s (intent=test_intent, category=utility)
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | No command matched for text: 'how many feet in 2 meters'
+2026-04-20 09:08:51 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:08:51 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:08:51 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'date' succeeded.
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'date' completed in 0.000s (intent=test_intent, category=information)
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | No command matched for text: 'tell me the date'
+2026-04-20 09:08:51 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.142s (intent=test_intent, category=information)
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:08:51 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.104s (intent=test_intent, category=information)
+2026-04-20 09:09:41 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.001s (intent=test_intent, category=utility)
+2026-04-20 09:09:41 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:09:41 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.000s (intent=test_intent, category=utility)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'clipboard_history' succeeded.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'clipboard_history' completed in 0.088s (intent=test_intent, category=system)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'converter' succeeded.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'converter' completed in 0.000s (intent=test_intent, category=utility)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | No command matched for text: 'how many feet in 2 meters'
+2026-04-20 09:09:41 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:09:41 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:09:41 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'date' succeeded.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'date' completed in 0.000s (intent=test_intent, category=information)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | No command matched for text: 'tell me the date'
+2026-04-20 09:09:41 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.134s (intent=test_intent, category=information)
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:09:41 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.100s (intent=test_intent, category=information)
+2026-04-20 09:13:50 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.001s (intent=test_intent, category=utility)
+2026-04-20 09:13:50 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:13:50 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.000s (intent=test_intent, category=utility)
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'clipboard_history' succeeded.
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'clipboard_history' completed in 0.093s (intent=test_intent, category=system)
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'converter' succeeded.
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'converter' completed in 0.000s (intent=test_intent, category=utility)
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | No command matched for text: 'how many feet in 2 meters'
+2026-04-20 09:13:50 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:13:50 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-20 09:13:50 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=test_intent, category=information, error_type=None)
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'date' succeeded.
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | Command 'date' completed in 0.000s (intent=test_intent, category=information)
+2026-04-20 09:13:50 | INFO | jarvis.command_hub | No command matched for text: 'tell me the date'
+2026-04-20 09:13:50 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-20 09:13:52 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:13:52 | INFO | jarvis.command_hub | Command 'dictionary' completed in 1.333s (intent=test_intent, category=information)
+2026-04-20 09:13:52 | INFO | jarvis.command_hub | Command 'dictionary' succeeded.
+2026-04-20 09:13:52 | INFO | jarvis.command_hub | Command 'dictionary' completed in 0.084s (intent=test_intent, category=information)

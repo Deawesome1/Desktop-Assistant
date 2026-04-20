@@ -9,7 +9,7 @@ Supports:
 
 from typing import Any, Dict, List, Optional
 from brain import Brain
-from JARVIS.platform_utils import get_clipboard, clear_clipboard
+from Desktop_Assistant.platform_utils import get_clipboard, clear_clipboard
 
 
 # ---------------------------------------------------------------------------

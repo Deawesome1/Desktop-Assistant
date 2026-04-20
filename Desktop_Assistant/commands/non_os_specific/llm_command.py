@@ -9,7 +9,7 @@ Supported options (pick one):
   - Anthropic API:  requires ANTHROPIC_API_KEY env var
 """
 import os
-from bot.speaker import speak
+from bot.speaker.speaker import speak
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 LLM_BACKEND  = "ollama"          # "ollama" | "openai" | "anthropic"

@@ -14,7 +14,6 @@ import math
 from typing import Any, Dict, List, Optional
 from brain import Brain
 
-
 # ---------------------------------------------------------------------------
 # Command metadata
 # ---------------------------------------------------------------------------
@@ -26,7 +25,6 @@ COMMAND_OS_SUPPORT: List[str] = ["windows", "macintosh", "linux"]
 COMMAND_CATEGORY: str = "utility"
 COMMAND_REQUIRES_INTERNET: bool = False
 COMMAND_REQUIRES_ADMIN: bool = False
-
 
 # ---------------------------------------------------------------------------
 # Metadata API
@@ -43,10 +41,8 @@ def get_metadata() -> Dict[str, Any]:
         "requires_admin": COMMAND_REQUIRES_ADMIN,
     }
 
-
 def is_supported_on_os(os_key: str) -> bool:
     return os_key in COMMAND_OS_SUPPORT
-
 
 # ---------------------------------------------------------------------------
 # Internal math parsing logic
@@ -57,6 +53,9 @@ def _parse_and_eval(q: str) -> Optional[float]:
     Convert natural language math into a safe expression and evaluate it.
     Returns float or None if parsing fails.
     """
+
+    # Normalize spacing
+    q = q.lower().strip()
 
     # Natural language → math replacements
     replacements = [
@@ -69,19 +68,20 @@ def _parse_and_eval(q: str) -> Optional[float]:
         (r"plus",    "+"),
         (r"minus",   "-"),
         (r"times",   "*"),
+        (r"multiplied by", "*"),
         (r"divided by", "/"),
         (r"over",    "/"),
         (r"x",       "*"),
         (r"pi",      str(math.pi)),
-        (r"e\b",     str(math.e)),
+        (r"\be\b",   str(math.e)),
     ]
 
     expr = q
     for pattern, repl in replacements:
         expr = re.sub(pattern, repl, expr, flags=re.IGNORECASE)
 
-    # Strip non-math characters
-    expr = re.sub(r"[^0-9\+\-\*\/\(\)\.\%\^sqrt cbrt ]", "", expr)
+    # Remove invalid characters (keep only math-safe tokens)
+    expr = re.sub(r"[^0-9\+\-\*\/\(\)\.\%\^ sqrtcbrt]", "", expr)
     expr = expr.replace("^", "**").strip()
 
     # sqrt/cbrt handling
@@ -100,11 +100,11 @@ def _parse_and_eval(q: str) -> Optional[float]:
         return None
 
     try:
+        # Safe eval environment
         result = eval(expr, {"__builtins__": {}}, {})
         return float(result)
     except Exception:
         return None
-
 
 # ---------------------------------------------------------------------------
 # Public run() entrypoint
@@ -131,7 +131,7 @@ def run(
         }
 
     # Strip command prefixes
-    q = user_text.lower()
+    q = user_text.lower().strip()
     prefixes = ["calculate", "what is", "what's", "how much is", "solve", "compute"]
     for p in prefixes:
         if q.startswith(p):

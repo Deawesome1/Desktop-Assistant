@@ -12,7 +12,6 @@ import re
 from typing import Any, Dict, List, Optional
 from brain import Brain
 
-
 # ---------------------------------------------------------------------------
 # Command metadata
 # ---------------------------------------------------------------------------
@@ -24,7 +23,6 @@ COMMAND_OS_SUPPORT: List[str] = ["windows", "macintosh", "linux"]
 COMMAND_CATEGORY: str = "utility"
 COMMAND_REQUIRES_INTERNET: bool = False
 COMMAND_REQUIRES_ADMIN: bool = False
-
 
 # ---------------------------------------------------------------------------
 # Metadata API
@@ -41,10 +39,8 @@ def get_metadata() -> Dict[str, Any]:
         "requires_admin": COMMAND_REQUIRES_ADMIN,
     }
 
-
 def is_supported_on_os(os_key: str) -> bool:
     return os_key in COMMAND_OS_SUPPORT
-
 
 # ---------------------------------------------------------------------------
 # Unit definitions
@@ -103,7 +99,6 @@ UNITS = {
 
 TEMP_UNITS = {"celsius", "centigrade", "fahrenheit", "kelvin"}
 
-
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
@@ -123,7 +118,6 @@ def _convert_temp(value: float, from_unit: str, to_unit: str) -> float:
         return c + 273.15
     return c
 
-
 def _resolve(raw: str) -> Optional[str]:
     """Find the best matching unit key for a spoken unit string."""
     r = raw.lower().strip()
@@ -135,7 +129,6 @@ def _resolve(raw: str) -> Optional[str]:
         if key in r:
             return key
     return None
-
 
 # ---------------------------------------------------------------------------
 # Public run() entrypoint
@@ -171,7 +164,7 @@ def run(
     if m:
         value = float(m.group(1))
         from_raw = m.group(2).strip()
-        to_raw = re.sub(r"^\d+[\d.]*\s*", "", m.group(3).strip())
+        to_raw = m.group(3).strip()
     else:
         # Pattern B: "how many feet in 2 meters"
         m2 = re.search(r"([\w/ ]+?)\s+in\s+([\d.]+)\s+([\w/ ]+?)$", q)

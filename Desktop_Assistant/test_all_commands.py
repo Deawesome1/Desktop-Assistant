@@ -1,137 +1,115 @@
 """
-test_all_commands.py — Unified command test harness for JARVIS
+test_all_commands.py — REAL COMMAND TEST HARNESS
+Runs every JARVIS command using the REAL Brain + CommandHub.
+This version does NOT use FakeBrain or faux inputs.
+
+Place this file in the project root (Desktop_Assistant/).
+Run with:  python test_all_commands.py
 """
 
-import os
-import sys
-import importlib
 import traceback
 from pathlib import Path
+import importlib
 
-# --- Path setup ---
-ROOT = Path(__file__).resolve().parent
-COMMANDS_DIR = ROOT / "commands"
-
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
-# --- Inject fakes BEFORE importing any commands ---
-from tests.fake_brain import FakeBrain
-from tests.fake_speaker import fake_speaker_module
-from tests.fake_listener import fake_listener_module
-from tests.fake_jarvis import fake_jarvis
-from tests.fake_context import fake_ctx
-
-# Fake bot.speaker
-sys.modules["bot.speaker"] = fake_speaker_module
-
-# Fake bot.listener
-sys.modules["bot.listener"] = fake_listener_module
-
-# Fake bot.context.ctx
-sys.modules["bot.context"] = type("FakeContextModule", (), {"ctx": fake_ctx})
-
-# Fake JARVIS package + submodules
-sys.modules["JARVIS"] = fake_jarvis
-sys.modules["JARVIS.platform_utils"] = fake_jarvis.platform_utils
-
-results = []
+from brain import Brain
+from commands.core import CommandHub
 
 
-def safe_import(module_path: str):
-    try:
-        module = importlib.import_module(module_path)
-        return module, None
-    except Exception as e:
-        return None, e
+# ---------------------------------------------------------------------------
+# Default test phrases for each command
+# (You can expand this later)
+# ---------------------------------------------------------------------------
+
+DEFAULT_TEST_PHRASES = {
+    "calculator": "calculate 5 plus 7",
+    "converter": "convert 5 miles to kilometers",
+    "date": "what is today's date",
+    "dictionary": "define entropy",
+    "exit": "exit",
+    "jokes": "tell me a joke",
+    "news": "latest news",
+    "pause": "pause for 1 second",
+    "stopwatch": "start stopwatch",
+    "time": "what time is it",
+    "timer": "set a timer for 3 seconds",
+    "weather": "what's the weather",
+    "wikipedia": "wikipedia python programming",
+    "youtube": "play lo-fi music on youtube",
+    "brightness": "set brightness to 50 percent",
+    "ip_address": "what is my ip address",
+    "media_volume": "volume up",
+    "open_browser": "open google",
+    "pc_commands": "lock my pc",
+    "recycle_bin": "empty recycle bin",
+    "system_info": "system information",
+    "top_processes": "show top processes",
+    "wifi_info": "wifi info",
+}
 
 
-def safe_run(module, label: str):
-    if not hasattr(module, "run"):
-        return False, "No run() function"
+# ---------------------------------------------------------------------------
+# Load all commands from the real Brain
+# ---------------------------------------------------------------------------
 
-    run_fn = module.run
-    code = run_fn.__code__
-    argcount = code.co_argcount
-
-    brain = FakeBrain()
-    user_text = "test input"
-
-    try:
-        if argcount == 0:
-            run_fn()
-        elif argcount == 1:
-            run_fn(brain)
-        else:
-            run_fn(brain, user_text)
-
-        return True, None
-
-    except Exception as e:
-        return False, e
+def load_real_commands():
+    brain = Brain()
+    hub = CommandHub(brain, debug=False, dry_run=False)
+    return brain, hub
 
 
-def test_module(module_path: str, label: str):
-    module, err = safe_import(module_path)
-    if err:
-        results.append((label, "FAIL", f"ImportError: {err}"))
-        return
+# ---------------------------------------------------------------------------
+# Run tests
+# ---------------------------------------------------------------------------
 
-    ok, err = safe_run(module, label)
-    if ok:
-        results.append((label, "PASS", None))
-    else:
-        tb = "".join(traceback.format_exception_only(type(err), err)).strip()
-        results.append((label, "FAIL", f"RuntimeError: {tb}"))
+def run_all_commands():
+    print("\n=== Running REAL JARVIS Command Tests ===\n")
 
+    brain, hub = load_real_commands()
 
-def discover_and_test():
-    print("=== Running JARVIS Command Tests ===\n")
+    results = []
 
-    # --- Non-OS-specific commands ---
-    non_os = COMMANDS_DIR / "non_os_specific"
-    if non_os.exists():
-        for file in sorted(non_os.glob("*.py")):
-            if file.name.startswith("_"):
-                continue
-            module_path = f"commands.non_os_specific.{file.stem}"
-            test_module(module_path, file.stem)
+    for cmd_name, module in brain.commands.items():
+        test_phrase = DEFAULT_TEST_PHRASES.get(cmd_name, cmd_name)
 
-    # --- OS-specific commands ---
-    os_specific = COMMANDS_DIR / "os_specific"
-    current_os = sys.platform.lower()
+        print(f"\n--- Testing: {cmd_name} ---")
+        print(f"Phrase: \"{test_phrase}\"")
 
-    if "win" in current_os:
-        os_dir = os_specific / "windows"
-        prefix = "commands.os_specific.windows"
-    elif "darwin" in current_os:
-        os_dir = os_specific / "macintosh"
-        prefix = "commands.os_specific.macintosh"
-    else:
-        os_dir = os_specific / "linux"
-        prefix = "commands.os_specific.linux"
+        try:
+            response = hub.execute(test_phrase)
 
-    if os_dir.exists():
-        for file in sorted(os_dir.glob("*.py")):
-            if file.name.startswith("_"):
-                continue
-            module_path = f"{prefix}.{file.stem}"
-            label = f"{file.stem}_{os_dir.name}"
-            test_module(module_path, label)
+            if response.get("success", False):
+                print(f"[PASS] {cmd_name}")
+                results.append((cmd_name, "PASS", None))
+            else:
+                err = response.get("meta", {}).get("error_type", "unknown")
+                print(f"[FAIL] {cmd_name} — {err}")
+                results.append((cmd_name, "FAIL", err))
 
-    print("\n=== Test Results ===\n")
-    for name, status, err in results:
-        if status == "PASS":
-            print(f"[PASS] {name}")
-        else:
-            print(f"[FAIL] {name} — {err}")
+        except Exception as e:
+            print(f"[ERROR] {cmd_name} — Exception occurred")
+            traceback.print_exc()
+            results.append((cmd_name, "ERROR", str(e)))
+
+    # ----------------------------------------------------------------------
+    # Summary
+    # ----------------------------------------------------------------------
 
     print("\n=== Summary ===")
-    passed = sum(1 for _, s, _ in results if s == "PASS")
-    failed = sum(1 for _, s, _ in results if s == "FAIL")
+    passed = sum(1 for _, status, _ in results if status == "PASS")
+    failed = sum(1 for _, status, _ in results if status == "FAIL")
+    errors = sum(1 for _, status, _ in results if status == "ERROR")
+
     print(f"Passed: {passed}")
     print(f"Failed: {failed}")
+    print(f"Errors: {errors}")
     print(f"Total: {len(results)}")
 
+    print("\nDone.\n")
+
+
+# ---------------------------------------------------------------------------
+# Entrypoint
+# ---------------------------------------------------------------------------
+
 if __name__ == "__main__":
-    discover_and_test()
+    run_all_commands()
