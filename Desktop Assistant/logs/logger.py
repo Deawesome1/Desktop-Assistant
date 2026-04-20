@@ -1,58 +1,72 @@
 """
-logs/logger.py — JARVIS logging module.
+JARVIS Logging Module — Drop‑in Version
+Counts every interaction, records system activity, logs simplified errors,
+and never throws fatal exceptions.
 
-Writes timestamped, sequenced logs to logs/jarvis.log.
-Tracks per-session and all-time stats in logs/jarvis_stats.json.
-
-Log entry format:
-  {"seq": 42, "session": 3, "session_seq": 7, "timestamp": "...", ...}
-
-  seq         — global entry number across all sessions ever
-  session     — which run of JARVIS this is (increments each startup)
-  session_seq — entry number within this session
+Log files:
+  logs/jarvis.log
+  logs/jarvis_stats.json
 """
 
 import os
 import json
-import logging
 import threading
 from datetime import datetime
 
-LOG_DIR    = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
-LOG_FILE   = os.path.join(LOG_DIR, "jarvis.log")
-STATS_FILE = os.path.join(LOG_DIR, "jarvis_stats.json")
+# ────────────────────────────────────────────────────────────────
+# Paths
+# ────────────────────────────────────────────────────────────────
 
-os.makedirs(LOG_DIR, exist_ok=True)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_FILE = os.path.join(BASE_DIR, "jarvis.log")
+STATS_FILE = os.path.join(BASE_DIR, "jarvis_stats.json")
 
-# ── Counters ──────────────────────────────────────────────────────────────────
-_lock        = threading.Lock()
-_sequence    = 0
-_session_seq = 0
-_session_id  = 0
+os.makedirs(BASE_DIR, exist_ok=True)
+
+# ────────────────────────────────────────────────────────────────
+# Internal counters
+# ────────────────────────────────────────────────────────────────
+
+_lock = threading.Lock()
+
+_sequence = 0          # global log entry number
+_session_seq = 0       # entry number within this session
+_session_id = 0        # increments each startup
+
 _session_stats = {
-    "commands_run": 0, "commands_passed": 0,
-    "commands_failed": 0, "not_found": 0,
+    "interactions": 0,
+    "commands_run": 0,
+    "commands_passed": 0,
+    "commands_failed": 0,
+    "errors": 0,
 }
 
+# ────────────────────────────────────────────────────────────────
+# Stats load/save
+# ────────────────────────────────────────────────────────────────
 
-def _load_stats() -> dict:
+def _load_stats():
     if os.path.exists(STATS_FILE):
         try:
-            with open(STATS_FILE) as f:
+            with open(STATS_FILE, "r") as f:
                 return json.load(f)
         except Exception:
             pass
+
     return {
         "total_entries": 0,
         "total_sessions": 0,
         "all_time": {
-            "commands_run": 0, "commands_passed": 0,
-            "commands_failed": 0, "not_found": 0,
+            "interactions": 0,
+            "commands_run": 0,
+            "commands_passed": 0,
+            "commands_failed": 0,
+            "errors": 0,
         }
     }
 
 
-def _save_stats(stats: dict):
+def _save_stats(stats):
     try:
         with open(STATS_FILE, "w") as f:
             json.dump(stats, f, indent=2)
@@ -60,104 +74,131 @@ def _save_stats(stats: dict):
         pass
 
 
+# ────────────────────────────────────────────────────────────────
+# Initialize session
+# ────────────────────────────────────────────────────────────────
+
 def _init():
     global _sequence, _session_id
+
     stats = _load_stats()
-    _sequence   = stats.get("total_entries", 0)
+
+    _sequence = stats.get("total_entries", 0)
     _session_id = stats.get("total_sessions", 0) + 1
+
     stats["total_sessions"] = _session_id
     _save_stats(stats)
 
 
 _init()
 
-# ── Logger ────────────────────────────────────────────────────────────────────
-_logger = logging.getLogger("JARVIS")
-_logger.setLevel(logging.DEBUG)
+# ────────────────────────────────────────────────────────────────
+# Helpers
+# ────────────────────────────────────────────────────────────────
 
-if not _logger.handlers:
-    fh = logging.FileHandler(LOG_FILE, encoding="utf-8")
-    fh.setLevel(logging.DEBUG)
-    fh.setFormatter(logging.Formatter(
-        "%(asctime)s | %(levelname)-8s | %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
-    ))
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.INFO)
-    ch.setFormatter(logging.Formatter("[%(levelname)s] %(message)s"))
-    _logger.addHandler(fh)
-    _logger.addHandler(ch)
-
-
-def _next() -> tuple[int, int]:
+def _next_seq():
     global _sequence, _session_seq
     with _lock:
-        _sequence    += 1
+        _sequence += 1
         _session_seq += 1
         return _sequence, _session_seq
+
+
+def _write(entry: dict):
+    """Write a JSON log entry safely."""
+    try:
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry) + "\n")
+    except Exception:
+        pass
 
 
 def _flush_stats():
     stats = _load_stats()
     stats["total_entries"] = _sequence
+
     for k, v in _session_stats.items():
         stats["all_time"][k] = stats["all_time"].get(k, 0) + v
+
     _save_stats(stats)
 
 
-# ── Public API ────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────
+# Public API
+# ────────────────────────────────────────────────────────────────
 
-def log_query(query: str, interpretation: str, outcome: str, status: str = "SUCCESS"):
-    gseq, sseq = _next()
+def log_interaction(event: str, detail: str = ""):
+    """Logs any interaction: user message, reply, internal action."""
+    g, s = _next_seq()
+
     with _lock:
-        _session_stats["commands_run"] += 1
-        if status == "SUCCESS":   _session_stats["commands_passed"] += 1
-        elif status == "FAILED":  _session_stats["commands_failed"] += 1
-        elif status == "NOT_FOUND": _session_stats["not_found"]     += 1
+        _session_stats["interactions"] += 1
 
     entry = {
-        "seq": gseq, "session": _session_id, "session_seq": sseq,
+        "seq": g,
+        "session": _session_id,
+        "session_seq": s,
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "query": query, "interpretation": interpretation,
-        "outcome": outcome, "status": status,
+        "type": "interaction",
+        "event": event,
+        "detail": detail,
     }
-    _logger.info(json.dumps(entry))
+
+    _write(entry)
     _flush_stats()
 
 
-def log_event(message: str, level: str = "info"):
-    gseq, sseq = _next()
-    getattr(_logger, level.lower(), _logger.info)(
-        f"[#{gseq} S{_session_id}:{sseq}] {message}"
-    )
+def log_command(command: str, status: str = "SUCCESS", detail: str = ""):
+    """Logs command execution with simplified status."""
+    g, s = _next_seq()
+
+    with _lock:
+        _session_stats["commands_run"] += 1
+        if status == "SUCCESS":
+            _session_stats["commands_passed"] += 1
+        else:
+            _session_stats["commands_failed"] += 1
+
+    entry = {
+        "seq": g,
+        "session": _session_id,
+        "session_seq": s,
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "type": "command",
+        "command": command,
+        "status": status,
+        "detail": detail,
+    }
+
+    _write(entry)
     _flush_stats()
 
 
 def log_error(message: str, exc: Exception = None):
-    gseq, sseq = _next()
-    msg = f"[#{gseq} S{_session_id}:{sseq}] {message}"
-    if exc:
-        msg += f" | {type(exc).__name__}: {exc}"
-    _logger.error(msg)
+    """Logs simplified errors without tracebacks."""
+    g, s = _next_seq()
+
+    with _lock:
+        _session_stats["errors"] += 1
+
+    entry = {
+        "seq": g,
+        "session": _session_id,
+        "session_seq": s,
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "type": "error",
+        "message": message,
+        "exception": type(exc).__name__ if exc else None,
+    }
+
+    _write(entry)
     _flush_stats()
 
 
-def get_session_stats() -> dict:
+def get_session_stats():
     return {
         "session_id": _session_id,
         "session_entries": _session_seq,
         "global_entries": _sequence,
         **_session_stats,
     }
-
-
-def print_session_summary():
-    s = get_session_stats()
-    print(f"\n  Session #{s['session_id']} Summary")
-    print(f"  {'─'*30}")
-    print(f"  Commands run:    {s['commands_run']}")
-    print(f"  Passed:          {s['commands_passed']}")
-    print(f"  Failed:          {s['commands_failed']}")
-    print(f"  Not found:       {s['not_found']}")
-    print(f"  Entries (session / total): {s['session_entries']} / {s['global_entries']}")
-    print()

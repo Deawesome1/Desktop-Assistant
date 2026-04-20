@@ -1,0 +1,3 @@
+# requirements_linux.txt
+espeak
+pyaudio

@@ -1,0 +1,5 @@
+# requirements.txt (base)
+speechrecognition
+requests
+psutil
+pillow
