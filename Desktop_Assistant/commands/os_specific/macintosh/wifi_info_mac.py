@@ -85,22 +85,45 @@ def _get_wifi_info() -> Optional[Dict[str, Any]]:
 # Public run() entrypoint
 # ---------------------------------------------------------------------------
 
+import socket
+import psutil
+
+def _is_online() -> bool:
+    """Check if ANY network interface has a valid IP."""
+    for addrs in psutil.net_if_addrs().values():
+        for addr in addrs:
+            if addr.family == socket.AF_INET and addr.address != "127.0.0.1":
+                return True
+    return False
+
+
 def run(
     brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None
 ):
-    info = _get_wifi_info()
-
-    if not info or not info.get("ssid"):
+    # First: check if the machine is online at all
+    if not _is_online():
         brain.event("user_confused")
         return {
             "success": False,
-            "message": "You don't appear to be connected to a WiFi network.",
+            "message": "You don't appear to be connected to any network.",
             "data": {"connected": False},
         }
 
+    # Second: try to detect WiFi specifically
+    info = _get_wifi_info()
+
+    if not info or not info.get("ssid"):
+        brain.event("task_success")
+        return {
+            "success": True,
+            "message": "You're online, but I couldn't confirm a WiFi connection. You may be using Ethernet or another interface.",
+            "data": {"connected": True, "type": "non_wifi"},
+        }
+
+    # If WiFi info is available, report it normally
     ssid = info["ssid"]
     signal = f"{info['signal']}% signal" if info["signal"] else ""
     speed = f" at {info['speed']} Mbps" if info["speed"] else ""
