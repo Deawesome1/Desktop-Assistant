@@ -1,4 +1,4 @@
-from ..platform_utils import clear_clipboard, get_desktop
+from ...platform_utils import clear_clipboard, get_desktop
 
 @staticmethod
 def clear_clipboard():
