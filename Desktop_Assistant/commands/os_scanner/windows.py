@@ -1,8 +1,8 @@
 """
-windows.py — Full Windows application scanner for JARVIS.
+windows.py — Full Windows application scanner for JARVIS (Omega)
 
-This is your original Windows implementation, extracted and cleaned
-so it works as a standalone module under the new os_scanner naming.
+This is your original Windows implementation, cleaned and made
+import‑surface‑compatible. No deep imports. No project‑root assumptions.
 """
 
 import os
@@ -10,16 +10,20 @@ import json
 import glob
 import winreg
 import sys
-import time
 from pathlib import Path
 
 # -------------------------------------------------------------------
-# CONFIG PATHS
+# CONFIG PATHS (resolved relative to this file)
 # -------------------------------------------------------------------
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CACHE_PATH  = os.path.join(BASE_DIR, "..", "config", "app_cache.json")
-CONFIG_PATH = os.path.join(BASE_DIR, "..", "config", "apps_config.json")
+BASE_DIR = Path(__file__).resolve().parent
+CONFIG_DIR = (BASE_DIR / ".." / "config").resolve()
+
+CACHE_PATH  = CONFIG_DIR / "app_cache.json"
+CONFIG_PATH = CONFIG_DIR / "apps_config.json"
+
+# Ensure config directory exists
+os.makedirs(CONFIG_DIR, exist_ok=True)
 
 # -------------------------------------------------------------------
 # CONSTANTS
@@ -84,8 +88,7 @@ class ProgressBar:
         filled   = int(self.WIDTH * pct)
         bar      = "█" * filled + "░" * (self.WIDTH - filled)
         pct_str  = f"{int(pct * 100):3d}%"
-        max_suffix = 30
-        suffix_display = suffix[:max_suffix].ljust(max_suffix)
+        suffix_display = suffix[:30].ljust(30)
         line = f"\r  {self.label} [{bar}] {pct_str}  {suffix_display}"
         sys.stdout.write(line)
         sys.stdout.flush()
@@ -100,9 +103,9 @@ def _load_config() -> dict:
         "scan_on_startup": True,
         "extra_scan_paths": [],
     }
-    if os.path.exists(CONFIG_PATH):
+    if CONFIG_PATH.exists():
         try:
-            with open(CONFIG_PATH, "r") as f:
+            with open(CONFIG_PATH, "r", encoding="utf-8") as f:
                 loaded = json.load(f)
             defaults.update(loaded)
         except Exception:
@@ -340,7 +343,7 @@ def _dedup_apps(apps: list[dict]) -> list[dict]:
 def build_cache(force: bool = False) -> dict:
     existing_aliases = {}
 
-    if os.path.exists(CACHE_PATH) and not force:
+    if CACHE_PATH.exists() and not force:
         try:
             with open(CACHE_PATH, "r", encoding="utf-8") as f:
                 existing = json.load(f)
@@ -408,7 +411,6 @@ def build_cache(force: bool = False) -> dict:
 
     cache = {"app_count": len(all_apps), "apps": all_apps}
 
-    os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
     with open(CACHE_PATH, "w", encoding="utf-8") as f:
         json.dump(cache, f, indent=2, ensure_ascii=False)
 
@@ -416,7 +418,7 @@ def build_cache(force: bool = False) -> dict:
 
 
 def get_cache() -> dict:
-    if not os.path.exists(CACHE_PATH):
+    if not CACHE_PATH.exists():
         return build_cache(force=True)
 
     try:

@@ -9,10 +9,9 @@ Supports:
     - "screen brightness"
 """
 
-import re
+from Desktop_Assistant import imports as I
 import subprocess
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -86,12 +85,13 @@ def _set_brightness(level: int) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
 
+    re = I.re
     q = user_text.lower()
     current = _get_brightness()
 

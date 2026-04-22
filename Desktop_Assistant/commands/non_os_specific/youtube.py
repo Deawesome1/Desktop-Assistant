@@ -9,11 +9,10 @@ Examples:
     "open youtube"
 """
 
-import re
+from Desktop_Assistant import imports as I
 import webbrowser
 import urllib.parse
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -77,18 +76,20 @@ PREFIXES = [
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
+
+    re = I.re
 
     if args is None:
         args = []
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

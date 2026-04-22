@@ -3,9 +3,9 @@ system_info_windows.py — JARVIS Command (Windows)
 Report CPU, RAM, disk, uptime, and battery (if present).
 """
 
+from Desktop_Assistant import imports as I
 import platform
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -130,7 +130,7 @@ SPECIFIC_KEYWORDS = {
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None

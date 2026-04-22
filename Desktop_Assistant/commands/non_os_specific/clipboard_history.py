@@ -8,11 +8,9 @@ Features:
     - Recalls a specific item: "paste number 2", "clipboard item 3", etc.
 """
 
-import tkinter as tk
+from Desktop_Assistant import imports as I
 import re
 from typing import Any, Dict, List, Optional
-from brain import Brain
-
 
 # ---------------------------------------------------------------------------
 # Command metadata
@@ -56,14 +54,13 @@ def is_supported_on_os(os_key: str) -> bool:
 
 def _get_clipboard() -> Optional[str]:
     """
-    Safely read clipboard contents using tkinter.
+    Use the unified import-surface clipboard getter.
     Returns None if clipboard is empty or inaccessible.
     """
     try:
-        root = tk.Tk()
-        root.withdraw()
-        content = root.clipboard_get()
-        root.destroy()
+        content = I.get_clipboard()
+        if not content:
+            return None
         content = content.strip()
         return content if content else None
     except Exception:
@@ -86,7 +83,7 @@ def _record_clipboard_change() -> None:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
@@ -97,7 +94,7 @@ def run(
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

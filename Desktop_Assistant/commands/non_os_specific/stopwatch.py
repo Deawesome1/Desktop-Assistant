@@ -5,10 +5,10 @@ Start, stop, lap, reset, and check a persistent stopwatch.
 State is stored in sys.modules so it survives across imports.
 """
 
+from Desktop_Assistant import imports as I
 import sys
 import time
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -85,7 +85,7 @@ def _fmt(seconds: float) -> str:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
@@ -96,7 +96,7 @@ def run(
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

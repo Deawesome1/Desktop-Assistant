@@ -11,11 +11,14 @@ Responsibilities:
     - Provide hooks for advanced features (chaining, pipelines, etc.)
 """
 
+import os
 import time
 import logging
 from typing import Any, Dict, Optional
 
-from brain import Brain
+# Central import surface
+from Desktop_Assistant import imports as I
+Brain = I.Brain
 
 
 # ----------------------------------------------------------------------
@@ -31,6 +34,9 @@ def _setup_logger() -> logging.Logger:
         return logger  # already configured
 
     logger.setLevel(logging.DEBUG)
+
+    # Ensure logs directory exists
+    os.makedirs("logs", exist_ok=True)
 
     # Console handler
     ch = logging.StreamHandler()
@@ -57,6 +63,10 @@ def _setup_logger() -> logging.Logger:
 
 logger = _setup_logger()
 
+
+# ----------------------------------------------------------------------
+# CommandHub Class
+# ----------------------------------------------------------------------
 
 class CommandHub:
     def __init__(self, brain: Brain, debug: bool = False, dry_run: bool = False):
@@ -105,7 +115,6 @@ class CommandHub:
         module = self.brain.find_command(user_text)
 
         if not module:
-            # No command matched — this is where you could plug in fallback reasoning
             logger.info(f"No command matched for text: {user_text!r}")
             self.brain.event("user_confused")
             return self._build_response(
@@ -128,7 +137,7 @@ class CommandHub:
         # 3. Update context
         self.brain.set_last_command(command_name)
 
-        # 4. Dry-run mode (no actual execution)
+        # 4. Dry-run mode
         if self.dry_run:
             logger.info(f"DRY RUN: would execute command '{command_name}'")
             return self._build_response(
@@ -151,7 +160,6 @@ class CommandHub:
 
             result = module.run(self.brain, user_text)
 
-            # Normalize result
             if not isinstance(result, dict):
                 result = {
                     "success": True,
@@ -161,7 +169,6 @@ class CommandHub:
 
             success = bool(result.get("success", False))
 
-            # 6. Update Brain based on result
             if success:
                 self.brain.event("task_success")
                 logger.info(f"Command '{command_name}' succeeded.")
@@ -169,7 +176,6 @@ class CommandHub:
                 self.brain.event("user_confused")
                 logger.warning(f"Command '{command_name}' reported failure.")
 
-            # 7. Build final response with timing + logging
             return self._build_response(
                 success=success,
                 message=result.get("message", ""),
@@ -181,7 +187,6 @@ class CommandHub:
             )
 
         except Exception as e:
-            # 8. Crash handling
             logger.exception(f"Command '{command_name}' crashed: {e}")
             self.brain.event("user_confused")
 
@@ -210,9 +215,7 @@ class CommandHub:
         category: Optional[str] = None,
         error_type: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """
-        Attach timing, logging, and analytics metadata to the response.
-        """
+
         elapsed = time.time() - start_time
 
         # Logging summary
@@ -235,7 +238,7 @@ class CommandHub:
                     f"Non-command failure in {elapsed:.3f}s (error_type={error_type})"
                 )
 
-        # Analytics hook (you can expand this later)
+        # Analytics hook
         self._record_analytics(
             success=success,
             command_name=command_name,
@@ -267,18 +270,10 @@ class CommandHub:
         elapsed: float,
         error_type: Optional[str],
     ) -> None:
-        """
-        Hook for analytics / usage tracking.
-        Right now this just logs; later you can:
-            - store in a DB
-            - feed into Brain memory
-            - drive personality drift
-            - power dashboards
-        """
+
         if not command_name:
             return
 
-        # Example: remember command usage in Brain memory
         try:
             entry = {
                 "command": command_name,

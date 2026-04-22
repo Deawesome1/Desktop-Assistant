@@ -7,6 +7,7 @@ import speech_recognition as sr
 
 logger = logging.getLogger("jarvis.listener.mac")
 
+
 def listen(brain=None) -> str:
     """
     macOS listener:

@@ -3,10 +3,9 @@ wifi_info_windows.py — JARVIS Command (Windows)
 Report WiFi SSID, signal strength, and link speed using netsh.
 """
 
+from Desktop_Assistant import imports as I
 import subprocess
-import re
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -47,6 +46,7 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def _get_wifi_info() -> Optional[Dict[str, Any]]:
+    re = I.re
     try:
         result = subprocess.run(
             ["netsh", "wlan", "show", "interfaces"],
@@ -76,7 +76,7 @@ def _get_wifi_info() -> Optional[Dict[str, Any]]:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None

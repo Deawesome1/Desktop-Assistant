@@ -13,7 +13,7 @@ This is the heart of the assistant.
 
 import logging
 from brain import get_brain
-from commands.core.command_hub import CommandHub
+from Desktop_Assistant.commands.command_hub import CommandHub
 from bot.listener.listener import listen
 from bot.speaker.speaker import speak
 from bot.context import BotContext

@@ -7,9 +7,8 @@ Returns the sentinel "__STAY_AWAKE__" which the main loop checks to avoid
 returning to idle mode.
 """
 
-import pyttsx3
+from Desktop_Assistant import imports as I
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -52,7 +51,7 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
@@ -63,7 +62,7 @@ def run(
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,
@@ -72,11 +71,10 @@ def run(
         }
 
     # ----------------------------------------------------------------------
-    # Interrupt TTS immediately
+    # Interrupt TTS immediately (import-surface safe)
     # ----------------------------------------------------------------------
     try:
-        engine = pyttsx3.init()
-        engine.stop()
+        I.stop_speaking()
     except Exception:
         pass
 

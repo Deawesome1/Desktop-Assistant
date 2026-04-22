@@ -8,10 +8,10 @@ Examples:
     "public ip"
 """
 
+from Desktop_Assistant import imports as I
 import socket
 import urllib.request
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -54,7 +54,7 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,

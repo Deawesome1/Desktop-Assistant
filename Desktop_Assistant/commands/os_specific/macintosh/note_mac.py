@@ -3,12 +3,10 @@ note_mac.py — JARVIS Command (macOS)
 Save spoken notes to Desktop/jarvis_notes.txt.
 """
 
+from Desktop_Assistant import imports as I
 import os
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from brain import Brain
-from bot.listener import listen_once
-from JARVIS.platform_utils import get_desktop
 
 
 # ---------------------------------------------------------------------------
@@ -52,7 +50,7 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None
@@ -74,7 +72,7 @@ def run(
 
     # If no content → ask user
     if not content:
-        heard = listen_once(timeout=8)
+        heard = I.listen_once(timeout=8)
         if not heard:
             brain.event("user_confused")
             return {
@@ -85,7 +83,7 @@ def run(
         content = heard.strip()
 
     # Save note
-    notes_file = os.path.join(get_desktop(), "jarvis_notes.txt")
+    notes_file = os.path.join(I.get_desktop(), "jarvis_notes.txt")
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     entry = f"[{timestamp}] {content}\n"
 

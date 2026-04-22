@@ -5,9 +5,9 @@ Shutdown, restart, sleep, or lock the computer.
 DISABLED by default in commands.json for safety.
 """
 
+from Desktop_Assistant import imports as I
 import os
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -50,7 +50,7 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None

@@ -11,8 +11,9 @@ import traceback
 from pathlib import Path
 import importlib
 
+from Desktop_Assistant.brain import dependency_manager
 from brain import Brain
-from commands.core import CommandHub
+from commands import CommandHub
 
 
 # ---------------------------------------------------------------------------
@@ -50,12 +51,13 @@ DEFAULT_TEST_PHRASES = {
 # ---------------------------------------------------------------------------
 # Load all commands from the real Brain
 # ---------------------------------------------------------------------------
-
 def load_real_commands():
+    import Desktop_Assistant.brain.dependency_manager as dependency_manager
+    dependency_manager.DISABLE_DEPENDENCY_CHECKS = True
+
     brain = Brain()
     hub = CommandHub(brain, debug=False, dry_run=False)
     return brain, hub
-
 
 # ---------------------------------------------------------------------------
 # Run tests

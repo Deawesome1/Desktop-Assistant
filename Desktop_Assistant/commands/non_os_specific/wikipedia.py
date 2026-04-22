@@ -9,9 +9,8 @@ Examples:
     "what is quantum computing"
 """
 
-import re
+from Desktop_Assistant import imports as I
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -60,9 +59,10 @@ def _extract_subject(q: str) -> str:
         "what is", "what are", "tell me about"
     ]
 
+    q_lower = q.lower()
     for prefix in prefixes:
-        if prefix in q.lower():
-            subject = q.lower().split(prefix, 1)[-1].strip(" ?")
+        if prefix in q_lower:
+            subject = q_lower.split(prefix, 1)[-1].strip(" ?")
             break
 
     return subject
@@ -73,18 +73,20 @@ def _extract_subject(q: str) -> str:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
+
+    re = I.re
 
     if args is None:
         args = []
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

@@ -1,8 +1,14 @@
-from commands.os_scanner import current_os
+"""
+speaker.py — OS-aware speaker router for JARVIS (Omega)
+"""
 
-if current_os == "windows":
-    from .speaker_windows import speak
-elif current_os == "macintosh":
+from Desktop_Assistant import imports as I
+
+os_key = I.os_key()
+
+if os_key == "macintosh":
     from .speaker_mac import speak
+elif os_key == "windows":
+    from .speaker_windows import speak
 else:
     from .speaker_linux import speak

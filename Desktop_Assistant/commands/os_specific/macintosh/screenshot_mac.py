@@ -3,12 +3,11 @@ screenshot_mac.py — JARVIS Command (macOS)
 Take a screenshot and save it to the Desktop with a timestamped filename.
 """
 
+from Desktop_Assistant import imports as I
 import os
 import subprocess
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from brain import Brain
-from JARVIS.platform_utils import get_desktop
 
 
 # ---------------------------------------------------------------------------
@@ -49,13 +48,13 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None
 ) -> Dict[str, Any]:
 
-    desktop = get_desktop()
+    desktop = I.get_desktop()
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     filename = os.path.join(desktop, f"screenshot_{timestamp}.png")
 

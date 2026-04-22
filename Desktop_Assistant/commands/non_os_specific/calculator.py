@@ -9,14 +9,21 @@ Examples:
     "solve 5 squared minus 3"
 """
 
-import re
+# ------------------------------------------------------------
+# Central import surface
+# ------------------------------------------------------------
+from Desktop_Assistant import imports as I
+
+# Standard libs via import surface
+re = I.re
+
 import math
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
-# ---------------------------------------------------------------------------
+
+# ------------------------------------------------------------
 # Command metadata
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------
 
 COMMAND_NAME: str = "calculator"
 COMMAND_ALIASES: List[str] = ["calc", "math", "compute", "solve"]
@@ -26,9 +33,10 @@ COMMAND_CATEGORY: str = "utility"
 COMMAND_REQUIRES_INTERNET: bool = False
 COMMAND_REQUIRES_ADMIN: bool = False
 
-# ---------------------------------------------------------------------------
+
+# ------------------------------------------------------------
 # Metadata API
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------
 
 def get_metadata() -> Dict[str, Any]:
     return {
@@ -41,12 +49,14 @@ def get_metadata() -> Dict[str, Any]:
         "requires_admin": COMMAND_REQUIRES_ADMIN,
     }
 
+
 def is_supported_on_os(os_key: str) -> bool:
     return os_key in COMMAND_OS_SUPPORT
 
-# ---------------------------------------------------------------------------
+
+# ------------------------------------------------------------
 # Internal math parsing logic
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------
 
 def _parse_and_eval(q: str) -> Optional[float]:
     """
@@ -54,10 +64,8 @@ def _parse_and_eval(q: str) -> Optional[float]:
     Returns float or None if parsing fails.
     """
 
-    # Normalize spacing
     q = q.lower().strip()
 
-    # Natural language → math replacements
     replacements = [
         (r"squared",              "**2"),
         (r"cubed",                "**3"),
@@ -80,11 +88,9 @@ def _parse_and_eval(q: str) -> Optional[float]:
     for pattern, repl in replacements:
         expr = re.sub(pattern, repl, expr, flags=re.IGNORECASE)
 
-    # Remove invalid characters (keep only math-safe tokens)
     expr = re.sub(r"[^0-9\+\-\*\/\(\)\.\%\^ sqrtcbrt]", "", expr)
     expr = expr.replace("^", "**").strip()
 
-    # sqrt/cbrt handling
     expr = re.sub(
         r"sqrt\s*\(?(\d+[\d\.]*)\)?",
         lambda m: str(math.sqrt(float(m.group(1)))),
@@ -100,18 +106,18 @@ def _parse_and_eval(q: str) -> Optional[float]:
         return None
 
     try:
-        # Safe eval environment
         result = eval(expr, {"__builtins__": {}}, {})
         return float(result)
     except Exception:
         return None
 
-# ---------------------------------------------------------------------------
+
+# ------------------------------------------------------------
 # Public run() entrypoint
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
@@ -122,7 +128,7 @@ def run(
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,
@@ -130,14 +136,12 @@ def run(
             "data": {"os_key": os_key},
         }
 
-    # Strip command prefixes
     q = user_text.lower().strip()
     prefixes = ["calculate", "what is", "what's", "how much is", "solve", "compute"]
     for p in prefixes:
         if q.startswith(p):
             q = q[len(p):].strip()
 
-    # Evaluate
     result = _parse_and_eval(q)
     if result is None:
         brain.event("user_confused")
@@ -147,7 +151,6 @@ def run(
             "data": {"expression": q},
         }
 
-    # Format result
     if result == int(result):
         result_str = str(int(result))
     else:
@@ -155,7 +158,6 @@ def run(
 
     response = f"The answer is {result_str}."
 
-    # Brain integration
     brain.event("task_success")
     brain.remember("technical_queries", f"calc: {user_text} = {result_str}")
 

@@ -2,11 +2,13 @@
 listener.py — OS-aware listener router for JARVIS (Omega)
 """
 
-from commands.os_scanner import current_os
+from Desktop_Assistant import imports as I
 
-if current_os == "macintosh":
+os_key = I.os_key()
+
+if os_key == "macintosh":
     from .listener_mac import listen
-elif current_os == "windows":
+elif os_key == "windows":
     from .listener_windows import listen
 else:
     from .listener_linux import listen

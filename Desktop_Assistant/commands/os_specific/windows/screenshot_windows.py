@@ -3,11 +3,11 @@ screenshot_windows.py — JARVIS Command (Windows)
 Take a screenshot and save it to the Desktop with a timestamped filename.
 """
 
+from Desktop_Assistant import imports as I
 import os
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from brain import Brain
-from Desktop_Assistant.platform_utils import get_desktop
+
 
 # ---------------------------------------------------------------------------
 # Command metadata
@@ -47,7 +47,7 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None
@@ -63,7 +63,7 @@ def run(
         }
 
     # Build filename
-    desktop = get_desktop()
+    desktop = I.get_desktop()
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     filename = os.path.join(desktop, f"screenshot_{timestamp}.png")
 

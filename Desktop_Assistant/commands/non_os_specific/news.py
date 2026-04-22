@@ -10,11 +10,10 @@ Examples:
     "latest news"
 """
 
+from Desktop_Assistant import imports as I
 import urllib.request
 import urllib.parse
-import re
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 # ---------------------------------------------------------------------------
 # Command metadata
@@ -94,12 +93,14 @@ def _detect_category(text: str) -> str:
 
 def _clean_title(title: str) -> str:
     """Strip CDATA, HTML tags, and source suffixes."""
+    re = I.re
     title = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", title, flags=re.DOTALL)
     title = re.sub(r"<[^>]+>", "", title)
     title = re.sub(r"\s*[-|]\s*[\w\s]{2,30}$", "", title.strip())
     return title.strip()
 
 def _fetch_headlines(url: str) -> List[str]:
+    re = I.re
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "JARVIS/1.0"})
         with urllib.request.urlopen(req, timeout=8) as resp:
@@ -132,18 +133,20 @@ def _search_topic(topic: str) -> List[str]:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
+
+    re = I.re
 
     if args is None:
         args = []
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

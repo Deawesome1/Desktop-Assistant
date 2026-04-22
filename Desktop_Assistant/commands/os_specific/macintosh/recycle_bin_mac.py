@@ -3,9 +3,9 @@ recycle_bin_mac.py — JARVIS Command (macOS)
 Empty the macOS Trash using Finder AppleScript.
 """
 
+from Desktop_Assistant import imports as I
 import subprocess
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -59,7 +59,7 @@ def _empty_trash() -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None

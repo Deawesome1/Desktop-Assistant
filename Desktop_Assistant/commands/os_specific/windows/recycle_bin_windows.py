@@ -3,9 +3,9 @@ recycle_bin_windows.py — JARVIS Command (Windows)
 Empty the Windows Recycle Bin using SHEmptyRecycleBinW.
 """
 
+from Desktop_Assistant import imports as I
 import subprocess
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -47,7 +47,7 @@ def is_supported_on_os(os_key: str) -> bool:
 
 def _empty_recycle_bin() -> bool:
     try:
-        # SHEmptyRecycleBinW via PowerShell
+        # SHEmptyRecycleBinW via PowerShell COM Shell.Application
         cmd = [
             "powershell",
             "-Command",
@@ -65,7 +65,7 @@ def _empty_recycle_bin() -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None

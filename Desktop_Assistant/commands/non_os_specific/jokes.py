@@ -3,11 +3,11 @@ jokes.py — JARVIS Command
 Tell a random joke using icanhazdadjoke.com with offline fallback.
 """
 
+from Desktop_Assistant import imports as I
 import urllib.request
 import json
 import random
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -61,7 +61,7 @@ FALLBACK_JOKES = [
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
@@ -72,7 +72,7 @@ def run(
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

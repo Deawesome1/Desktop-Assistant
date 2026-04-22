@@ -11,7 +11,7 @@ Triggers:
 import os
 import time
 from typing import Any, Dict, List, Optional
-from brain import Brain
+from Desktop_Assistant import imports as I
 
 
 # ---------------------------------------------------------------------------
@@ -52,7 +52,7 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
@@ -63,7 +63,7 @@ def run(
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

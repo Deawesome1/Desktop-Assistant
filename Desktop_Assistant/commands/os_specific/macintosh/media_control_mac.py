@@ -5,10 +5,9 @@ Unified media + volume control:
     - Volume: set %, up/down, mute/unmute, read level
 """
 
-import re
+from Desktop_Assistant import imports as I
 import subprocess
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -108,11 +107,12 @@ def _mute(state: bool) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
 ):
+    re = I.re
     q = user_text.lower()
 
     # ------------------------------------------------------------

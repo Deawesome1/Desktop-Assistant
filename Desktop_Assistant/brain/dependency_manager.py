@@ -3,16 +3,21 @@ dependency_manager.py — Cross-platform dependency installer for JARVIS (Omega)
 Updated to support requirements/ folder.
 """
 
+from Desktop_Assistant import imports as I
+from importlib import util
 import subprocess
 import sys
-import pkgutil
 import logging
 import os
-from commands.os_scanner import current_os
+from pathlib import Path
 
 logger = logging.getLogger("jarvis.dependency_manager")
 
-REQ_DIR = "requirements"
+DISABLE_DEPENDENCY_CHECKS = False
+
+# Resolve absolute path to requirements/ folder
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+REQ_DIR = PROJECT_ROOT / "requirements"
 
 
 # ------------------------------------------------------------
@@ -32,11 +37,20 @@ def _pip_install(package: str):
 def ensure(package: str):
     """
     Ensure a Python package is installed.
+    Skips installation when DISABLE_DEPENDENCY_CHECKS is True.
     """
-    if pkgutil.find_loader(package) is None:
-        _pip_install(package)
-    else:
-        logger.debug(f"Package already installed: {package}")
+    if DISABLE_DEPENDENCY_CHECKS:
+        logger.debug(f"[DependencyManager] Skipping ensure('{package}') — dependency checks disabled.")
+        return
+
+    try:
+        if util.find_spec(package) is None:
+            logger.warning(f"[DependencyManager] Package '{package}' missing — installing...")
+            _pip_install(package)
+        else:
+            logger.debug(f"[DependencyManager] Package already installed: {package}")
+    except Exception as e:
+        logger.error(f"[DependencyManager] Error checking package '{package}': {e}")
 
 
 # ------------------------------------------------------------
@@ -47,36 +61,38 @@ def install_requirements():
     Install base requirements + OS-specific requirements from requirements/ folder.
     """
 
+    os_key = I.os_key()
+
     # Base file
-    base_file = os.path.join(REQ_DIR, "base.txt")
+    base_file = REQ_DIR / "base.txt"
 
     # OS-specific files
     os_files = {
-        "windows": os.path.join(REQ_DIR, "windows.txt"),
-        "macintosh": os.path.join(REQ_DIR, "mac.txt"),
-        "linux": os.path.join(REQ_DIR, "linux.txt"),
+        "windows": REQ_DIR / "windows.txt",
+        "macintosh": REQ_DIR / "mac.txt",
+        "linux": REQ_DIR / "linux.txt",
     }
 
     # Install base
-    if os.path.exists(base_file):
+    if base_file.exists():
         logger.info("Installing base requirements...")
         _install_from_file(base_file)
     else:
         logger.warning("Base requirements file not found.")
 
     # Install OS-specific
-    os_file = os_files.get(current_os)
-    if os_file and os.path.exists(os_file):
-        logger.info(f"Installing {current_os} requirements...")
+    os_file = os_files.get(os_key)
+    if os_file and os_file.exists():
+        logger.info(f"Installing {os_key} requirements...")
         _install_from_file(os_file)
     else:
-        logger.warning(f"No OS-specific requirements file found for {current_os}.")
+        logger.warning(f"No OS-specific requirements file found for {os_key}.")
 
 
 # ------------------------------------------------------------
 # Helper: install from file
 # ------------------------------------------------------------
-def _install_from_file(path: str):
+def _install_from_file(path: Path):
     try:
         with open(path, "r") as f:
             for line in f:

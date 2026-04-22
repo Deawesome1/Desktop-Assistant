@@ -7,6 +7,7 @@ import speech_recognition as sr
 
 logger = logging.getLogger("jarvis.listener.windows")
 
+
 def listen(brain=None) -> str:
     """
     Windows listener:

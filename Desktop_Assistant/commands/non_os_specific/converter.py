@@ -8,9 +8,8 @@ Examples:
     "what is 20 celsius in fahrenheit"
 """
 
-import re
+from Desktop_Assistant import imports as I
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 # ---------------------------------------------------------------------------
 # Command metadata
@@ -23,6 +22,7 @@ COMMAND_OS_SUPPORT: List[str] = ["windows", "macintosh", "linux"]
 COMMAND_CATEGORY: str = "utility"
 COMMAND_REQUIRES_INTERNET: bool = False
 COMMAND_REQUIRES_ADMIN: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Metadata API
@@ -41,6 +41,7 @@ def get_metadata() -> Dict[str, Any]:
 
 def is_supported_on_os(os_key: str) -> bool:
     return os_key in COMMAND_OS_SUPPORT
+
 
 # ---------------------------------------------------------------------------
 # Unit definitions
@@ -99,6 +100,7 @@ UNITS = {
 
 TEMP_UNITS = {"celsius", "centigrade", "fahrenheit", "kelvin"}
 
+
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
@@ -118,6 +120,7 @@ def _convert_temp(value: float, from_unit: str, to_unit: str) -> float:
         return c + 273.15
     return c
 
+
 def _resolve(raw: str) -> Optional[str]:
     """Find the best matching unit key for a spoken unit string."""
     r = raw.lower().strip()
@@ -130,23 +133,26 @@ def _resolve(raw: str) -> Optional[str]:
             return key
     return None
 
+
 # ---------------------------------------------------------------------------
 # Public run() entrypoint
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
+
+    re = I.re  # import-surface regex
 
     if args is None:
         args = []
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,

@@ -8,11 +8,10 @@ Examples:
     "set a 1 hour 20 minute timer"
 """
 
-import re
+from Desktop_Assistant import imports as I
 import threading
 import time
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -56,18 +55,20 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
+
+    re = I.re
 
     if args is None:
         args = []
     if context is None:
         context = {}
 
-    os_key = brain.get_current_os_key()
+    os_key = I.os_key()
     if not is_supported_on_os(os_key):
         return {
             "success": False,
@@ -121,10 +122,8 @@ def run(
     # ----------------------------------------------------------------------
     def _countdown():
         time.sleep(seconds)
-        # Speak only after the delay
         try:
-            from bot.speaker import speak
-            speak(f"Your {label} timer is done.")
+            I.speak(f"Your {label} timer is done.")
         except Exception:
             pass
 

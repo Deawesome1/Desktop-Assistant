@@ -3,10 +3,10 @@ open_browser_windows.py — JARVIS Command (Windows)
 Open the browser or perform a Google search.
 """
 
+from Desktop_Assistant import imports as I
 import webbrowser
 from urllib.parse import quote
 from typing import Any, Dict, List, Optional
-from brain import Brain
 
 
 # ---------------------------------------------------------------------------
@@ -49,14 +49,13 @@ def is_supported_on_os(os_key: str) -> bool:
 # ---------------------------------------------------------------------------
 
 def run(
-    brain: Brain,
+    brain,
     user_text: str,
     args: Optional[List[str]] = None,
     context: Optional[Dict[str, Any]] = None
 ) -> Dict[str, Any]:
 
     q = user_text.lower()
-
     prefixes = ["search for", "google", "look up", "search"]
 
     # Extract search term

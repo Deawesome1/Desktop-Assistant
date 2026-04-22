@@ -1,9 +1,11 @@
 """
 commands/greet.py — Greet the user.
 """
-from bot.speaker.speaker import speak
+
+from Desktop_Assistant import imports as I
+
 
 def run(query: str) -> str:
     response = "Hello. I'm JARVIS. What do you need?"
-    speak(response)
+    I.speak(response)
     return response
