@@ -233,3 +233,10 @@
 2026-04-23 10:40:59 | INFO | jarvis.command_hub | Command 'open_browser' completed in 0.140s (intent=unknown, category=web)
 2026-04-23 10:41:35 | INFO | jarvis.command_hub | Command 'time' succeeded.
 2026-04-23 10:41:35 | INFO | jarvis.command_hub | Command 'time' completed in 0.001s (intent=unknown, category=information)
+2026-04-23 17:01:06 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-23 17:01:21 | INFO | jarvis.command_hub | Command 'open_browser' succeeded.
+2026-04-23 17:01:21 | INFO | jarvis.command_hub | Command 'open_browser' completed in 0.129s (intent=unknown, category=web)
+2026-04-23 17:01:27 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-23 17:01:27 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.001s (intent=unknown, category=information, error_type=None)
+2026-04-23 17:01:43 | INFO | jarvis.command_hub | Command 'converter' succeeded.
+2026-04-23 17:01:43 | INFO | jarvis.command_hub | Command 'converter' completed in 0.001s (intent=unknown, category=utility)
