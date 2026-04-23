@@ -80,6 +80,13 @@ class CommandHub:
         else:
             logger.debug("CommandHub initialized.")
 
+    def handle(self, user_text: str):
+        """
+        Public wrapper so Brain.process() can call the hub cleanly.
+        """
+        return self.execute(user_text)
+
+
     # ------------------------------------------------------------------
     # Public API
     # ------------------------------------------------------------------

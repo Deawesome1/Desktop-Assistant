@@ -1,77 +1,107 @@
 """
-mac_impl.py — macOS application scanner for JARVIS.
+mac_scanner.py — macOS application scanner for JARVIS
 
-Scans /Applications and ~/Applications for .app bundles.
-Returns the same structure as the Windows implementation.
+Scans:
+ - /Applications
+ - /System/Applications
+ - ~/Applications
+
+Detects .app bundles and extracts their executable paths.
+Returns unified structure compatible with Windows/Linux scanners.
 """
 
 import os
 from pathlib import Path
 
-CACHE_IN_MEMORY = None  # simple in‑memory cache only
+# In-memory cache
+_CACHE = {
+    "app_count": 0,
+    "apps": []
+}
 
 
-def _scan_macos() -> list[dict]:
-    apps: list[dict] = []
-    locations = [
-        "/Applications",
-        os.path.expanduser("~/Applications"),
-    ]
+def _scan_directory(dir_path: Path) -> list[dict]:
+    """Scan a directory for .app bundles and return normalized app entries."""
+    results = []
 
-    for base in locations:
-        if not os.path.isdir(base):
-            continue
+    if not dir_path.exists():
+        return results
 
-        for item in os.listdir(base):
-            if not item.endswith(".app"):
-                continue
-
-            full_path = os.path.join(base, item)
-            name = item[:-4]  # strip .app
+    for item in dir_path.iterdir():
+        if item.suffix.lower() == ".app" and item.is_dir():
+            name = item.stem
             name_lower = name.lower()
 
-            apps.append({
-                "name":           name,
-                "name_lower":     name_lower,
-                "path":           full_path,
-                "requires_admin": False,
-                "aliases":        [],
-                "source":         "filesystem",
+            # macOS .app bundles contain the executable inside:
+            # MyApp.app/Contents/MacOS/MyApp
+            exec_path = item / "Contents" / "MacOS" / name
+            exec_path_str = str(exec_path) if exec_path.exists() else str(item)
+
+            results.append({
+                "name": name,
+                "name_lower": name_lower,
+                "path": exec_path_str,
+                "requires_admin": False,  # macOS apps rarely require admin to launch
+                "aliases": [],
+                "source": "filesystem"
             })
 
-    apps.sort(key=lambda a: a["name_lower"])
-    return apps
+    return results
 
 
 def build_cache(force: bool = False) -> dict:
-    global CACHE_IN_MEMORY
-    if CACHE_IN_MEMORY is not None and not force:
-        return CACHE_IN_MEMORY
+    """Scan macOS application directories and build the unified cache."""
+    global _CACHE
 
-    apps = _scan_macos()
-    CACHE_IN_MEMORY = {
+    if _CACHE["app_count"] > 0 and not force:
+        return _CACHE
+
+    print("\n  Scanning macOS Applications...")
+
+    apps = []
+
+    # Standard macOS application directories
+    scan_dirs = [
+        Path("/Applications"),
+        Path("/System/Applications"),
+        Path.home() / "Applications"
+    ]
+
+    for d in scan_dirs:
+        apps.extend(_scan_directory(d))
+
+    # Deduplicate by name_lower
+    dedup = {}
+    for app in apps:
+        dedup[app["name_lower"]] = app
+
+    apps = list(dedup.values())
+
+    _CACHE = {
         "app_count": len(apps),
-        "apps": apps,
+        "apps": apps
     }
-    return CACHE_IN_MEMORY
+
+    print(f"  macOS scan complete: {len(apps)} apps indexed.\n")
+
+    return _CACHE
 
 
 def get_cache() -> dict:
-    return build_cache(force=False)
+    """Return the current cache without rescanning."""
+    return _CACHE
 
 
 def add_alias(app_name_lower: str, alias: str) -> bool:
-    cache = get_cache()
-    alias_lower = alias.lower().strip()
-
-    for app in cache["apps"]:
+    """Add an alias to an app entry."""
+    for app in _CACHE["apps"]:
         if app["name_lower"] == app_name_lower:
-            if alias_lower not in [a.lower() for a in app["aliases"]]:
+            if alias not in app["aliases"]:
                 app["aliases"].append(alias)
             return True
-
     return False
 
 
 def rescan() -> dict:
+    """Force a full rescan."""
     return build_cache(force=True)

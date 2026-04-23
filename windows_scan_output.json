@@ -1,0 +1,2981 @@
+{
+  "app_count": 372,
+  "apps": [
+    {
+      "name": "7-Zip",
+      "name_lower": "7-zip",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Aimlabs",
+      "name_lower": "aimlabs",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Aimlabs.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Alien Swarm Reactive Drop",
+      "name_lower": "alien swarm reactive drop",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Alien Swarm Reactive Drop.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "AltServer",
+      "name_lower": "altserver",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Amanda the Adventurer",
+      "name_lower": "amanda the adventurer",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "AMD Settings",
+      "name_lower": "amd settings",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "AMD Software",
+      "name_lower": "amd software",
+      "path": "C:\\Program Files\\AMD\\CIM\\BIN64\\7z.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Among Us",
+      "name_lower": "among us",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Among Us.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Assassin's Creed Origins",
+      "name_lower": "assassin's creed origins",
+      "path": "C:/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games/Assassin's Creed Origins\\7za.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "AutoHotkey",
+      "name_lower": "autohotkey",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Backrooms Escape Together",
+      "name_lower": "backrooms escape together",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Backrooms Escape Together.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "BakkesMod",
+      "name_lower": "bakkesmod",
+      "path": "C:\\Program Files\\BakkesMod\\BakkesMod.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Battle.net",
+      "name_lower": "battle.net",
+      "path": "C:\\Program Files (x86)\\Battle.net\\Battle.net Launcher.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Battlestate Games Launcher",
+      "name_lower": "battlestate games launcher",
+      "path": "C:\\Users\\Public\\Desktop\\Battlestate Games Launcher.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Bonjour",
+      "name_lower": "bonjour",
+      "path": "C:\\Program Files (x86)\\Bonjour\\mDNSResponder.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Brawlhalla",
+      "name_lower": "brawlhalla",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Brawlhalla.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Bronzebeard's Tavern",
+      "name_lower": "bronzebeard's tavern",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Bronzebeard's Tavern.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "browser assistant",
+      "name_lower": "browser assistant",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Opera GX\\assistant\\browser_assistant.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "CapCut",
+      "name_lower": "capcut",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Cemu",
+      "name_lower": "cemu",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ipcgames.com_Tekken_Tag_Tournament_2\\ipcgames.com_Tekken_Tag_Tournament_2\\Cemu.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "clear comtypes cache",
+      "name_lower": "clear comtypes cache",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\github\\JARVIS\\JARVIS_OLD\\venv\\Scripts\\clear_comtypes_cache.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "cli",
+      "name_lower": "cli",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\setuptools\\cli-32.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "cli arm64",
+      "name_lower": "cli arm64",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\setuptools\\cli-arm64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "COMIntegration",
+      "name_lower": "comintegration",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Essentials-In-Editor\\Essentials Project\\Library\\PackageCache\\com.unity.ide.visualstudio\\Editor\\COMIntegration\\Release\\COMIntegration.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Content Warning",
+      "name_lower": "content warning",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Copilot",
+      "name_lower": "copilot",
+      "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Corsair Device Control Service",
+      "name_lower": "corsair device control service",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Corsair iCUE5 Software",
+      "name_lower": "corsair icue5 software",
+      "path": "A:\\Corsair iCUE5 Software\\BragiFwUpd.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Counter Strike 2",
+      "name_lower": "counter strike 2",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Counter-Strike 2.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "cpuburner",
+      "name_lower": "cpuburner",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\FurMark_2.8.0.0_win64\\FurMark_win64\\cpuburner\\cpuburner.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Crab Game",
+      "name_lower": "crab game",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Cry of Fear",
+      "name_lower": "cry of fear",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "CurseForge",
+      "name_lower": "curseforge",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CurseForge.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "cyglaunch",
+      "name_lower": "cyglaunch",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\lib\\pty4j\\win\\x86-64\\cyglaunch.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "DBeaver",
+      "name_lower": "dbeaver",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\DBeaver (2).lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Dead by Daylight",
+      "name_lower": "dead by daylight",
+      "path": "A:\\Steam\\steamapps\\common\\Dead by Daylight\\DeadByDaylight.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Dead Space\u2122",
+      "name_lower": "dead space\u2122",
+      "path": "A:\\EA Games\\Dead Space (2023)\\Dead Space.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Denuvo Anti-Cheat",
+      "name_lower": "denuvo anti-cheat",
+      "path": "C:\\Program Files\\Denuvo Anti-Cheat\\denuvo-anti-cheat-crash-report.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Disco Elysium",
+      "name_lower": "disco elysium",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Disco Elysium.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Discord",
+      "name_lower": "discord",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Discord.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Dolphin",
+      "name_lower": "dolphin",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Dolphin.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "DolphinTool",
+      "name_lower": "dolphintool",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\dolphin-master-5.0-19870-x64\\Dolphin-x64\\DolphinTool.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Double Shoulders",
+      "name_lower": "double shoulders",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Double Shoulders.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Download Full Games for Free",
+      "name_lower": "download full games for free",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ipcgames.com_Tekken_Tag_Tournament_2\\ipcgames.com_Tekken_Tag_Tournament_2\\Download Full Games for Free.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "DSPTool",
+      "name_lower": "dsptool",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\dolphin-master-5.0-19870-x64\\Dolphin-x64\\DSPTool.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "duet",
+      "name_lower": "duet",
+      "path": "C:\\Users\\Public\\Desktop\\duet.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Duet Display",
+      "name_lower": "duet display",
+      "path": "C:\\Program Files\\Kairos\\Duet Display\\BsSndRpt64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "EA app",
+      "name_lower": "ea app",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "ELDEN RING",
+      "name_lower": "elden ring",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ELDEN RING.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "elevator",
+      "name_lower": "elevator",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\bin\\elevator.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Elgato Stream Deck",
+      "name_lower": "elgato stream deck",
+      "path": "C:\\Users\\Public\\Desktop\\Elgato Stream Deck.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Epic Games Launcher",
+      "name_lower": "epic games launcher",
+      "path": "C:\\Users\\Public\\Desktop\\Epic Games Launcher.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Epic Games Launcher Prerequisites",
+      "name_lower": "epic games launcher prerequisites",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Epic Online Services",
+      "name_lower": "epic online services",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Escape from Tarkov",
+      "name_lower": "escape from tarkov",
+      "path": "A:\\Battlestate Games\\EscapeFromTarkov.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Escape Room - The Sick Colleague",
+      "name_lower": "escape room - the sick colleague",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Escape the Backrooms",
+      "name_lower": "escape the backrooms",
+      "path": "A:\\Steam\\steamapps\\common\\EscapeTheBackrooms\\Backrooms.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Essential Mod Installer",
+      "name_lower": "essential mod installer",
+      "path": "C:\\Program Files\\Essential Mod Installer\\Essential Mod Installer.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "EXIT",
+      "name_lower": "exit",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "f2py",
+      "name_lower": "f2py",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\f2py.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "FACEIT",
+      "name_lower": "faceit",
+      "path": "C:\\Users\\miche\\AppData\\Local\\FACEIT\\FACEIT.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Fallout: New Vegas",
+      "name_lower": "fallout: new vegas",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Feather Launcher",
+      "name_lower": "feather launcher",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "ffmpeg",
+      "name_lower": "ffmpeg",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ffmpeg\\bin\\ffmpeg.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "ffplay",
+      "name_lower": "ffplay",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ffmpeg\\bin\\ffplay.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "ffprobe",
+      "name_lower": "ffprobe",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ffmpeg\\bin\\ffprobe.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "flac win32",
+      "name_lower": "flac win32",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\github\\JARVIS\\JARVIS_OLD\\venv\\Lib\\site-packages\\speech_recognition\\flac-win32.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Flashpoint",
+      "name_lower": "flashpoint",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Flashpoint.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Fluffy Mod Manager",
+      "name_lower": "fluffy mod manager",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Fluffy Mod Manager.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "fm2 gui",
+      "name_lower": "fm2 gui",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\FurMark_2.8.0.0_win64\\FurMark_win64\\_fm2-gui.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "fonttools",
+      "name_lower": "fonttools",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\fonttools.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Fortnite",
+      "name_lower": "fortnite",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Fortnite.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "FPSUnlocker",
+      "name_lower": "fpsunlocker",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\fpsunlocker\\FPSUnlocker.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "fsnotifier",
+      "name_lower": "fsnotifier",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\bin\\fsnotifier.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "furmark",
+      "name_lower": "furmark",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\FurMark_2.8.0.0_win64\\FurMark_win64\\furmark.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "FurMark GUI",
+      "name_lower": "furmark gui",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\FurMark_2.8.0.0_win64\\FurMark_win64\\FurMark_GUI.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Garry's Mod",
+      "name_lower": "garry's mod",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Garry's Mod.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Garten of Banban",
+      "name_lower": "garten of banban",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Geometry Dash",
+      "name_lower": "geometry dash",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Geometry Dash.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Git",
+      "name_lower": "git",
+      "path": "C:\\Program Files\\Git\\git-bash.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "GitHub Desktop",
+      "name_lower": "github desktop",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\GitHub Desktop.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "GOD EATER RESURRECTION",
+      "name_lower": "god eater resurrection",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\GOD EATER RESURRECTION.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Google Chrome",
+      "name_lower": "google chrome",
+      "path": "C:\\Users\\Public\\Desktop\\Google Chrome.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "gpushark x64",
+      "name_lower": "gpushark x64",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\FurMark_2.8.0.0_win64\\FurMark_win64\\gpushark\\gpushark_x64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "gpuz",
+      "name_lower": "gpuz",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\FurMark_2.8.0.0_win64\\FurMark_win64\\gpuz\\gpuz.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Granblue Fantasy Versus: Rising Free Edition",
+      "name_lower": "granblue fantasy versus: rising free edition",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "gui",
+      "name_lower": "gui",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\setuptools\\gui-32.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "gui arm64",
+      "name_lower": "gui arm64",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\setuptools\\gui-arm64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Hello Neighbor",
+      "name_lower": "hello neighbor",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Help",
+      "name_lower": "help",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ipcgames.com_Tekken_Tag_Tournament_2\\ipcgames.com_Tekken_Tag_Tournament_2\\Help.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "House Flipper",
+      "name_lower": "house flipper",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\House Flipper.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "httpx",
+      "name_lower": "httpx",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\github\\JARVIS\\JARVIS_OLD\\venv\\Scripts\\httpx.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "icecap_collection_neutral",
+      "name_lower": "icecap_collection_neutral",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "icecap_collection_x64",
+      "name_lower": "icecap_collection_x64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "iCloud",
+      "name_lower": "icloud",
+      "path": "C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\AppleChromeDAV.exe",
+      "requires_admin": true,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "iCUE",
+      "name_lower": "icue",
+      "path": "C:\\Users\\Public\\Desktop\\iCUE.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "id",
+      "name_lower": "id",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\plugins\\cwm-plugin\\msys-ssh-agent\\id.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "IIS 10.0 Express",
+      "name_lower": "iis 10.0 express",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "IIS Express Application Compatibility Database for x64",
+      "name_lower": "iis express application compatibility database for x64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "iMazing",
+      "name_lower": "imazing",
+      "path": "C:\\Users\\Public\\Desktop\\iMazing.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Immortals Fenyx Rising",
+      "name_lower": "immortals fenyx rising",
+      "path": "C:/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games/Immortals Fenyx Rising\\ImmortalsFenyxRising.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Infinitum: The Backrooms Story Demo",
+      "name_lower": "infinitum: the backrooms story demo",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "inject dll amd64",
+      "name_lower": "inject dll amd64",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\plugins\\python-ce\\helpers\\pydev\\pydevd_attach_to_process\\inject_dll_amd64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "inject dll x86",
+      "name_lower": "inject dll x86",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\plugins\\python-ce\\helpers\\pydev\\pydevd_attach_to_process\\inject_dll_x86.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Inside the Backrooms",
+      "name_lower": "inside the backrooms",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "IntelliTraceProfilerProxy",
+      "name_lower": "intellitraceprofilerproxy",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "iPod Support",
+      "name_lower": "ipod support",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "IrfanView",
+      "name_lower": "irfanview",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\IrfanView 64 Thumbnails.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "isympy",
+      "name_lower": "isympy",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\isympy.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jabswitch",
+      "name_lower": "jabswitch",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jabswitch.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jaccessinspector",
+      "name_lower": "jaccessinspector",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jaccessinspector.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jaccesswalker",
+      "name_lower": "jaccesswalker",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jaccesswalker.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "JASP",
+      "name_lower": "jasp",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "java",
+      "name_lower": "java",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\java.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Java SE Development Kit",
+      "name_lower": "java se development kit",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "javadoc",
+      "name_lower": "javadoc",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\javadoc.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jcmd",
+      "name_lower": "jcmd",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jcmd.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jdb",
+      "name_lower": "jdb",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jdb.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jetbrains",
+      "name_lower": "jetbrains",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\jetbrains.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jetbrains client64",
+      "name_lower": "jetbrains client64",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\bin\\jetbrains_client64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "JetBrains Toolbox",
+      "name_lower": "jetbrains toolbox",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "jfr",
+      "name_lower": "jfr",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jfr.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jhsdb",
+      "name_lower": "jhsdb",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jhsdb.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jinfo",
+      "name_lower": "jinfo",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jinfo.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jmap",
+      "name_lower": "jmap",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jmap.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "JMaster Duel Bot",
+      "name_lower": "jmaster duel bot",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\JMaster.Duel.Bot\\JMaster Duel Bot.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "JMaster Duel Bot Shortcut",
+      "name_lower": "jmaster duel bot shortcut",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\JMaster Duel Bot - Shortcut.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jps",
+      "name_lower": "jps",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jps.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jrunscript",
+      "name_lower": "jrunscript",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jrunscript.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jstack",
+      "name_lower": "jstack",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jstack.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "jstat",
+      "name_lower": "jstat",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\jstat.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Just Cause 2",
+      "name_lower": "just cause 2",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Just Cause 2.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "keytool",
+      "name_lower": "keytool",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\keytool.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "kinit",
+      "name_lower": "kinit",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\kinit.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Kits Configuration Installer",
+      "name_lower": "kits configuration installer",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "klist",
+      "name_lower": "klist",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\klist.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "ktab",
+      "name_lower": "ktab",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\ktab.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "launcher",
+      "name_lower": "launcher",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\bin\\launcher.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Launcher Prerequisites",
+      "name_lower": "launcher prerequisites",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "League of Legends",
+      "name_lower": "league of legends",
+      "path": "A:/Riot Games/League of Legends\\LeagueClient.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "main",
+      "name_lower": "main",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\a1-p5\\src\\main.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Malwarebytes",
+      "name_lower": "malwarebytes",
+      "path": "C:\\Users\\Public\\Desktop\\Malwarebytes.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Marvel Rivals",
+      "name_lower": "marvel rivals",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Marvel Rivals.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "marvel rivals mod manager",
+      "name_lower": "marvel rivals mod manager",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Mods Manager MR-208-1-3-1735435045\\marvel_rivals_mod_manager.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "marvel rivals mod manager Shortcut",
+      "name_lower": "marvel rivals mod manager shortcut",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Mods Manager MR-208-1-3-1735435045\\marvel_rivals_mod_manager - Shortcut.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Medal",
+      "name_lower": "medal",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Medal.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Microsoft .NET 10.0 Templates 10.0.103 x64",
+      "name_lower": "microsoft .net 10.0 templates 10.0.103 x64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft .NET 8.0 Templates",
+      "name_lower": "microsoft .net 8.0 templates",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft .NET AppHost Pack -",
+      "name_lower": "microsoft .net apphost pack -",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft .NET Host -",
+      "name_lower": "microsoft .net host -",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft .NET Host FX Resolver -",
+      "name_lower": "microsoft .net host fx resolver -",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft .NET Standard Targeting Pack -",
+      "name_lower": "microsoft .net standard targeting pack -",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft .NET Targeting Pack -",
+      "name_lower": "microsoft .net targeting pack -",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft .NET Toolset",
+      "name_lower": "microsoft .net toolset",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft ASP.NET Core 8.0.24 Shared Framework",
+      "name_lower": "microsoft asp.net core 8.0.24 shared framework",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft ASP.NET Core 8.0.24 Targeting Pack",
+      "name_lower": "microsoft asp.net core 8.0.24 targeting pack",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft ASP.NET Core Module V2 for IIS Express",
+      "name_lower": "microsoft asp.net core module v2 for iis express",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft ASP.NET Web Tools Packages 18.0 - ENU",
+      "name_lower": "microsoft asp.net web tools packages 18.0 - enu",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Command Line Utilities 15 for SQL Server",
+      "name_lower": "microsoft command line utilities 15 for sql server",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Edge",
+      "name_lower": "microsoft edge",
+      "path": "C:\\Users\\Public\\Desktop\\Microsoft Edge.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Microsoft Exchange Web Services Managed API",
+      "name_lower": "microsoft exchange web services managed api",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft GameInput",
+      "name_lower": "microsoft gameinput",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft SQL Server 2025 LocalDB",
+      "name_lower": "microsoft sql server 2025 localdb",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft System CLR Types for SQL Server",
+      "name_lower": "microsoft system clr types for sql server",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Update Health Tools",
+      "name_lower": "microsoft update health tools",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Visual Studio Code",
+      "name_lower": "microsoft visual studio code",
+      "path": "D:\\Microsoft VS Code\\Code.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Visual Studio Installer",
+      "name_lower": "microsoft visual studio installer",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Visual Studio Setup Configuration",
+      "name_lower": "microsoft visual studio setup configuration",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Visual Studio Setup WMI Provider",
+      "name_lower": "microsoft visual studio setup wmi provider",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Web Deploy",
+      "name_lower": "microsoft web deploy",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Windows Desktop Targeting Pack -",
+      "name_lower": "microsoft windows desktop targeting pack -",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft Workflow Debugger v1.0 for amd64",
+      "name_lower": "microsoft workflow debugger v1.0 for amd64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft.NET.Workload.Emscripten.Current.Manifest-10.0.100",
+      "name_lower": "microsoft.net.workload.emscripten.current.manifest-10.0.100",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Microsoft.NET.Workload.Mono.Toolchain.net8.Manifest-10.0.100",
+      "name_lower": "microsoft.net.workload.mono.toolchain.net8.manifest-10.0.100",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "MSI Afterburner",
+      "name_lower": "msi afterburner",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "MSYS2",
+      "name_lower": "msys2",
+      "path": "C:\\msys64\\clang64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "MuMuPlayer",
+      "name_lower": "mumuplayer",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\MuMuPlayer.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "NBA 2K23",
+      "name_lower": "nba 2k23",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "NitroxLauncher",
+      "name_lower": "nitroxlauncher",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Nitrox_1.7.1.0\\NitroxLauncher.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Node.js",
+      "name_lower": "node.js",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "numpy config",
+      "name_lower": "numpy config",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\numpy-config.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "OBS Studio",
+      "name_lower": "obs studio",
+      "path": "C:\\Users\\Public\\Desktop\\OBS Studio.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Ollama",
+      "name_lower": "ollama",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Ollama\\lib\\Ollama.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "ollama app",
+      "name_lower": "ollama app",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "OpenAL",
+      "name_lower": "openal",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "OpenConsole",
+      "name_lower": "openconsole",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\lib\\pty4j\\win\\x86-64\\OpenConsole.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "OpenHardwareMonitor",
+      "name_lower": "openhardwaremonitor",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\openhardwaremonitor-v0.9.6\\OpenHardwareMonitor\\OpenHardwareMonitor.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "opera",
+      "name_lower": "opera",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Opera GX\\opera.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Opera GX Browser",
+      "name_lower": "opera gx browser",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Opera GX Browser.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "opera gx splash",
+      "name_lower": "opera gx splash",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Opera GX\\129.0.5823.64\\opera_gx_splash.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Opera GX Stable",
+      "name_lower": "opera gx stable",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Opera GX\\opera.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Overwolf",
+      "name_lower": "overwolf",
+      "path": "C:\\Program Files (x86)\\Overwolf\\Overwolf.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Palworld",
+      "name_lower": "palworld",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "PANICORE",
+      "name_lower": "panicore",
+      "path": "A:\\Steam\\steamapps\\common\\PANICORE\\Panicore.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Parsec",
+      "name_lower": "parsec",
+      "path": "C:\\Program Files\\Parsec\\parsecd.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Patriot Viper DRAM RGB",
+      "name_lower": "patriot viper dram rgb",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Patriot Viper M2 SSD RGB",
+      "name_lower": "patriot viper m2 ssd rgb",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Personal Edge",
+      "name_lower": "personal edge",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Personal - Edge.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pip",
+      "name_lower": "pip",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\pip.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pip3",
+      "name_lower": "pip3",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\pip3.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pip3.11",
+      "name_lower": "pip3.11",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\pip3.11.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pip3.12",
+      "name_lower": "pip3.12",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\pip3.12.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "protoc",
+      "name_lower": "protoc",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\torch\\bin\\protoc.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Pulover's Macro Creator",
+      "name_lower": "pulover's macro creator",
+      "path": "C:\\Users\\Public\\Desktop\\Pulover's Macro Creator.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "py",
+      "name_lower": "py",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pycharm",
+      "name_lower": "pycharm",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\pycharm.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "PyCharm Community",
+      "name_lower": "pycharm community",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "pycharm64",
+      "name_lower": "pycharm64",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\bin\\pycharm64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pyftmerge",
+      "name_lower": "pyftmerge",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\pyftmerge.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pyftsubset",
+      "name_lower": "pyftsubset",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\pyftsubset.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "python",
+      "name_lower": "python",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\python.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Python 3.11.7 Executables",
+      "name_lower": "python 3.11.7 executables",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.11.7 pip Bootstrap",
+      "name_lower": "python 3.11.7 pip bootstrap",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.11.7 Standard Library",
+      "name_lower": "python 3.11.7 standard library",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.11.7 Test Suite",
+      "name_lower": "python 3.11.7 test suite",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.11.7 Utility Scripts",
+      "name_lower": "python 3.11.7 utility scripts",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.12.5 Documentation",
+      "name_lower": "python 3.12.5 documentation",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.14.3 Add to Path",
+      "name_lower": "python 3.14.3 add to path",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.14.3 Core Interpreter",
+      "name_lower": "python 3.14.3 core interpreter",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.14.3 Development Libraries",
+      "name_lower": "python 3.14.3 development libraries",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python 3.14.3 Tcl/Tk Support",
+      "name_lower": "python 3.14.3 tcl/tk support",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Python Launcher",
+      "name_lower": "python launcher",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Pythonwin",
+      "name_lower": "pythonwin",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\github\\JARVIS\\JARVIS_OLD\\venv\\Lib\\site-packages\\pythonwin\\Pythonwin.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pyw",
+      "name_lower": "pyw",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Python\\Launcher\\pyw.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "pywin32 testall",
+      "name_lower": "pywin32 testall",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\github\\JARVIS\\JARVIS_OLD\\venv\\Scripts\\pywin32_testall.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "qBittorrent",
+      "name_lower": "qbittorrent",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "QuickSFV",
+      "name_lower": "quicksfv",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\_Redist\\QuickSFV.EXE",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "R for Windows",
+      "name_lower": "r for windows",
+      "path": "C:\\Program Files\\R\\R-4.4.1\\unins000.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Radmin VPN",
+      "name_lower": "radmin vpn",
+      "path": "C:\\Users\\Public\\Desktop\\Radmin VPN.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "raytracer",
+      "name_lower": "raytracer",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST Graphics\\CST 315 - Assignment 2\\RayTracerStarterPack\\raytracer.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Razer Cortex",
+      "name_lower": "razer cortex",
+      "path": "C:\\Users\\Public\\Desktop\\Razer Cortex.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Razer Synapse",
+      "name_lower": "razer synapse",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "REAPER",
+      "name_lower": "reaper",
+      "path": "C:\\Users\\Public\\Desktop\\REAPER (x64).lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Red Dead Redemption 2",
+      "name_lower": "red dead redemption 2",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Red Dead Redemption 2.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "remote dev worker windows amd64",
+      "name_lower": "remote dev worker windows amd64",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\plugins\\gateway-plugin\\lib\\remote-dev-workers\\remote-dev-worker-windows-amd64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Request any Game",
+      "name_lower": "request any game",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\ipcgames.com_Tekken_Tag_Tournament_2\\ipcgames.com_Tekken_Tag_Tournament_2\\Request any Game.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Reset Spyder 6 to default settings",
+      "name_lower": "reset spyder 6 to default settings",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Reset Spyder 6 to default settings.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "restarter",
+      "name_lower": "restarter",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\bin\\restarter.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "RGSS-RTP Standard",
+      "name_lower": "rgss-rtp standard",
+      "path": "C:\\Program Files (x86)\\Common Files\\Enterbrain\\RGSS\\Standard\\unins000.exe",
+      "requires_admin": true,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Riot Client",
+      "name_lower": "riot client",
+      "path": "C:\\Users\\Public\\Desktop\\Riot Client.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Riot Vanguard",
+      "name_lower": "riot vanguard",
+      "path": "C:\\Program Files\\Riot Vanguard\\installer.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "RISK: Global Domination",
+      "name_lower": "risk: global domination",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "RivaTuner Statistics Server",
+      "name_lower": "rivatuner statistics server",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "rmiregistry",
+      "name_lower": "rmiregistry",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\rmiregistry.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Roblox Player",
+      "name_lower": "roblox player",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Roblox Player.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Roblox Player for miche",
+      "name_lower": "roblox player for miche",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Roblox\\Versions\\version-9d412f44a6fe4081\\RobloxCrashHandler.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Roblox Studio",
+      "name_lower": "roblox studio",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Roblox Studio.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Roblox Studio for miche",
+      "name_lower": "roblox studio for miche",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Roblox\\Versions\\version-6df69e4610344376\\NativeDialog.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Rockstar Games Launcher",
+      "name_lower": "rockstar games launcher",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Rockstar Games Launcher.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "ROG Live Service",
+      "name_lower": "rog live service",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "ROGFontInstaller",
+      "name_lower": "rogfontinstaller",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "rpcs3",
+      "name_lower": "rpcs3",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\rpcs3-v0.0.32-16800-b0d07a75_win64\\rpcs3.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "SCP: Secret Laboratory",
+      "name_lower": "scp: secret laboratory",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "serialver",
+      "name_lower": "serialver",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\jbr\\bin\\serialver.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Siege",
+      "name_lower": "siege",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Siege.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Siege X",
+      "name_lower": "siege x",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Siege X.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "skate.",
+      "name_lower": "skate.",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\skate..url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Slay the Spire",
+      "name_lower": "slay the spire",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Slay the Spire.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Splashtop Wired XDisplay Agent",
+      "name_lower": "splashtop wired xdisplay agent",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "sprc",
+      "name_lower": "sprc",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\github\\JARVIS\\JARVIS_OLD\\venv\\Scripts\\sprc.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "sptools_Microsoft.VisualStudio.OfficeDeveloperTools.Msi",
+      "name_lower": "sptools_microsoft.visualstudio.officedevelopertools.msi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "sptools_Microsoft.VisualStudio.Vsto.Msi.Resources",
+      "name_lower": "sptools_microsoft.visualstudio.vsto.msi.resources",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "sptools_Microsoft.VisualStudio.Vsto.Msi.x64",
+      "name_lower": "sptools_microsoft.visualstudio.vsto.msi.x64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Spyder",
+      "name_lower": "spyder",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Spyder 6",
+      "name_lower": "spyder 6",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Spyder 6.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "ssh add",
+      "name_lower": "ssh add",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\PyCharm Community\\plugins\\cwm-plugin\\msys-ssh-agent\\ssh-add.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "StarCraft II",
+      "name_lower": "starcraft ii",
+      "path": "A:\\Battle.net\\StarCraft II\\StarCraft II Editor.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Stardew Valley",
+      "name_lower": "stardew valley",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Stardew Valley.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Steam",
+      "name_lower": "steam",
+      "path": "C:\\Users\\Public\\Desktop\\Steam.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "STEAMUNLOCKED.COM",
+      "name_lower": "steamunlocked.com",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\STEAMUNLOCKED.COM.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Stormgate",
+      "name_lower": "stormgate",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Street Fighter\u2122 6",
+      "name_lower": "street fighter\u2122 6",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Street Fighter\u2122 6.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Subnautica",
+      "name_lower": "subnautica",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Subnautica.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t32",
+      "name_lower": "t32",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\pip\\_vendor\\distlib\\t32.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t64",
+      "name_lower": "t64",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\pip\\_vendor\\distlib\\t64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t64 arm",
+      "name_lower": "t64 arm",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\pip\\_vendor\\distlib\\t64-arm.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t6mp",
+      "name_lower": "t6mp",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\t6mp.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t6mp Multiplayer Offline",
+      "name_lower": "t6mp multiplayer offline",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\t6mp - Multiplayer Offline.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t6sp",
+      "name_lower": "t6sp",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\t6sp.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t6zm",
+      "name_lower": "t6zm",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\t6zm.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "t6zm Zombies Offline",
+      "name_lower": "t6zm zombies offline",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\t6zm - Zombies Offline.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "TEKKEN",
+      "name_lower": "tekken",
+      "path": "A:\\Steam\\steamapps\\common\\TEKKEN 8\\TEKKEN 8.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "TEKKEN 8",
+      "name_lower": "tekken 8",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\TEKKEN 8.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "TEKKEN 8 - DEMO",
+      "name_lower": "tekken 8 - demo",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Terraria",
+      "name_lower": "terraria",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "The Complex Found Footage",
+      "name_lower": "the complex found footage",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\The Complex Found Footage.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "THE FINALS",
+      "name_lower": "the finals",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\THE FINALS.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "The Floor Is Breathing",
+      "name_lower": "the floor is breathing",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\The Floor Is Breathing\\The Floor Is Breathing.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "The Witcher Enhanced Edition",
+      "name_lower": "the witcher enhanced edition",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\The Witcher Enhanced Edition.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "THX Spatial Audio",
+      "name_lower": "thx spatial audio",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "TJoC SM",
+      "name_lower": "tjoc sm",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\the-joy-of-creation-story-mode\\The Joy of Creation Story Mode\\TJoC_SM.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "TJoC SM Win64 Shipping",
+      "name_lower": "tjoc sm win64 shipping",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\the-joy-of-creation-story-mode\\The Joy of Creation Story Mode\\TJoC_SM\\Binaries\\Win64\\TJoC_SM-Win64-Shipping.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "tModLoader",
+      "name_lower": "tmodloader",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Tom Clancy's Rainbow Six\u00ae Siege X",
+      "name_lower": "tom clancy's rainbow six\u00ae siege x",
+      "path": "A:\\Steam\\steamapps\\common\\Tom Clancy's Rainbow Six Siege\\RainbowSix.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "torchfrtrace",
+      "name_lower": "torchfrtrace",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\torchfrtrace.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "torchrun",
+      "name_lower": "torchrun",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\torchrun.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "ttx",
+      "name_lower": "ttx",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Scripts\\ttx.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Ubisoft Connect",
+      "name_lower": "ubisoft connect",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Ubisoft Connect.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Ultra Street Fighter IV",
+      "name_lower": "ultra street fighter iv",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Undertale",
+      "name_lower": "undertale",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Undertale.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "unins000",
+      "name_lower": "unins000",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CallofDuty-BlackOps2\\Call of Duty - Black Ops 2\\unins000.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Unity",
+      "name_lower": "unity",
+      "path": "C:\\Users\\Public\\Desktop\\Unity 6000.0.31f1.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Unity 6000.0.31f1",
+      "name_lower": "unity 6000.0.31f1",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Unity Hub",
+      "name_lower": "unity hub",
+      "path": "C:\\Users\\Public\\Desktop\\Unity Hub.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Universal CRT Headers Libraries and Sources",
+      "name_lower": "universal crt headers libraries and sources",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Universal CRT Tools x64",
+      "name_lower": "universal crt tools x64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Universal Holtek RGB DRAM",
+      "name_lower": "universal holtek rgb dram",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "VALORANT",
+      "name_lower": "valorant",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\VALORANT.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "vcpp_crt.redist.clickonce",
+      "name_lower": "vcpp_crt.redist.clickonce",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Visual Studio Build Tools",
+      "name_lower": "visual studio build tools",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Visual Studio Code",
+      "name_lower": "visual studio code",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Visual Studio Code.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Visual Studio Community",
+      "name_lower": "visual studio community",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Voicemod",
+      "name_lower": "voicemod",
+      "path": "C:\\Program Files\\Voicemod V3\\unins000.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Voicemod V3",
+      "name_lower": "voicemod v3",
+      "path": "C:\\Users\\Public\\Desktop\\Voicemod V3.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "VS Immersive Activate Helper",
+      "name_lower": "vs immersive activate helper",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "VS JIT Debugger",
+      "name_lower": "vs jit debugger",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "VS Script Debugging Common",
+      "name_lower": "vs script debugging common",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "VS WCF Debugging",
+      "name_lower": "vs wcf debugging",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_BlendMsi",
+      "name_lower": "vs_blendmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_clickoncebootstrappermsires",
+      "name_lower": "vs_clickoncebootstrappermsires",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_clickoncesigntoolmsi",
+      "name_lower": "vs_clickoncesigntoolmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_codecoveragemsi",
+      "name_lower": "vs_codecoveragemsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_communitymsires",
+      "name_lower": "vs_communitymsires",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_communitysharedmsi",
+      "name_lower": "vs_communitysharedmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_communityx64msi",
+      "name_lower": "vs_communityx64msi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_CoreEditorFonts",
+      "name_lower": "vs_coreeditorfonts",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_devenvsharedmsi",
+      "name_lower": "vs_devenvsharedmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_devenx64vmsi",
+      "name_lower": "vs_devenx64vmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_filehandler_amd64",
+      "name_lower": "vs_filehandler_amd64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_filehandler_x86",
+      "name_lower": "vs_filehandler_x86",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_FileTracker_Singleton",
+      "name_lower": "vs_filetracker_singleton",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_githubprotocolhandlermsi",
+      "name_lower": "vs_githubprotocolhandlermsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_Graphics_Singletonx86",
+      "name_lower": "vs_graphics_singletonx86",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_minshellinteropsharedmsi",
+      "name_lower": "vs_minshellinteropsharedmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_minshellinteropx64msi",
+      "name_lower": "vs_minshellinteropx64msi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_minshellmsires",
+      "name_lower": "vs_minshellmsires",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_minshellsharedmsi",
+      "name_lower": "vs_minshellsharedmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_minshellx64msi",
+      "name_lower": "vs_minshellx64msi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_tipsmsi",
+      "name_lower": "vs_tipsmsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vs_vswebprotocolselectormsi",
+      "name_lower": "vs_vswebprotocolselectormsi",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "vswhere",
+      "name_lower": "vswhere",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Essentials-In-Editor\\Essentials Project\\Library\\PackageCache\\com.unity.ide.visualstudio\\Editor\\VSWhere\\vswhere.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Vulkan",
+      "name_lower": "vulkan",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Vulkan.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "w32",
+      "name_lower": "w32",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\pip\\_vendor\\distlib\\w32.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "w64",
+      "name_lower": "w64",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\pip\\_vendor\\distlib\\w64.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "w64 arm",
+      "name_lower": "w64 arm",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\CST-318\\Teaching vs Learning\\Lab_Homework\\Lab_Homework\\venv\\Lib\\site-packages\\pip\\_vendor\\distlib\\w64-arm.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Wallpaper Engine",
+      "name_lower": "wallpaper engine",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Wallpaper Engine.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "WD_BLACK AN1500",
+      "name_lower": "wd_black an1500",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "We Were Here",
+      "name_lower": "we were here",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "We Were Here Expeditions: The FriendShip",
+      "name_lower": "we were here expeditions: the friendship",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Web Companion",
+      "name_lower": "web companion",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Webex",
+      "name_lower": "webex",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Webex.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "WifiAutoInstall",
+      "name_lower": "wifiautoinstall",
+      "path": "C:\\Program Files\\Realtek\\WifiAutoInstall\\unins000.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "wikipedia api",
+      "name_lower": "wikipedia api",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\github\\JARVIS\\JARVIS_OLD\\venv\\Scripts\\wikipedia-api.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "WinAppDeploy",
+      "name_lower": "winappdeploy",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Windows PC Health Check",
+      "name_lower": "windows pc health check",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Windows Software Development Kit - Windows",
+      "name_lower": "windows software development kit - windows",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Windows Subsystem for Linux",
+      "name_lower": "windows subsystem for linux",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "windows_toolscorepkg",
+      "name_lower": "windows_toolscorepkg",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "WinRAR",
+      "name_lower": "winrar",
+      "path": "C:\\Program Files\\WinRAR\\Rar.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "WinRT Intellisense Desktop - en-us",
+      "name_lower": "winrt intellisense desktop - en-us",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "WinRT Intellisense Mobile - en-us",
+      "name_lower": "winrt intellisense mobile - en-us",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "WinRT Intellisense UAP - en-us",
+      "name_lower": "winrt intellisense uap - en-us",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "WinRT Intellisense UAP - Other Languages",
+      "name_lower": "winrt intellisense uap - other languages",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Work Edge",
+      "name_lower": "work edge",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Work - Edge.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Workflow Manager Client",
+      "name_lower": "workflow manager client",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "Workflow Manager Tools 1.0 for Visual Studio",
+      "name_lower": "workflow manager tools 1.0 for visual studio",
+      "path": "C:\\Program Files (x86)\\Workflow Manager Tools\\1.0\\Microsoft.Workflow.TestServiceHost.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "WPTx64",
+      "name_lower": "wptx64",
+      "path": "",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "x86",
+      "name_lower": "x86",
+      "path": "C:\\Users\\miche\\AppData\\Local\\Programs\\Python\\Python311\\tcl\\nmake\\x86_64-w64-mingw32-nmakehlp.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "XDefiant",
+      "name_lower": "xdefiant",
+      "path": "A:/Ubisoft Game Launcher/games/XDefiant\\launcherbe.exe",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "registry"
+    },
+    {
+      "name": "YGO Omega",
+      "name_lower": "ygo omega",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\YGO Omega.lnk",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Yu Gi Oh! Duel Links",
+      "name_lower": "yu gi oh! duel links",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Yu-Gi-Oh! Duel Links.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    },
+    {
+      "name": "Yu Gi Oh! Master Duel",
+      "name_lower": "yu gi oh! master duel",
+      "path": "C:\\Users\\miche\\OneDrive\\Desktop\\Yu-Gi-Oh!  Master Duel.url",
+      "requires_admin": false,
+      "aliases": [],
+      "source": "filesystem"
+    }
+  ]
+}

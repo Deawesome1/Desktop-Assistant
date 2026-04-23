@@ -1,5 +1,5 @@
-from Desktop_Assistant.tests.faux.fake_brain import FakeBrain
-from commands.core import CommandHub
+from .faux.fake_brain import FakeBrain
+from ..commands.command_hub import CommandHub
 from Desktop_Assistant.tests.faux.faux_inputs import FAUX_INPUTS
 
 def run_all_commands():

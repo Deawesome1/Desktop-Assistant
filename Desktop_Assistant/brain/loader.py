@@ -31,30 +31,92 @@ class CommandLoader:
 
         # Python package base
         self.base_pkg = "Desktop_Assistant.commands"
+        self.base_path = Path(__file__).resolve().parents[1] / "commands"
+
+    def _load_from_folder(self, folder_path):
+        """
+        Load all command modules from a folder.
+        Returns:
+            commands: dict[name → module]
+            aliases: dict[alias → name]
+        """
+        commands = {}
+        aliases = {}
+
+        if not folder_path.exists():
+            return commands, aliases
+
+        for file in folder_path.iterdir():
+            if not file.name.endswith(".py"):
+                continue
+            if file.name.startswith("_"):
+                continue
+
+            module_name = file.stem
+
+            try:
+                # Import module dynamically
+                # Determine the correct module import path
+                relative = folder_path.relative_to(self.base_path)
+                module_path = "Desktop_Assistant.commands." + ".".join(relative.parts) + f".{module_name}"
+
+                module = __import__(module_path, fromlist=["*"])
+
+
+                # Validate metadata
+                if not hasattr(module, "get_metadata"):
+                    continue
+
+                meta = module.get_metadata()
+                name = meta.get("name")
+                os_support = meta.get("os_support", [])
+
+                # Skip unsupported OS-specific commands
+                if folder_path.name != "non_os_specific":
+                    if self.os_key not in os_support:
+                        continue
+
+                # Register command
+                commands[name] = module
+
+                # Register aliases
+                for alias in meta.get("aliases", []):
+                    aliases[alias.lower()] = name
+
+            except Exception as e:
+                print(f"[Loader] Failed to load {module_name}: {e}")
+
+        return commands, aliases
+
 
     # ------------------------------------------------------------------
     # Public API
     # ------------------------------------------------------------------
 
-    def load_all(self) -> Tuple[Dict[str, Any], Dict[str, str]]:
-        commands: Dict[str, Any] = {}
-        aliases: Dict[str, str] = {}
+    def load_all(self):
+        """
+        Load commands from:
+        - commands/non_os_specific/
+        - commands/os_specific/<os>/
+        OS-specific commands override general ones.
+        """
+        commands = {}
+        alias_map = {}
 
-        # Load non-OS-specific commands
-        self._load_from_package(
-            f"{self.base_pkg}.non_os_specific",
-            commands,
-            aliases,
-        )
+        # 1. Load non-OS-specific commands
+        general_path = self.base_path / "non_os_specific"
+        general_cmds, general_aliases = self._load_from_folder(general_path)
+        commands.update(general_cmds)
+        alias_map.update(general_aliases)
 
-        # Load OS-specific commands
-        self._load_from_package(
-            f"{self.base_pkg}.os_specific.{self.os_key}",
-            commands,
-            aliases,
-        )
+        # 2. Load OS-specific commands
+        os_path = self.base_path / "os_specific" / self.os_key
+        os_cmds, os_aliases = self._load_from_folder(os_path)
+        commands.update(os_cmds)        # OS overrides general
+        alias_map.update(os_aliases)
 
-        return commands, aliases
+        return commands, alias_map
+
 
     # ------------------------------------------------------------------
     # Internal helpers

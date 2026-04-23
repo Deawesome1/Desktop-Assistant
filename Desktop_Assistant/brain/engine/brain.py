@@ -13,7 +13,9 @@ import time
 from typing import Any, Dict, List, Optional
 from pathlib import Path
 
-from ..dependency_manager import ensure
+from Desktop_Assistant.commands.command_hub import CommandHub
+
+from dependency_manager import ensure
 from ..loader import CommandLoader
 
 from .mood_engine import MoodEngine
@@ -110,6 +112,9 @@ class Brain:
         # ------------------------------------------------------------------
         self._load_commands_modular()
 
+        self.hub = CommandHub(self)
+
+
     # ======================================================================
     # DEPENDENCIES
     # ======================================================================
@@ -195,22 +200,85 @@ class Brain:
 
     def load_all_command_modules(self):
         return self.commands
+    
+    def get_display_name(self):
+        """
+        Returns the assistant's display name from identity config.
+        Fallback: 'JARVIS'
+        """
+        return self.identity.get("name", "JARVIS")
+
 
     # ======================================================================
     # COMMAND LOOKUP
     # ======================================================================
 
-    def find_command(self, user_text: str) -> Optional[Any]:
+    def find_command(self, user_text: str):
+        """
+        Natural-language command lookup.
+        Matches:
+        - exact command name
+        - exact alias
+        - substring alias
+        - first word
+        - first word alias
+        """
         text = user_text.lower().strip()
 
+        # 1. Exact command name
         if text in self.commands:
-            return self.commands.get(text)
+            return self.commands[text]
 
+        # 2. Exact alias
+        if text in self.alias_map:
+            return self.commands.get(self.alias_map[text])
+
+        # 3. Substring alias ("hello there" → greet)
         for alias, name_key in self.alias_map.items():
             if alias in text:
                 return self.commands.get(name_key)
 
+        # 4. First word match
+        first = text.split(" ")[0]
+        if first in self.commands:
+            return self.commands[first]
+
+        # 5. First word alias match
+        if first in self.alias_map:
+            return self.commands.get(self.alias_map[first])
+
         return None
+
+    
+    # ======================================================================
+    # MAIN PROCESSING PIPELINE
+    # ======================================================================
+
+    def process(self, user_text: str):
+        """
+        Main NLP → Command routing pipeline.
+        Called by main.py.
+        """
+        if not user_text or not isinstance(user_text, str):
+            return {
+                "success": False,
+                "message": "I didn't catch that.",
+                "data": {}
+            }
+
+        # Normalize
+        text = user_text.strip()
+
+        # Route through CommandHub
+        try:
+            return self.hub.handle(text)
+        except Exception as e:
+            return {
+                "success": False,
+                "message": "Something went wrong while processing your request.",
+                "data": {"error": str(e)},
+            }
+
 
     # ======================================================================
     # OS ROUTING

@@ -53,26 +53,43 @@ class FakeBrain:
     # Command loader (guaranteed working)
     # ------------------------------------------------------------
 
-    def load_commands(self, commands_package="commands"):
-        # This resolves to: Desktop_Assistant/
-        project_root = Path(__file__).resolve().parents[1]
-        commands_root = project_root / commands_package
+    def load_commands(self, commands_package="Desktop_Assistant.commands"):
+        """
+        Load commands from:
+        Desktop_Assistant/commands/non_os_specific/
+        Desktop_Assistant/commands/os_specific/<os_key>/
+        """
+
+        # project root = Desktop-Assistant/
+        project_root = Path(__file__).resolve().parents[2]
+
+        # absolute path to commands folder
+        commands_root = project_root / "Desktop_Assistant" / "commands"
 
         os_key = self.get_current_os_key()
 
-        # Load non_os_specific
+        # Load non_os_specific commands
         self._register_dir(
             commands_root / "non_os_specific",
             f"{commands_package}.non_os_specific",
             os_key,
         )
 
-        # Load os_specific/<os>
+        # Load OS-specific commands
         self._register_dir(
             commands_root / "os_specific" / os_key,
             f"{commands_package}.os_specific.{os_key}",
             os_key,
         )
+
+        # Load OS-specific commands
+        self._register_dir(
+            commands_root / "os_specific" / os_key,
+            f"{commands_package}.os_specific.{os_key}",
+            os_key,
+        )
+
+
 
     def _register_dir(self, directory, base_module, os_key):
         if not directory.exists():
