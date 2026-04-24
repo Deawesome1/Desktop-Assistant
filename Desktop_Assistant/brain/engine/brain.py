@@ -36,7 +36,7 @@ class Brain:
         # ------------------------------------------------------------------
         # Load OS routing config (raw JSON)
         # ------------------------------------------------------------------
-        self.os_routing_cfg = self.load_json("os_routing.json")
+        self.os_routing_cfg = self.load_json("A:\GitHub\Desktop-Assistant\Desktop_Assistant\config\os_routing.json")
 
         # Resolve config path relative to Desktop_Assistant root
         base = Path(__file__).resolve().parents[2]
@@ -303,11 +303,11 @@ class Brain:
             return self.memory_engine.recall(category, limit)
         return []
 
-    def save_memory(self, path="config/memory_store.json"):
+    def save_memory(self, path="config/memory.json"):
         if self.memory_engine:
             return self.memory_engine.save_memory(path)
 
-    def load_memory(self, path="config/memory_store.json"):
+    def load_memory(self, path="config/memory.json"):
         if self.memory_engine:
             return self.memory_engine.load_memory(path)
 

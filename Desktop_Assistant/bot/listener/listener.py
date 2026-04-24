@@ -1,7 +1,3 @@
-"""
-listener.py — OS-aware listener router for JARVIS (Omega)
-"""
-
 from Desktop_Assistant import imports as I
 
 os_key = I.os_key()

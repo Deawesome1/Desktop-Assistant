@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="A:\GitHub\Desktop-Assistant\Desktop_Assistant\venv_windows"
+VIRTUAL_ENV="A:\GitHub\Desktop-Assistant\venv_windows"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -17,6 +17,7 @@ import os
 import subprocess
 import sys
 from commands.os_scanner import current_os
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 def run(cmd):
@@ -41,11 +42,16 @@ def install_requirements(venv_path):
 
     print(f"\nUsing pip at: {pip_path}")
 
+    # Resolve absolute requirements directory
+    req_dir = os.path.join(PROJECT_ROOT, "Desktop_Assistant", "requirements")
+
     # Base requirements
-    base_req = os.path.join("requirements", "base.txt")
+    base_req = os.path.join(req_dir, "base.txt")
     if os.path.exists(base_req):
         print("\nInstalling base requirements...")
         run(f'"{pip_path}" install -r "{base_req}"')
+    else:
+        print(f"Base requirements file not found at: {base_req}")
 
     # OS-specific requirements
     os_req_map = {
@@ -54,13 +60,14 @@ def install_requirements(venv_path):
         "linux": "linux.txt",
     }
 
-    os_req = os.path.join("requirements", os_req_map.get(current_os, ""))
+    os_req = os.path.join(req_dir, os_req_map.get(current_os, ""))
 
     if os.path.exists(os_req):
         print(f"\nInstalling {current_os} requirements...")
         run(f'"{pip_path}" install -r "{os_req}"')
     else:
-        print(f"No OS-specific requirements found for {current_os}.")
+        print(f"No OS-specific requirements found for {current_os} at: {os_req}")
+
 
 
 def main():

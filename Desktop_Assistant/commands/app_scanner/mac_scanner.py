@@ -1,107 +1,106 @@
+﻿# Desktop_Assistant/commands/app_scanner/mac_scanner.py
 """
-mac_scanner.py — macOS application scanner for JARVIS
-
-Scans:
- - /Applications
- - /System/Applications
- - ~/Applications
-
-Detects .app bundles and extracts their executable paths.
-Returns unified structure compatible with Windows/Linux scanners.
+mac_scanner.py — macOS application scanner for JARVIS (uses centralized config_utils).
+Implements the same public functions as the Windows scanner:
+  - build_cache(force=False)
+  - get_cache()
+  - add_alias(app_name_lower, alias)
+  - rescan()
 """
+
+from __future__ import annotations
 
 import os
+import glob
 from pathlib import Path
+from typing import Optional
 
-# In-memory cache
-_CACHE = {
-    "app_count": 0,
-    "apps": []
-}
+from Desktop_Assistant.config_utils import config_path, read_config, write_config
+
+CACHE_NAME = "app_cache.json"
 
 
-def _scan_directory(dir_path: Path) -> list[dict]:
-    """Scan a directory for .app bundles and return normalized app entries."""
+def _normalize_name(raw: str) -> str:
+    name = Path(raw).stem
+    name = name.replace("_", " ").replace("-", " ")
+    return name.strip()
+
+
+def _scan_directory(directory: Path) -> list[dict]:
     results = []
-
-    if not dir_path.exists():
+    if not directory.exists():
         return results
 
-    for item in dir_path.iterdir():
-        if item.suffix.lower() == ".app" and item.is_dir():
-            name = item.stem
-            name_lower = name.lower()
-
-            # macOS .app bundles contain the executable inside:
-            # MyApp.app/Contents/MacOS/MyApp
-            exec_path = item / "Contents" / "MacOS" / name
-            exec_path_str = str(exec_path) if exec_path.exists() else str(item)
-
-            results.append({
-                "name": name,
-                "name_lower": name_lower,
-                "path": exec_path_str,
-                "requires_admin": False,  # macOS apps rarely require admin to launch
-                "aliases": [],
-                "source": "filesystem"
-            })
-
+    # Find .app bundles recursively
+    for filepath in glob.glob(str(directory / "**" / "*.app"), recursive=True):
+        item = Path(filepath)
+        name = _normalize_name(item.stem)
+        if not name:
+            continue
+        # Attempt to find the executable inside the bundle
+        exec_path = item / "Contents" / "MacOS" / name
+        exec_path_str = str(exec_path) if exec_path.exists() else str(item)
+        results.append({
+            "name": name,
+            "name_lower": name.lower(),
+            "path": exec_path_str,
+            "requires_admin": False,
+            "aliases": [],
+            "source": "filesystem",
+        })
     return results
 
 
 def build_cache(force: bool = False) -> dict:
-    """Scan macOS application directories and build the unified cache."""
-    global _CACHE
-
-    if _CACHE["app_count"] > 0 and not force:
-        return _CACHE
+    existing = read_config(CACHE_NAME, default={})
+    if existing and not force:
+        return existing
 
     print("\n  Scanning macOS Applications...")
 
     apps = []
-
-    # Standard macOS application directories
     scan_dirs = [
         Path("/Applications"),
         Path("/System/Applications"),
-        Path.home() / "Applications"
+        Path.home() / "Applications",
     ]
 
     for d in scan_dirs:
         apps.extend(_scan_directory(d))
 
-    # Deduplicate by name_lower
+    # Deduplicate by name_lower (simple last-wins)
     dedup = {}
     for app in apps:
         dedup[app["name_lower"]] = app
 
     apps = list(dedup.values())
+    apps.sort(key=lambda a: a["name_lower"])
 
-    _CACHE = {
-        "app_count": len(apps),
-        "apps": apps
-    }
+    cache = {"app_count": len(apps), "apps": apps}
+    write_config(CACHE_NAME, cache)
 
     print(f"  macOS scan complete: {len(apps)} apps indexed.\n")
-
-    return _CACHE
+    return cache
 
 
 def get_cache() -> dict:
-    """Return the current cache without rescanning."""
-    return _CACHE
+    existing = read_config(CACHE_NAME, default=None)
+    if not existing:
+        return build_cache(force=True)
+    return existing
 
 
 def add_alias(app_name_lower: str, alias: str) -> bool:
-    """Add an alias to an app entry."""
-    for app in _CACHE["apps"]:
+    cache = get_cache()
+    alias_lower = alias.lower().strip()
+    for app in cache.get("apps", []):
         if app["name_lower"] == app_name_lower:
-            if alias not in app["aliases"]:
-                app["aliases"].append(alias)
+            if alias_lower not in [a.lower() for a in app.get("aliases", [])]:
+                app.setdefault("aliases", []).append(alias)
+                write_config(CACHE_NAME, cache)
             return True
     return False
 
 
 def rescan() -> dict:
-    """Force a full rescan."""
     return build_cache(force=True)

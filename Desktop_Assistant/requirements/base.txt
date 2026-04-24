@@ -1,5 +1,33 @@
-# requirements.txt (base)
-speechrecognition
-requests
-psutil
-pillow
+# requirements/base.txt
+# Base runtime dependencies for Desktop-Assistant (cross-platform).
+# Install with: python -m pip install -r requirements/base.txt
+
+# Local TTS engine (pyttsx3 works on Windows/macOS/Linux)
+pyttsx3>=2.90
+
+# Windows COM support for SAPI (only required on Windows)
+pywin32>=305; platform_system == "Windows"
+
+# Wikipedia lookup used by the wikipedia command
+wikipedia-api>=0.5.4
+
+# Image handling (used by screenshots, thumbnails, etc.)
+Pillow>=9.0.0
+
+# Optional: environment variable support (useful for local dev)
+python-dotenv>=1.0.0
+
+# Optional: speech recognition / microphone support (only if you use voice input)
+# Uncomment if you use the SpeechRecognition-based listener
+# SpeechRecognition>=3.8.1
+# pyaudio is often required for microphone input on many systems; install separately per OS
+# PyAudio>=0.2.11; platform_system != "Windows"  # Windows users often install from wheels
+
+# Development / debugging helpers (not required for runtime)
+# ipython for interactive debugging
+ipython>=8.0.0
+
+# Notes:
+# - Pin exact versions if you need reproducible installs (e.g., pyttsx3==2.90).
+# - On Linux/macOS you may need system TTS backends (espeak, say, etc.) installed separately.
+# - If you use Windows SAPI via pywin32, ensure the venv is created with the same Python used to run the app.
