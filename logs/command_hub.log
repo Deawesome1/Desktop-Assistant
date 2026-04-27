@@ -26,3 +26,44 @@
 2026-04-24 03:26:01 | WARNING | jarvis.command_hub | Command 'open_app' reported failure.
 2026-04-24 03:26:01 | DEBUG | jarvis.command_hub | Speaking result for open_app: I couldn't find an app matching 'yugioh'. Try a different name.
 2026-04-24 03:26:01 | WARNING | jarvis.command_hub | Command 'open_app' failed in 0.002s (intent=unknown, category=system, error_type=None)
+2026-04-24 03:33:37 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-24 03:33:37 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Yu Gi Oh! Master Duel.
+2026-04-24 03:33:37 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.140s (intent=unknown, category=system)
+2026-04-24 12:37:01 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-24 12:37:01 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Steam.
+2026-04-24 12:37:01 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.125s (intent=unknown, category=system)
+2026-04-24 12:37:11 | INFO | jarvis.command_hub | Command 'open_browser' succeeded.
+2026-04-24 12:37:11 | DEBUG | jarvis.command_hub | Speaking result for open_browser: Searching for strawberries.
+2026-04-24 12:37:11 | INFO | jarvis.command_hub | Command 'open_browser' completed in 0.122s (intent=unknown, category=web)
+2026-04-24 12:37:21 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:37:21 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:37:21 | INFO | jarvis.command_hub | Command 'greet' completed in 0.001s (intent=unknown, category=general)
+2026-04-24 12:37:34 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:37:34 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:37:34 | INFO | jarvis.command_hub | Command 'greet' completed in 0.010s (intent=unknown, category=general)
+2026-04-24 12:37:40 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:37:40 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:37:40 | INFO | jarvis.command_hub | Command 'greet' completed in 0.001s (intent=unknown, category=general)
+2026-04-24 12:37:42 | INFO | jarvis.command_hub | Command 'youtube' succeeded.
+2026-04-24 12:37:42 | DEBUG | jarvis.command_hub | Speaking result for youtube: Opening YouTube.
+2026-04-24 12:37:42 | INFO | jarvis.command_hub | Command 'youtube' completed in 0.018s (intent=unknown, category=entertainment)
+2026-04-24 12:38:13 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-24 12:38:13 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Yu Gi Oh! Master Duel.
+2026-04-24 12:38:13 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.066s (intent=unknown, category=system)
+2026-04-24 12:38:23 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-24 12:38:23 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Discord.
+2026-04-24 12:38:23 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.116s (intent=unknown, category=system)
+2026-04-24 12:38:30 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-24 12:38:30 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Discord.
+2026-04-24 12:38:30 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.032s (intent=unknown, category=system)
+2026-04-26 18:06:31 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-26 18:06:32 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-26 18:07:23 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-26 18:07:23 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-26 18:07:23 | INFO | jarvis.command_hub | Command 'greet' completed in 0.084s (intent=unknown, category=general)
+2026-04-26 18:34:12 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-26 18:34:12 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Steam.
+2026-04-26 18:34:12 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.197s (intent=unknown, category=system)
+2026-04-26 18:54:31 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-26 18:54:31 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Marvel Rivals.
+2026-04-26 18:54:31 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.107s (intent=unknown, category=system)
