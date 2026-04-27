@@ -1,81 +1,79 @@
+# Desktop_Assistant/setup_venv.py
 """
-setup_venv.py — Cross-platform virtual environment setup for JARVIS (Omega)
+Cross-platform virtual environment setup for JARVIS (Omega)
 
 Creates:
     venv_windows/ on Windows
     venv_macos/   on macOS
+    venv_linux/   on Linux
 
 Installs:
     requirements/base.txt
     requirements/<os>.txt
 
-Uses:
-    commands.os_scanner for OS detection
+Uses the centralized path hub for robust path resolution and OS detection.
 """
+
+from __future__ import annotations
 
 import os
 import subprocess
 import sys
-from commands.os_scanner import current_os
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+from pathlib import Path
+
+from Desktop_Assistant.boot.path_hub import repo_path, package_path, OS_KEY, venv_paths
 
 
-def run(cmd):
-    """Run a shell command safely."""
+def run(cmd: str) -> None:
+    """Run a shell command safely (prints and raises on failure)."""
     print(f"→ {cmd}")
     subprocess.check_call(cmd, shell=True)
 
 
-def create_venv(venv_path):
-    """Create a virtual environment."""
+def create_venv(venv_path: Path) -> None:
+    """Create a virtual environment at venv_path."""
     print(f"\nCreating virtual environment at: {venv_path}")
-    run(f"{sys.executable} -m venv {venv_path}")
+    run(f'"{sys.executable}" -m venv "{str(venv_path)}"')
 
 
-def install_requirements(venv_path):
-    """Install requirements into the venv."""
-    pip_path = (
-        os.path.join(venv_path, "Scripts", "pip.exe")
-        if current_os == "windows"
-        else os.path.join(venv_path, "bin", "pip")
-    )
+def install_requirements(venv_path: Path) -> None:
+    """Install requirements into the venv at venv_path."""
+    # Determine pip path using venv_paths helper
+    paths = venv_paths(venv_path)
+    pip_path = paths.get("pip")
+    if not pip_path:
+        raise RuntimeError("Could not determine pip path for venv")
 
     print(f"\nUsing pip at: {pip_path}")
 
-    # Resolve absolute requirements directory
-    req_dir = os.path.join(PROJECT_ROOT, "Desktop_Assistant", "requirements")
+    # Resolve requirements directory via package_path
+    req_dir = package_path("requirements")
 
     # Base requirements
-    base_req = os.path.join(req_dir, "base.txt")
-    if os.path.exists(base_req):
+    base_req = req_dir / "base.txt"
+    if base_req.exists():
         print("\nInstalling base requirements...")
-        run(f'"{pip_path}" install -r "{base_req}"')
+        run(f'"{pip_path}" install -r "{str(base_req)}"')
     else:
         print(f"Base requirements file not found at: {base_req}")
 
     # OS-specific requirements
-    os_req_map = {
-        "windows": "windows.txt",
-        "macintosh": "mac.txt",
-        "linux": "linux.txt",
-    }
+    os_map = {"windows": "windows.txt", "macintosh": "mac.txt", "linux": "linux.txt"}
+    os_req = req_dir / os_map.get(OS_KEY, "")
 
-    os_req = os.path.join(req_dir, os_req_map.get(current_os, ""))
-
-    if os.path.exists(os_req):
-        print(f"\nInstalling {current_os} requirements...")
-        run(f'"{pip_path}" install -r "{os_req}"')
+    if os_req.exists():
+        print(f"\nInstalling {OS_KEY} requirements...")
+        run(f'"{pip_path}" install -r "{str(os_req)}"')
     else:
-        print(f"No OS-specific requirements found for {current_os} at: {os_req}")
+        print(f"No OS-specific requirements found for {OS_KEY} at: {os_req}")
 
 
-
-def main():
-    print(f"Detected OS: {current_os}")
+def main() -> None:
+    print(f"Detected OS: {OS_KEY}")
 
     # Choose venv folder name
-    venv_name = "venv_windows" if current_os == "windows" else "venv_macos"
-    venv_path = os.path.join(os.getcwd(), venv_name)
+    venv_name = "venv_windows" if OS_KEY == "windows" else ("venv_macos" if OS_KEY == "macintosh" else "venv_linux")
+    venv_path = Path(os.getcwd()) / venv_name
 
     # Create venv
     create_venv(venv_path)
@@ -87,7 +85,7 @@ def main():
     print("\n✓ Virtual environment created successfully!")
     print("\nTo activate it:")
 
-    if current_os == "windows":
+    if OS_KEY == "windows":
         print(f'  {venv_name}\\Scripts\\activate')
     else:
         print(f'  source {venv_name}/bin/activate')

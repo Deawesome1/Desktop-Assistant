@@ -1,22 +1,25 @@
+# Desktop_Assistant/brain/engine/brain.py
 """
 brain.py — Core brain engine for JARVIS (Omega)
 
-Clean, corrected, stable version.
-Ensures proper initialization order, OS routing, dependency loading,
-subsystem setup, and modular command loading.
+Stable, cross-platform Brain implementation that:
+- Resolves config paths via the centralized path hub.
+- Initializes OS routing, dependencies, subsystems, and command loader in a safe order.
+- Provides robust JSON loading that accepts absolute paths, package-relative, and repo-relative paths.
 """
+
+from __future__ import annotations
 
 import json
 import os
-import platform
 import time
 from typing import Any, Dict, List, Optional
 from pathlib import Path
 
 from Desktop_Assistant.commands.command_hub import CommandHub
-
-from dependency_manager import ensure
-from ..loader import CommandLoader
+from Desktop_Assistant.brain.loader import CommandLoader
+from Desktop_Assistant.boot.dependency_manager import ensure
+from Desktop_Assistant.boot.path_hub import repo_path, package_path, os_routing_config, default_brain_config
 
 from .mood_engine import MoodEngine
 from .personality_engine import PersonalityEngine
@@ -32,17 +35,35 @@ class BrainConfigError(Exception):
 
 
 class Brain:
-    def __init__(self, config_path: str = "config/brain.json") -> None:
+    def __init__(self, config_path: Optional[str] = None) -> None:
         # ------------------------------------------------------------------
-        # Load OS routing config (raw JSON)
+        # Resolve config paths robustly (project-root relative or absolute)
         # ------------------------------------------------------------------
-        self.os_routing_cfg = self.load_json("A:\GitHub\Desktop-Assistant\Desktop_Assistant\config\os_routing.json")
+        # If caller provided a config_path, prefer it; otherwise use default_brain_config()
+        if config_path:
+            cfg_candidate = Path(config_path)
+        else:
+            cfg_candidate = default_brain_config()
 
-        # Resolve config path relative to Desktop_Assistant root
-        base = Path(__file__).resolve().parents[2]
-        self.config_path = str(base / config_path)
+        # Normalize candidate: accept absolute, package-relative, or repo-relative
+        self.project_root = repo_path()  # Path object
+        self.config_path = self._resolve_config_candidate(cfg_candidate)
 
+        # ------------------------------------------------------------------
+        # Load OS routing config (raw JSON) from package config or repo defaults
+        # ------------------------------------------------------------------
+        try:
+            cfg_path = os_routing_config()
+            if cfg_path and cfg_path.exists():
+                self.os_routing_cfg = self._load_json_file(cfg_path)
+            else:
+                self.os_routing_cfg = {}
+        except Exception:
+            self.os_routing_cfg = {}
+
+        # ------------------------------------------------------------------
         # Internal config + flags
+        # ------------------------------------------------------------------
         self._config: Dict[str, Any] = {}
         self._loaded = False
 
@@ -88,17 +109,17 @@ class Brain:
         self.safety_engine = None
 
         # ------------------------------------------------------------------
-        # ⭐ FIX: Initialize OSRouter FIRST (must receive Brain instance)
+        # Initialize OSRouter FIRST (must receive Brain instance)
         # ------------------------------------------------------------------
         self.os_router = OSRouter(self)
 
         # ------------------------------------------------------------------
-        # ⭐ FIX: Now dependencies can be safely checked
+        # Ensure runtime dependencies are present (safe to call now)
         # ------------------------------------------------------------------
         self.ensure_dependencies()
 
         # ------------------------------------------------------------------
-        # Load config + bind subtrees + init runtime state
+        # Load main brain config and bind subtrees
         # ------------------------------------------------------------------
         self.load()
 
@@ -112,14 +133,15 @@ class Brain:
         # ------------------------------------------------------------------
         self._load_commands_modular()
 
+        # Command hub (uses the loaded commands)
         self.hub = CommandHub(self)
-
 
     # ======================================================================
     # DEPENDENCIES
     # ======================================================================
 
     def ensure_dependencies(self) -> None:
+        # conservative ensures; dependency_manager.ensure is best-effort
         ensure("psutil")
         ensure("pillow")
         ensure("pyautogui")
@@ -152,6 +174,7 @@ class Brain:
         self.context = self._config.get("context_engine", {})
         self.intent_cfg = self._config.get("intent_engine", {})
         self.command_cfg = self._config.get("command_cognition", {})
+        # allow brain.json to override os_routing; otherwise keep repo-loaded default
         self.os_routing_cfg = self._config.get("os_routing", self.os_routing_cfg)
         self.app_scanner_cfg = self._config.get("app_scanner", {})
         self.reasoning_cfg = self._config.get("reasoning", {})
@@ -196,18 +219,25 @@ class Brain:
     def _load_commands_modular(self):
         os_key = self.get_current_os_key()
         loader = CommandLoader(os_key)
-        self.commands, self.alias_map = loader.load_all()
+        try:
+            commands, alias_map = loader.load_all()
+            # ensure shapes are dicts
+            self.commands = commands or {}
+            self.alias_map = alias_map or {}
+        except Exception:
+            # keep empty registries but don't crash the whole Brain
+            self.commands = {}
+            self.alias_map = {}
 
     def load_all_command_modules(self):
         return self.commands
-    
+
     def get_display_name(self):
         """
         Returns the assistant's display name from identity config.
         Fallback: 'JARVIS'
         """
         return self.identity.get("name", "JARVIS")
-
 
     # ======================================================================
     # COMMAND LOOKUP
@@ -223,7 +253,7 @@ class Brain:
         - first word
         - first word alias
         """
-        text = user_text.lower().strip()
+        text = (user_text or "").lower().strip()
 
         # 1. Exact command name
         if text in self.commands:
@@ -239,7 +269,7 @@ class Brain:
                 return self.commands.get(name_key)
 
         # 4. First word match
-        first = text.split(" ")[0]
+        first = text.split(" ")[0] if text else ""
         if first in self.commands:
             return self.commands[first]
 
@@ -249,7 +279,6 @@ class Brain:
 
         return None
 
-    
     # ======================================================================
     # MAIN PROCESSING PIPELINE
     # ======================================================================
@@ -278,7 +307,6 @@ class Brain:
                 "message": "Something went wrong while processing your request.",
                 "data": {"error": str(e)},
             }
-
 
     # ======================================================================
     # OS ROUTING
@@ -315,13 +343,69 @@ class Brain:
     # JSON LOADING
     # ======================================================================
 
-    def load_json(self, filename):
-        base = Path(__file__).resolve().parent
-        path = base / filename
-        if not path.exists():
-            raise FileNotFoundError(f"Missing required config file: {path}")
-        with open(path, "r") as f:
-            return json.load(f)
+    def _load_json_file(self, path_like: Path) -> Any:
+        try:
+            with open(path_like, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            raise FileNotFoundError(f"Missing required config file: {path_like}") from e
+
+    def _resolve_config_candidate(self, candidate: Path) -> str:
+        """
+        Resolve a config candidate Path to an existing absolute path string.
+        Accepts:
+          - absolute path
+          - package-relative path (relative to this package)
+          - repo-relative path
+        """
+        # If absolute and exists, use it
+        if candidate.is_absolute() and candidate.exists():
+            return str(candidate)
+
+        # Try package-relative (Desktop_Assistant/brain/engine -> package root)
+        pkg_base = Path(__file__).resolve().parent.parent  # Desktop_Assistant/brain
+        pkg_candidate = (pkg_base / candidate).resolve()
+        if pkg_candidate.exists():
+            return str(pkg_candidate)
+
+        # Try package root (Desktop_Assistant)
+        package_root_candidate = (package_path() / candidate).resolve() if "package_path" in globals() else None
+        if package_root_candidate and package_root_candidate.exists():
+            return str(package_root_candidate)
+
+        # Try repo-relative
+        repo_candidate = (self.project_root / candidate).resolve()
+        if repo_candidate.exists():
+            return str(repo_candidate)
+
+        # As a last resort, if candidate is a string path that may be relative to package, return package candidate path
+        # (caller will get a clear FileNotFoundError if it truly doesn't exist)
+        return str(candidate)
+
+    def load_json(self, filename: str) -> Any:
+        """
+        Load a JSON file. Accepts:
+          - absolute path
+          - path relative to Desktop_Assistant package root
+          - path relative to project root
+        """
+        p = Path(filename)
+        if p.is_absolute():
+            return self._load_json_file(p)
+        # try package-relative
+        pkg_base = Path(__file__).resolve().parent
+        candidate = (pkg_base / filename).resolve()
+        if candidate.exists():
+            return self._load_json_file(candidate)
+        # try repo-relative
+        repo_candidate = (self.project_root / "Desktop_Assistant" / filename).resolve()
+        if repo_candidate.exists():
+            return self._load_json_file(repo_candidate)
+        # try project-root relative
+        alt = (self.project_root / filename).resolve()
+        if alt.exists():
+            return self._load_json_file(alt)
+        raise FileNotFoundError(f"Missing required config file: {filename}")
 
     # ======================================================================
     # PERSONALITY DRIFT

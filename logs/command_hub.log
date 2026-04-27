@@ -26,3 +26,116 @@
 2026-04-24 03:26:01 | WARNING | jarvis.command_hub | Command 'open_app' reported failure.
 2026-04-24 03:26:01 | DEBUG | jarvis.command_hub | Speaking result for open_app: I couldn't find an app matching 'yugioh'. Try a different name.
 2026-04-24 03:26:01 | WARNING | jarvis.command_hub | Command 'open_app' failed in 0.002s (intent=unknown, category=system, error_type=None)
+2026-04-24 11:59:51 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 11:59:56 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 11:59:56 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 11:59:57 | INFO | jarvis.command_hub | Command 'greet' completed in 1.005s (intent=unknown, category=general)
+2026-04-24 12:01:50 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:01:56 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:01:56 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:01:57 | INFO | jarvis.command_hub | Command 'greet' completed in 1.008s (intent=unknown, category=general)
+2026-04-24 12:02:37 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:02:40 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:02:40 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:02:40 | INFO | jarvis.command_hub | Command 'greet' completed in 0.002s (intent=unknown, category=general)
+2026-04-24 12:02:45 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:02:45 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:02:45 | INFO | jarvis.command_hub | Command 'greet' completed in 0.001s (intent=unknown, category=general)
+2026-04-24 12:22:26 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:22:26 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:22:47 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:22:47 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:22:47 | INFO | jarvis.command_hub | Command 'greet' completed in 0.003s (intent=unknown, category=general)
+2026-04-24 12:23:11 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:23:13 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:23:13 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:23:13 | INFO | jarvis.command_hub | Command 'greet' completed in 0.002s (intent=unknown, category=general)
+2026-04-24 12:27:32 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:27:33 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:27:33 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:27:33 | INFO | jarvis.command_hub | Command 'greet' completed in 0.002s (intent=unknown, category=general)
+2026-04-24 12:27:45 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:27:48 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:27:48 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:27:48 | INFO | jarvis.command_hub | Command 'greet' completed in 0.002s (intent=unknown, category=general)
+2026-04-24 12:45:50 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:45:54 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-24 12:45:54 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Messages.
+2026-04-24 12:45:54 | INFO | jarvis.command_hub | Command 'open_app' completed in 1.307s (intent=unknown, category=system)
+2026-04-24 12:46:21 | INFO | jarvis.command_hub | Command 'open_browser' succeeded.
+2026-04-24 12:46:21 | DEBUG | jarvis.command_hub | Speaking result for open_browser: Opening your browser.
+2026-04-24 12:46:21 | INFO | jarvis.command_hub | Command 'open_browser' completed in 1.838s (intent=unknown, category=web)
+2026-04-24 12:46:42 | INFO | jarvis.command_hub | Command 'youtube' succeeded.
+2026-04-24 12:46:42 | DEBUG | jarvis.command_hub | Speaking result for youtube: Opening YouTube.
+2026-04-24 12:46:42 | INFO | jarvis.command_hub | Command 'youtube' completed in 1.058s (intent=unknown, category=entertainment)
+2026-04-24 12:46:51 | INFO | jarvis.command_hub | Command 'open_browser' succeeded.
+2026-04-24 12:46:51 | DEBUG | jarvis.command_hub | Speaking result for open_browser: Searching for teen titans go.
+2026-04-24 12:46:51 | INFO | jarvis.command_hub | Command 'open_browser' completed in 1.752s (intent=unknown, category=web)
+2026-04-24 12:46:59 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:46:59 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:46:59 | INFO | jarvis.command_hub | Command 'greet' completed in 0.015s (intent=unknown, category=general)
+2026-04-24 12:48:00 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 12:48:02 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 12:48:02 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 12:48:02 | INFO | jarvis.command_hub | Command 'greet' completed in 0.004s (intent=unknown, category=general)
+2026-04-24 12:48:11 | INFO | jarvis.command_hub | Command 'youtube' succeeded.
+2026-04-24 12:48:11 | DEBUG | jarvis.command_hub | Speaking result for youtube: Opening YouTube.
+2026-04-24 12:48:11 | INFO | jarvis.command_hub | Command 'youtube' completed in 3.017s (intent=unknown, category=entertainment)
+2026-04-24 12:48:20 | INFO | jarvis.command_hub | No command matched for text: '2+2'
+2026-04-24 12:48:20 | WARNING | jarvis.command_hub | Non-command failure in 0.003s (error_type=no_match)
+2026-04-24 12:48:25 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-24 12:48:25 | DEBUG | jarvis.command_hub | Speaking result for wikipedia: Wikipedia lookup requires the 'wikipedia-api' package. Run: pip install wikipedia-api
+2026-04-24 12:48:25 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.006s (intent=unknown, category=information, error_type=None)
+2026-04-24 13:43:53 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 13:44:43 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 13:44:43 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 13:44:43 | INFO | jarvis.command_hub | Command 'greet' completed in 0.001s (intent=unknown, category=general)
+2026-04-24 13:45:44 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-24 13:45:44 | DEBUG | jarvis.command_hub | Speaking result for calculator: The answer is 4.
+2026-04-24 13:45:44 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.003s (intent=unknown, category=utility)
+2026-04-24 13:46:42 | INFO | jarvis.command_hub | Command 'jokes' succeeded.
+2026-04-24 13:46:42 | DEBUG | jarvis.command_hub | Speaking result for jokes: I was fired from the keyboard factory yesterday.  I wasn't putting in enough shifts.
+2026-04-24 13:46:42 | INFO | jarvis.command_hub | Command 'jokes' completed in 0.224s (intent=unknown, category=entertainment)
+2026-04-24 13:47:04 | INFO | jarvis.command_hub | Command 'open_app' succeeded.
+2026-04-24 13:47:04 | DEBUG | jarvis.command_hub | Speaking result for open_app: Launching Siri.
+2026-04-24 13:47:04 | INFO | jarvis.command_hub | Command 'open_app' completed in 0.211s (intent=unknown, category=system)
+2026-04-24 13:47:36 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 13:47:36 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 13:47:36 | INFO | jarvis.command_hub | Command 'greet' completed in 0.003s (intent=unknown, category=general)
+2026-04-24 13:47:41 | INFO | jarvis.command_hub | Command 'youtube' succeeded.
+2026-04-24 13:47:41 | DEBUG | jarvis.command_hub | Speaking result for youtube: Opening YouTube.
+2026-04-24 13:47:41 | INFO | jarvis.command_hub | Command 'youtube' completed in 0.349s (intent=unknown, category=entertainment)
+2026-04-24 13:48:02 | INFO | jarvis.command_hub | Command 'open_browser' succeeded.
+2026-04-24 13:48:02 | DEBUG | jarvis.command_hub | Speaking result for open_browser: Searching for madison bycicling.
+2026-04-24 13:48:02 | INFO | jarvis.command_hub | Command 'open_browser' completed in 0.327s (intent=unknown, category=web)
+2026-04-24 13:49:16 | WARNING | jarvis.command_hub | Command 'calculator' reported failure.
+2026-04-24 13:49:16 | DEBUG | jarvis.command_hub | Speaking result for calculator: I couldn't work that out. Try phrasing it differently.
+2026-04-24 13:49:16 | WARNING | jarvis.command_hub | Command 'calculator' failed in 0.003s (intent=unknown, category=utility, error_type=None)
+2026-04-24 13:49:57 | INFO | jarvis.command_hub | Command 'calculator' succeeded.
+2026-04-24 13:49:57 | DEBUG | jarvis.command_hub | Speaking result for calculator: The answer is 4.
+2026-04-24 13:49:57 | INFO | jarvis.command_hub | Command 'calculator' completed in 0.001s (intent=unknown, category=utility)
+2026-04-24 13:50:28 | INFO | jarvis.command_hub | Command 'weather' succeeded.
+2026-04-24 13:50:28 | DEBUG | jarvis.command_hub | Speaking result for weather: In Indianapolis: overcast, 77 degrees Fahrenheit, feels like 75. Humidity 51 percent, wind 12 miles per hour.
+2026-04-24 13:50:28 | INFO | jarvis.command_hub | Command 'weather' completed in 1.149s (intent=unknown, category=information)
+2026-04-24 13:51:06 | INFO | jarvis.command_hub | Command 'time' succeeded.
+2026-04-24 13:51:06 | DEBUG | jarvis.command_hub | Speaking result for time: The time is 1:51 PM.
+2026-04-24 13:51:06 | INFO | jarvis.command_hub | Command 'time' completed in 0.003s (intent=unknown, category=information)
+2026-04-24 13:51:15 | WARNING | jarvis.command_hub | Command 'wikipedia' reported failure.
+2026-04-24 13:51:15 | DEBUG | jarvis.command_hub | Speaking result for wikipedia: I couldn't find a Wikipedia page for my ip.
+2026-04-24 13:51:15 | WARNING | jarvis.command_hub | Command 'wikipedia' failed in 0.747s (intent=unknown, category=information, error_type=None)
+2026-04-24 13:51:30 | INFO | jarvis.command_hub | Command 'ip_address' succeeded.
+2026-04-24 13:51:30 | DEBUG | jarvis.command_hub | Speaking result for ip_address: Your local IP address is 127.0.0.1.
+2026-04-24 13:51:30 | INFO | jarvis.command_hub | Command 'ip_address' completed in 0.003s (intent=unknown, category=system)
+2026-04-24 13:52:16 | WARNING | jarvis.command_hub | Blocked unsafe action. Intent=unknown, text='suicide'
+2026-04-24 13:52:16 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=safety_block)
+2026-04-24 13:52:34 | INFO | jarvis.command_hub | No command matched for text: 'how to hack'
+2026-04-24 13:52:34 | WARNING | jarvis.command_hub | Non-command failure in 0.001s (error_type=no_match)
+2026-04-24 13:52:38 | INFO | jarvis.command_hub | No command matched for text: 'hack'
+2026-04-24 13:52:38 | WARNING | jarvis.command_hub | Non-command failure in 0.000s (error_type=no_match)
+2026-04-24 13:53:58 | INFO | jarvis.command_hub | Command 'jokes' succeeded.
+2026-04-24 13:53:58 | DEBUG | jarvis.command_hub | Speaking result for jokes: What did the dog say to the two trees? Bark bark.
+2026-04-24 13:53:58 | INFO | jarvis.command_hub | Command 'jokes' completed in 0.170s (intent=unknown, category=entertainment)
+2026-04-24 15:30:34 | DEBUG | jarvis.command_hub | CommandHub initialized.
+2026-04-24 15:30:46 | INFO | jarvis.command_hub | Command 'greet' succeeded.
+2026-04-24 15:30:46 | DEBUG | jarvis.command_hub | Speaking result for greet: Hello. I'm JARVIS. What do you need?
+2026-04-24 15:30:46 | INFO | jarvis.command_hub | Command 'greet' completed in 0.002s (intent=unknown, category=general)

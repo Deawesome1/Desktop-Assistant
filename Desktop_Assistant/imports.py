@@ -59,15 +59,32 @@ def os_key() -> str:
     """
     Return the assistant's normalized OS key:
         "windows", "macintosh", "linux"
+    Uses the centralized path hub for a single source of truth.
     """
-    value = _attr("Desktop_Assistant.commands.os_scanner", "current_os")
-    return value() if callable(value) else value
+    try:
+        from Desktop_Assistant.boot.path_hub import OS_KEY
+        return OS_KEY
+    except Exception:
+        # Fallback to the scanner if path_hub is not available
+        try:
+            value = _attr("Desktop_Assistant.commands.os_scanner", "current_os")
+            return value() if callable(value) else value
+        except Exception:
+            # Last-resort: platform fallback
+            import platform as _platform
+            _sys = _platform.system().lower()
+            if "windows" in _sys:
+                return "windows"
+            if "darwin" in _sys:
+                return "macintosh"
+            return "linux"
 
 
 # ------------------------------------------------------------
 # Brain
 # ------------------------------------------------------------
 def Brain():
+    """Return the Brain class (lazy)."""
     return _attr("Desktop_Assistant.brain.engine.brain", "Brain")
 
 
@@ -122,33 +139,38 @@ def _ensure_dir(path: str) -> str:
 def get_desktop() -> str:
     """
     Return a guaranteed-valid Desktop path on Windows, macOS, or Linux.
-    Uses assistant OS key (not platform.system).
-    Auto-creates the folder if missing.
+    Uses the centralized path hub for consistent behavior and auto-creates the folder if missing.
     """
-    home = os.path.expanduser("~")
-    os_name = os_key()
+    try:
+        from Desktop_Assistant.boot.path_hub import get_user_desktop
+        p = get_user_desktop()
+        # ensure directory exists
+        os.makedirs(str(p), exist_ok=True)
+        return str(p)
+    except Exception:
+        # Fallback to legacy behavior
+        home = os.path.expanduser("~")
+        os_name = os_key()
 
-    # Windows + macOS → same Desktop path
-    if os_name in ("windows", "macintosh"):
-        return _ensure_dir(os.path.join(home, "Desktop"))
+        if os_name in ("windows", "macintosh"):
+            return _ensure_dir(os.path.join(home, "Desktop"))
 
-    # Linux → XDG-aware
-    xdg_config = os.path.join(home, ".config", "user-dirs.dirs")
-    desktop = os.path.join(home, "Desktop")
+        xdg_config = os.path.join(home, ".config", "user-dirs.dirs")
+        desktop = os.path.join(home, "Desktop")
 
-    if os.path.exists(xdg_config):
-        try:
-            with open(xdg_config, "r", encoding="utf-8") as f:
-                for line in f:
-                    if "XDG_DESKTOP_DIR" in line:
-                        path = line.split("=")[1].strip().strip('"')
-                        path = path.replace("$HOME", home)
-                        desktop = path
-                        break
-        except Exception:
-            pass
+        if os.path.exists(xdg_config):
+            try:
+                with open(xdg_config, "r", encoding="utf-8") as f:
+                    for line in f:
+                        if "XDG_DESKTOP_DIR" in line:
+                            path = line.split("=")[1].strip().strip('"')
+                            path = path.replace("$HOME", home)
+                            desktop = path
+                            break
+            except Exception:
+                pass
 
-    return _ensure_dir(desktop)
+        return _ensure_dir(desktop)
 
 
 # ------------------------------------------------------------

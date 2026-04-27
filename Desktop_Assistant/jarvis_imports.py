@@ -1,50 +1,237 @@
 """
-jarvis_imports.py
-Centralized import router for JARVIS (Omega)
+imports.py — Central import surface for the Desktop Assistant (Omega)
 
-This file makes the system self-aware of its own structure.
-All commands import from here instead of hardcoding paths.
+This module provides ONE import point for:
+ - Brain class
+ - Speaker (OS-aware)
+ - Listener (OS-aware)
+ - OS key (from assistant’s own OS scanner)
+ - CommandHub
+ - CommandLoader
+ - Standard utilities (re, json, urllib)
+ - System helpers (clipboard, desktop path, etc.)
+ - Unified OS-aware path resolution
+
+Commands should NEVER import OS-specific modules directly.
+Everything goes through this surface.
 """
 
-from pathlib import Path
+# ------------------------------------------------------------
+# Standard library re-exports
+# ------------------------------------------------------------
+import os
+import re as _re
+import json as _json
+import urllib.request as _urllib_request
+import urllib.parse as _urllib_parse
+from typing import Any, Dict, List, Optional
+
+# Expose clean names
+re = _re
+json = _json
+
+
+class urllib:
+    request = _urllib_request
+    parse = _urllib_parse
+
+
+# ------------------------------------------------------------
+# Lazy import helpers
+# ------------------------------------------------------------
 import importlib
 
 
-# ------------------------------------------------------------
-# Detect project root dynamically
-# ------------------------------------------------------------
-PROJECT_ROOT = Path(__file__).resolve().parent
-
-
-def _import(path: str):
-    """Safe dynamic import."""
+def _load(path: str):
+    """Lazy import of a module by dotted path."""
     return importlib.import_module(path)
 
 
-# ------------------------------------------------------------
-# Brain + Engine
-# ------------------------------------------------------------
-def get_brain():
-    return _import("Desktop_Assistant.brain.engine.brain").Brain
-
-
-def get_speaker():
-    return _import("Desktop_Assistant.brain.engine.speaker").speak
-
-
-def get_listener():
-    return _import("Desktop_Assistant.brain.engine.listener").listen
+def _attr(path: str, name: str):
+    """Load an attribute from a module."""
+    return getattr(_load(path), name)
 
 
 # ------------------------------------------------------------
-# OS Scanner
+# OS key (canonical)
 # ------------------------------------------------------------
-def get_current_os():
-    return _import("Desktop_Assistant.commands.os_scanner").current_os
+def os_key() -> str:
+    """
+    Return the assistant's normalized OS key:
+        "windows", "macintosh", "linux"
+    Uses the centralized path hub for a single source of truth.
+    """
+    try:
+        from Desktop_Assistant.boot.path_hub import OS_KEY
+        return OS_KEY
+    except Exception:
+        # Fallback to the scanner if path_hub is not available
+        try:
+            value = _attr("Desktop_Assistant.commands.os_scanner", "current_os")
+            return value() if callable(value) else value
+        except Exception:
+            # Last-resort: platform fallback
+            import platform as _platform
+            _sys = _platform.system().lower()
+            if "windows" in _sys:
+                return "windows"
+            if "darwin" in _sys:
+                return "macintosh"
+            return "linux"
 
 
 # ------------------------------------------------------------
-# CommandHub
+# Brain
 # ------------------------------------------------------------
-def get_command_hub():
-    return _import("Desktop_Assistant.commands.command_hub").CommandHub
+def Brain():
+    """Return the Brain class (lazy)."""
+    return _attr("Desktop_Assistant.brain.engine.brain", "Brain")
+
+
+# ------------------------------------------------------------
+# Speaker / Listener (OS-aware)
+# ------------------------------------------------------------
+def speak(text: str) -> None:
+    """OS-aware speak() wrapper."""
+    try:
+        _speak = _attr("Desktop_Assistant.brain.engine.speaker", "speak")
+        _speak(text)
+    except Exception:
+        pass  # Silent fail for robustness
+
+
+def listen_once(timeout: int = 8) -> str:
+    """OS-aware single-shot listener."""
+    try:
+        _listen = _attr("Desktop_Assistant.brain.engine.listener", "listen_once")
+        return _listen(timeout=timeout)
+    except Exception:
+        return ""
+
+
+# ------------------------------------------------------------
+# CommandHub / Loader
+# ------------------------------------------------------------
+def CommandHub():
+    return _attr("Desktop_Assistant.commands.command_hub", "CommandHub")
+
+
+def CommandLoader():
+    return _attr("Desktop_Assistant.brain.loader", "CommandLoader")
+
+
+# ------------------------------------------------------------
+# OS-AWARE PATH HELPERS (Unified, Self-Healing)
+# ------------------------------------------------------------
+
+def _ensure_dir(path: str) -> str:
+    """Create directory if missing, return path."""
+    try:
+        os.makedirs(path, exist_ok=True)
+        return path
+    except Exception:
+        # Fallback if Desktop/Documents/etc. cannot be created
+        fallback = os.path.join(os.path.expanduser("~"), "Omega_Fallback")
+        os.makedirs(fallback, exist_ok=True)
+        return fallback
+
+
+def get_desktop() -> str:
+    """
+    Return a guaranteed-valid Desktop path on Windows, macOS, or Linux.
+    Uses the centralized path hub for consistent behavior and auto-creates the folder if missing.
+    """
+    try:
+        from Desktop_Assistant.boot.path_hub import get_user_desktop
+        p = get_user_desktop()
+        # ensure directory exists
+        os.makedirs(str(p), exist_ok=True)
+        return str(p)
+    except Exception:
+        # Fallback to legacy behavior
+        home = os.path.expanduser("~")
+        os_name = os_key()
+
+        if os_name in ("windows", "macintosh"):
+            return _ensure_dir(os.path.join(home, "Desktop"))
+
+        xdg_config = os.path.join(home, ".config", "user-dirs.dirs")
+        desktop = os.path.join(home, "Desktop")
+
+        if os.path.exists(xdg_config):
+            try:
+                with open(xdg_config, "r", encoding="utf-8") as f:
+                    for line in f:
+                        if "XDG_DESKTOP_DIR" in line:
+                            path = line.split("=")[1].strip().strip('"')
+                            path = path.replace("$HOME", home)
+                            desktop = path
+                            break
+            except Exception:
+                pass
+
+        return _ensure_dir(desktop)
+
+
+# ------------------------------------------------------------
+# Clipboard helpers (OS-aware via pyperclip)
+# ------------------------------------------------------------
+
+def get_clipboard() -> str:
+    """Return clipboard contents or raise RuntimeError."""
+    try:
+        import pyperclip
+        return pyperclip.paste() or ""
+    except Exception as e:
+        raise RuntimeError("Clipboard backend not available") from e
+
+
+def clear_clipboard() -> None:
+    """Clear clipboard or raise RuntimeError."""
+    try:
+        import pyperclip
+        pyperclip.copy("")
+    except Exception as e:
+        raise RuntimeError("Clipboard backend not available") from e
+
+
+# ------------------------------------------------------------
+# Compatibility Imports class (Unified)
+# ------------------------------------------------------------
+
+class Imports:
+    """Compatibility wrapper for older code."""
+
+    # Standard libs
+    re = re
+    json = json
+    urllib = urllib
+
+    # Core
+    def Brain(self):
+        return Brain()
+
+    def speak(self, text: str):
+        return speak(text)
+
+    def listen_once(self, timeout: int = 8):
+        return listen_once(timeout)
+
+    def os_key(self):
+        return os_key()
+
+    def CommandHub(self):
+        return CommandHub()
+
+    def CommandLoader(self):
+        return CommandLoader()
+
+    # System helpers
+    def get_desktop(self):
+        return get_desktop()
+
+    def get_clipboard(self):
+        return get_clipboard()
+
+    def clear_clipboard(self):
+        return clear_clipboard()

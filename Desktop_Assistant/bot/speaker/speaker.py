@@ -1,132 +1,122 @@
-# Desktop_Assistant/bot/speaker.py
+# Desktop_Assistant/brain/engine/speaker.py
 """
-TTS queue worker (Windows SAPI safe) + cross-platform wrapper.
-- speak(text, block=True) enqueues and optionally waits.
-- speak_async(text) enqueues and returns immediately.
+Cross-platform speaker backend for JARVIS.
+
+Behavior:
+- macOS: uses the native `say` command (no extra Python deps).
+- Linux: tries `spd-say`, then `espeak`, then falls back to pyttsx3 if available.
+- Windows: tries pyttsx3 first, then win32com (pywin32) if available.
+- If no TTS backend is available, falls back to printing the text.
+This module never imports Windows-only modules unguarded; ImportError is handled.
 """
 
-import logging
-import threading
-import queue
-import time
+from __future__ import annotations
+
+import shlex
+import subprocess
+import sys
 from typing import Optional
 
-logger = logging.getLogger("jarvis.speaker")
+try:
+    from Desktop_Assistant.boot.path_hub import OS_KEY
+except Exception:
+    # fallback to platform detection if path_hub not available
+    import platform as _platform
+    _sys = _platform.system().lower()
+    if "darwin" in _sys:
+        OS_KEY = "macintosh"
+    elif "windows" in _sys:
+        OS_KEY = "windows"
+    else:
+        OS_KEY = "linux"
 
-# Worker queue and control
-_tts_queue: "queue.Queue[tuple[str, threading.Event|None]]" = queue.Queue()
-_worker_thread: Optional[threading.Thread] = None
-_worker_ready = threading.Event()
-_shutdown = threading.Event()
 
-# Platform backend loader (only used inside worker)
-def _worker():
-    """
-    Worker thread: initialize COM and SAPI inside this thread (Windows),
-    then process queue items synchronously.
-    """
+def _run_cmd(cmd: str) -> bool:
     try:
-        # Import here so it's in the worker thread
-        import pythoncom
-        import win32com.client
-    except Exception as e:
-        logger.warning("TTS worker: platform TTS backend not available: %s", e)
-        # Drain queue and print instead
-        while not _shutdown.is_set():
-            try:
-                text, ev = _tts_queue.get(timeout=0.2)
-            except Exception:
-                if _shutdown.is_set():
-                    break
-                continue
-            try:
-                print(f"JARVIS: {text}")
-            finally:
-                if ev:
-                    ev.set()
-        return
+        subprocess.run(shlex.split(cmd), check=False)
+        return True
+    except Exception:
+        return False
 
-    # Initialize COM for this thread
-    pythoncom.CoInitialize()
+
+def _say_mac(text: str) -> bool:
     try:
+        # Use the native macOS `say` command
+        subprocess.run(["say", text], check=False)
+        return True
+    except Exception:
+        return False
+
+
+def _say_linux(text: str) -> bool:
+    # Try spd-say
+    if _run_cmd(f"spd-say {shlex.quote(text)}"):
+        return True
+    # Try espeak
+    if _run_cmd(f"espeak {shlex.quote(text)}"):
+        return True
+    # Try pyttsx3 as a Python fallback
+    try:
+        import pyttsx3
+        engine = pyttsx3.init()
+        engine.say(text)
+        engine.runAndWait()
+        return True
+    except Exception:
+        return False
+
+
+def _say_windows(text: str) -> bool:
+    # Prefer pyttsx3 (pure Python, cross-platform)
+    try:
+        import pyttsx3
+        engine = pyttsx3.init()
+        engine.say(text)
+        engine.runAndWait()
+        return True
+    except Exception:
+        pass
+
+    # Try win32com (pywin32) if available
+    try:
+        # Import guarded to avoid ImportError on non-Windows platforms
+        import win32com.client  # type: ignore
         speaker = win32com.client.Dispatch("SAPI.SpVoice")
-    except Exception as e:
-        logger.exception("TTS worker: failed to create SAPI.SpVoice: %s", e)
-        pythoncom.CoUninitialize()
-        # fallback: drain queue printing
-        while not _shutdown.is_set():
-            try:
-                text, ev = _tts_queue.get(timeout=0.2)
-            except Exception:
-                if _shutdown.is_set():
-                    break
-                continue
-            try:
-                print(f"JARVIS: {text}")
-            finally:
-                if ev:
-                    ev.set()
-        return
-
-    # Worker ready
-    _worker_ready.set()
-    logger.debug("TTS worker started (SAPI ready)")
-
-    try:
-        while not _shutdown.is_set():
-            try:
-                text, ev = _tts_queue.get(timeout=0.2)
-            except Exception:
-                continue
-            try:
-                # Synchronous speak in worker thread
-                speaker.Speak(text)
-            except Exception:
-                logger.exception("TTS worker: SAPI.Speak failed for text: %s", text)
-            finally:
-                if ev:
-                    ev.set()
-    finally:
-        try:
-            pythoncom.CoUninitialize()
-        except Exception:
-            pass
-        logger.debug("TTS worker exiting")
+        speaker.Speak(text)
+        return True
+    except Exception:
+        return False
 
 
-def _ensure_worker():
-    global _worker_thread
-    if _worker_thread and _worker_thread.is_alive():
-        return
-    _shutdown.clear()
-    _worker_ready.clear()
-    _worker_thread = threading.Thread(target=_worker, daemon=True)
-    _worker_thread.start()
-    # Wait briefly for worker to initialize (non-blocking caller can still proceed)
-    _worker_ready.wait(timeout=1.0)
-
-
-def speak(text: str, *, brain=None, block: bool = True) -> None:
+def speak(text: str, block: bool = False) -> None:
     """
-    Enqueue text for speaking. If block=True, wait until the worker finishes speaking it.
+    Speak the provided text using the best available backend.
+    block parameter is accepted for API compatibility; backends used here are blocking.
     """
     if not text:
         return
-    _ensure_worker()
-    ev = threading.Event() if block else None
-    _tts_queue.put((text, ev))
-    if block and ev:
-        # Wait with a timeout to avoid indefinite hangs
-        ev.wait(timeout=30.0)
 
+    ok = False
+    if OS_KEY == "macintosh":
+        ok = _say_mac(text)
+    elif OS_KEY == "linux":
+        ok = _say_linux(text)
+    elif OS_KEY == "windows":
+        ok = _say_windows(text)
+    else:
+        # unknown OS: try pyttsx3 then fallback to print
+        try:
+            import pyttsx3
+            engine = pyttsx3.init()
+            engine.say(text)
+            engine.runAndWait()
+            ok = True
+        except Exception:
+            ok = False
 
-def speak_async(text: str, *, brain=None) -> None:
-    """Enqueue text and return immediately."""
-    speak(text, brain=brain, block=False)
-
-
-def shutdown():
-    """Signal worker to exit (call at process shutdown if desired)."""
-    _shutdown.set()
-    if _worker_thread:
-        _worker_thread.join(timeout=1.0)
+    if not ok:
+        # Final fallback: print to stdout so user still sees the message
+        try:
+            print(f"JARVIS (TTS fallback): {text}")
+        except Exception:
+            pass

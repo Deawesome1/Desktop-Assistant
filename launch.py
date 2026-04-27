@@ -1,7 +1,9 @@
-# launch.py (project root)
+# launch.py (project root) — top of file
+import sys, pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+
 import runpy
 import argparse
-import sys
 
 def main():
     parser = argparse.ArgumentParser(prog="launch.py", description="Launch JARVIS")

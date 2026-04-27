@@ -1,20 +1,9 @@
 # Desktop_Assistant/boot/boot_utils.py
-import os
-import platform
-import subprocess
 from pathlib import Path
+import subprocess
 from typing import Optional, Tuple
 
-# PROJECT_ROOT resolves to repository root (one level above launch.py)
-PROJECT_ROOT = Path(__file__).resolve().parents[1].parent
-
-_sys = platform.system().lower()
-if "windows" in _sys:
-    current_os = "windows"
-elif "darwin" in _sys:
-    current_os = "macintosh"
-else:
-    current_os = "linux"
+from .path_hub import PROJECT_ROOT, OS_KEY as current_os
 
 def log(msg: str, level: str = "info") -> None:
     print(f"[{level.upper()}] {msg}")
